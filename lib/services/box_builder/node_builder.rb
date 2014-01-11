@@ -1,16 +1,15 @@
-require 'lib/system_command'
-require 'lib/ssh_key_helpers'
-
 class NodeBuilder
-
-  BASE_DIR = File.realpath(File.join(File.dirname(__FILE__), '..'))
 
   include SystemCommand
   include SshKeyHelpers
 
+  attr_reader :base_folder, :logger
+
   attr_accessor :options, :node
 
-  def initialize(node, options={})
+  def initialize(base_folder, logger, node, options={})
+    @logger = logger
+    @base_folder = base_folder
     @node    = node
     @options = options
 
@@ -91,17 +90,17 @@ class NodeBuilder
   end
 
   def setup_host
-    command = "bundle exec knife solo cook -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path} -V"
+    command = "bundle exec knife solo cook -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command, ">> Setup host #{options['hostname']}:\n"
   end
 
   def cleanup_host
-    command = "bundle exec knife solo clean #{options['user']}@#{options['hostname']} -i #{private_key_path} -V"
+    command = "bundle exec knife solo clean #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command, ">> Clean #{options['hostname']}:\n"
   end
 
   def init_node_config
-    stack_file_template = File.join(BASE_DIR, 'roles', "#{options['stack']}.json")
+    stack_file_template = File.join(base_folder, 'roles', "#{options['stack']}.json")
     node_config_file = config_file_path
 
     unless File.exist? stack_file_template
@@ -115,12 +114,12 @@ class NodeBuilder
   end
 
   def prepare_host
-    command = "bundle exec knife solo prepare -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path} -V"
+    command = "bundle exec knife solo prepare -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command,  ">> Install chef to the host #{node}(#{options['hostname']}):\n"
   end
 
   def config_file_path
-    File.join(BASE_DIR, 'nodes', "#{node}.json")
+    File.join(base_folder, 'nodes', "#{node}.json")
   end
 
 end

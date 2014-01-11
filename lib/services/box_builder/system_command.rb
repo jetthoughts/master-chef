@@ -1,12 +1,12 @@
 module SystemCommand
 
   def log(msg)
-    puts "\e[1;35m-----> \e[1;33m" + msg.to_s + "\e[0m"
+    logger.append_log("-----> #{msg.to_s}")
   end
 
   def system_cmd(cmd, prompt='COMMAND:')
-    log "\e[1;33m#{prompt} \e[0;32m#{cmd}\e[0m"
-    system cmd
+    log "#{prompt} #{cmd}"
+    logger.append_log(`#{cmd}`)
   end
 
   def bundle_install

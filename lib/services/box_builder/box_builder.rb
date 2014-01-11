@@ -1,21 +1,17 @@
-require 'yaml'
-require 'net/ssh'
-require 'lib/system_command'
-require 'lib/node_builder'
-require 'lib/ssh_key_helpers'
-
 class BoxBuilder
-
-  BASE_DIR = File.realpath(File.join(File.dirname(__FILE__), '..'))
 
   include SystemCommand
   include SshKeyHelpers
+
+  attr_reader :base_folder, :logger
 
   attr_reader :nodes
   attr_reader :selected_node
   attr_accessor :verbose
 
-  def initialize(node=nil)
+  def initialize(base_folder, logger, node=nil)
+    @logger      = logger
+    @base_folder = base_folder
     @verbose = false
     @selected_node = node
     @nodes = []
@@ -30,15 +26,15 @@ class BoxBuilder
   private
 
   def add_public_key_to_bag
-    if public_key
-      system_cmd "bundle exec knife solo data bag create keys deployer -d --data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key}\"}'"
+    if public_key base_folder
+      system_cmd "bundle exec knife solo data bag create keys deployer -d --data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key base_folder}\"}'"
     end
   end
 
   def init_nodes
     return @nodes unless @nodes.empty?
 
-    settings_file = File.join(BASE_DIR, 'config', 'settings.yml')
+    settings_file = File.join(base_folder, 'config', 'settings.yml')
 
     unless File.exist? settings_file
       log "Config file `config/settings.yml` is missing. Execute below command to copy a sample file."
@@ -54,7 +50,7 @@ class BoxBuilder
     end
 
     configs.each do |node, options|
-      @nodes << NodeBuilder.new(node, options)
+      @nodes << NodeBuilder.new(base_folder, logger, node, options)
     end
   end
 

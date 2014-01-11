@@ -3,6 +3,8 @@ class Deployment < ActiveRecord::Base
   belongs_to :user
   belongs_to :node, inverse_of: :deployments
 
+  delegate :project, to: :node
+
   state_machine :state, initial: :initial do
     event :deploy do
       transition initial: :processing
@@ -16,6 +18,17 @@ class Deployment < ActiveRecord::Base
       transition processing: :stopped
     end
 
+    before_transition initial: :processing do |deployment, transition|
+      deployment.node.prepare_settings
+
+      builder = ::BoxBuilder.new(deployment.project.base_folder, deployment.logger)
+
+      builder.verbose = verbose
+      builder.bundle_install
+      builder.berkshelf_update_cookbooks
+      builder.build
+    end
+
     after_transition any => any do |deployment, transition|
       deployment.notify_client 'changed_state', deployment.state
     end
@@ -23,28 +36,12 @@ class Deployment < ActiveRecord::Base
 
   after_create :schedule_deploy
 
-  def append_log(text)
-    self.logs ||= ''
-    self.logs += text
-    notify_client 'append_log', text
-  end
-
   def channel_name
     "deployments_#{id}"
   end
 
-  def deploy
-    builder = BoxBuilder.new args[:node]
-    builder.verbose = (verbose == true)
-    builder.bundle_install
-    builder.berkshelf_update_cookbooks
-    builder.build
-  end
-
-  def notify_client event, message
-    Pusher[channel_name].trigger(event, {
-      message: message
-    })
+  def logger
+    @_logger ||= DeploymentLogger.new(channel_name)
   end
 
   private

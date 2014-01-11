@@ -28,6 +28,8 @@ gem 'unicorn-rails'
 gem 'state_machine'
 gem 'pusher'
 
+gem 'net-ssh'
+
 group :production, :staging do
   gem 'memcachier'
   gem 'dalli'

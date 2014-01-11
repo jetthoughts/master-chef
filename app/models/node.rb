@@ -5,6 +5,18 @@ class Node < ActiveRecord::Base
   validates :name, presence: true, uniqueness: { scope: :project_id }
   validate :validate_credentials
 
+  def credentials_hash
+    YAML.load(credentials)
+  end
+
+  def prepare_settings
+    config_folder = project.base_folder.join('config')
+    FileUtils.mkdir_p config_folder
+    File.open(config_folder.join('settings.yml'), 'w') do |file|
+      file.write({ name => credentials_hash }.to_yaml)
+    end
+  end
+
   private
 
   def validate_credentials
