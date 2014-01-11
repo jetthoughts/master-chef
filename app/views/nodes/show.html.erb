@@ -8,4 +8,4 @@
   <%= @node.config %>
 </p>
 <%= link_to 'Edit', edit_node_path(@node) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', project_nodes_path(@node.project) %>
