@@ -2,7 +2,7 @@
 
 <p>
   <strong>Project:</strong>
-  <%= @role.project_id %>
+  <%= @role.project.title %>
 </p>
 
 <p>
@@ -16,4 +16,4 @@
 </p>
 
 <%= link_to 'Edit', edit_role_path(@role) %> |
-<%= link_to 'Back', roles_path %>
+<%= link_to 'Back', project_roles_path(@role.project) %>
