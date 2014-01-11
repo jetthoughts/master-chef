@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
-  revision: 51792c7924372fc0c8789bc849f82e09041e1218
+  revision: 7465eb37877897849a2466a05afd2af4ee7a9338
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0)
@@ -18,7 +18,7 @@ GIT
       inherited_resources (~> 1.3)
       jquery-rails
       jquery-ui-rails
-      kaminari (~> 0.14)
+      kaminari (~> 0.14, != 0.15.0)
       rails (>= 3.2, < 4.1)
       ransack (~> 1.0)
       sass-rails
@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sass-rails.git
-  revision: 52b24bab699adf382f9a2b1faff35613aedd3e4a
+  revision: f65b9005de112b74cd09e5dedeae23603c3b1413
   specs:
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -42,7 +42,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/sprockets-rails.git
-  revision: 25eee989fbb3a11d96241d1a7e79bb9670e51f5b
+  revision: 7d53c55c96a1f900553038d6354136fed8536c8a
   specs:
     sprockets-rails (2.0.1)
       actionpack (>= 3.0)
@@ -76,6 +76,7 @@ GEM
       multi_json (~> 1.3)
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
+    angularjs-rails (1.2.7)
     ansi (1.4.3)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -90,19 +91,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    daemons (1.1.9)
-    debugger (1.6.2)
-      columnize (>= 0.3.1)
-      debugger-linecache (~> 1.2.0)
-      debugger-ruby_core_source (~> 1.2.3)
-    debugger-linecache (1.2.0)
-    debugger-ruby_core_source (1.2.3)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
     delayed_job_active_record (4.0.0)
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
-    delayed_job_honeybadger (0.0.2)
+    delayed_job_honeybadger (0.0.3)
       delayed_job
       honeybadger
     delayed_job_web (1.2.1)
@@ -119,13 +113,12 @@ GEM
       warden (~> 1.2.3)
     devise-async (0.9.0)
       devise (~> 3.2)
-    docile (1.1.1)
+    docile (1.1.2)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     execjs (2.0.2)
     formtastic (2.3.0.rc2)
       actionpack (>= 3.0)
-    haml (4.0.4)
+    haml (4.0.5)
       tilt
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
@@ -139,22 +132,20 @@ GEM
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
-    jbuilder (1.5.3)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (4.1.1)
       railties (>= 3.1.0)
     json (1.8.1)
-    kaminari (0.15.0)
+    kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kgio (2.8.1)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    metaclass (0.0.1)
+    metaclass (0.0.2)
     mime-types (1.25.1)
     minitest (4.7.5)
     minitest-reporters (0.14.23)
@@ -164,9 +155,9 @@ GEM
       powerbar
     mocha (0.14.0)
       metaclass (~> 0.0.1)
-    multi_json (1.8.2)
+    multi_json (1.8.4)
     orm_adapter (0.5.0)
-    pg (0.17.0)
+    pg (0.17.1)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
     polyglot (0.3.3)
@@ -193,16 +184,17 @@ GEM
       activesupport (= 4.0.2)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (10.1.0)
+    raindrops (0.12.0)
+    rake (10.1.1)
     ransack (1.1.0)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
       polyamorous (~> 0.6.0)
-    rdoc (4.0.1)
+    rdoc (4.1.1)
       json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    sass (3.2.12)
+    sass (3.2.13)
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -220,10 +212,6 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    thin (1.6.1)
-      daemons (>= 1.0.9)
-      eventmachine (>= 1.0.0)
-      rack (>= 1.0.0)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -231,17 +219,22 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    turbolinks (2.0.0)
-      coffee-rails
     twitter-bootstrap-rails (2.2.8)
       actionpack (>= 3.1)
       execjs
       rails (>= 3.1)
       railties (>= 3.1)
     tzinfo (0.3.38)
-    uglifier (2.3.3)
+    uglifier (2.4.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unicorn (4.8.0)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
+    unicorn-rails (1.1.0)
+      rack
+      unicorn
     warden (1.2.3)
       rack (>= 1.0)
 
@@ -250,9 +243,9 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  angularjs-rails
   arel
   coffee-rails!
-  debugger
   delayed_job_active_record (>= 4.0.0.beta1)
   delayed_job_honeybadger
   delayed_job_web (>= 1.2.0)
@@ -260,8 +253,6 @@ DEPENDENCIES
   devise-async
   handy!
   honeybadger
-  jbuilder (~> 1.2)
-  jquery-rails
   minitest-reporters
   mocha
   pg
@@ -271,7 +262,6 @@ DEPENDENCIES
   simple_form
   simplecov
   sprockets-rails!
-  thin
-  turbolinks
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  unicorn-rails
