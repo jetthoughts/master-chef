@@ -1,22 +1,24 @@
-
 <div class="container">
-<h2 class="center-text" style="margin-left: 15%;">Sign in</h2>
+  <h2 class="center-text">Sign in</h2>
 
-<div class="row" style="padding-top: 10px;">
-<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-horizontal' }) do |f| %>
-    <div class="form-inputs" >
-      <%= f.input :email, :required => true, :autofocus => true %>
-      <%= f.input :password, :required => true %>
-      <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
-    </div>
+  <div class="row">
+    <div class="col-lg-4 col-lg-offset-4">
 
-    <div class="form-actions">
-      <%= f.button :submit, "Sign in", :class => 'btn-primary submit-button1' %>
+      <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: 'form-horizontal'}) do |f| %>
+        <div class="form-group">
+          <%= f.input :email, :required => true, :autofocus => true %>
+          <%= f.input :password, :required => true %>
+          <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Sign in", :class => 'btn-primary submit-button1' %>
+        </div>
+      <% end %>
+      <div class="text-center">
+        <%= render "users/shared/links" %>
+      </div>
     </div>
-<% end %>
-  <div class="text-center" style="width: 45%;">
-    <%= render "users/shared/links" %>
   </div>
-</div>
 
 </div>
