@@ -1,8 +1,0 @@
-Description:
-    Generate a simple knife-solo chef project
-
-Example:
-    rails generate chef_project projects/user/project_name
-
-    This will create:
-        projects/user/project_name
