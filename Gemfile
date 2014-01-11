@@ -8,6 +8,7 @@ gem 'pg'
 
 # https://github.com/hiravgandhi/angularjs-rails
 gem 'angularjs-rails'
+gem 'jquery-rails'
 
 gem 'devise', '>= 3.0.2'
 gem 'devise-async'

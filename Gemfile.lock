@@ -265,6 +265,7 @@ DEPENDENCIES
   devise (>= 3.0.2)
   devise-async
   handy!
+  jquery-rails
   memcachier
   minitest-reporters
   mocha
