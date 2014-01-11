@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
 
   has_many :projects
+  has_many :deployments
 
   def name
     [first_name, last_name].join ' '

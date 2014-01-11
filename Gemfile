@@ -24,6 +24,7 @@ gem 'simple_form'
 gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'unicorn-rails'
+gem 'state_machine'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'

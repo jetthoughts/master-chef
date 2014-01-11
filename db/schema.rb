@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111143817) do
+ActiveRecord::Schema.define(version: 20140111161014) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,6 +47,19 @@ ActiveRecord::Schema.define(version: 20140111143817) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "deployments", force: true do |t|
+    t.integer  "user_id",                        null: false
+    t.integer  "node_id",                        null: false
+    t.string   "state",      default: "initial", null: false
+    t.text     "logs"
+    t.boolean  "success"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "deployments", ["node_id"], name: "index_deployments_on_node_id", using: :btree
+  add_index "deployments", ["user_id"], name: "index_deployments_on_user_id", using: :btree
 
   create_table "nodes", force: true do |t|
     t.integer  "project_id"
