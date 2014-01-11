@@ -2,17 +2,22 @@
   <strong>Project:</strong>
   <%= @node.project.title %>
 </p>
+
 <p>
   <strong>Node:</strong>
   <%= @node.name %>
 </p>
+
 <p>
   <strong>Credentials:</strong>
 </p>
+
 <pre><%= @node.credentials -%></pre>
+
 <p>
   <strong>Config:</strong>
 </p>
+
 <pre><%= @node.config -%></pre>
 
 <%= form_for [@node, @node.deployments.build] do |f| -%>

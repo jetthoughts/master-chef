@@ -1,7 +1,10 @@
 class NodesController < ApplicationController
   before_filter :authenticate_user!
-  before_action :load_project, only: %i{ index new create }
+
+  before_action :load_project, only: %i{ index new create}
   before_action :load_node, only: %i{ show edit update destroy }
+
+  respond_to :html, :json
 
   def index
     @nodes = @project.nodes
@@ -14,12 +17,10 @@ class NodesController < ApplicationController
 
   def create
     authorize! :create, Node
+
     @node = @project.nodes.build node_attributes
-    if @node.save
-      redirect_to @project, notice: 'Node successfully created'
-    else
-      render :new
-    end
+    flash[:notice] = 'Node successfully created!' if @node.save
+    respond_with @node, location: [@project]
   end
 
   def edit
@@ -28,17 +29,15 @@ class NodesController < ApplicationController
 
   def update
     authorize! :update, @node
-    if @node.update node_attributes
-      redirect_to @node.project, notice: 'Node successfully updated'
-    else
-      render :edit
-    end
+    @node.attributes = node_attributes
+    flash[:notice] = 'Node successfully updated' if @node.save
+    respond_with @node, location: [@node.project]
   end
 
   def destroy
     authorize! :destroy, @node
     @node.destroy
-    redirect_to @node.project, notice: 'Node successfully updated'
+    redirect_to @node.project, notice: "Node '#{@node.name}' successfully destroyed"
   end
 
   def show
