@@ -13,6 +13,11 @@
   </thead>
   <tbody>
   <%= render @project.nodes %>
+  <tr>
+    <td colspan="2">
+      <%= link_to ' + Add new node', new_project_node_path(@project) %>
+    </td>
+  </tr>
   </tbody>
 </table>
 <table class='table'>
@@ -32,4 +37,3 @@
 </p>
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %> |
-<%= link_to 'New node', new_project_node_path(@project) %>

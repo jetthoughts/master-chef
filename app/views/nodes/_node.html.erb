@@ -1,7 +1,8 @@
 <tr>
-  <td><%= node.name %></td>
   <td>
-    <%= link_to 'Show', node %> |
+    <%= link_to node.name, node, class: 'node_title' %>
+  </td>
+  <td>
     <%= link_to 'Edit', edit_node_path(node) %> |
     <%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %>
   </td>
