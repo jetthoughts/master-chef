@@ -1,6 +1,7 @@
 class NodesController < ApplicationController
 
-  before_action :load_project
+  before_action :load_project, only: %i{ index new create }
+  before_action :load_node, only: %i{ show edit update destroy }
 
   def index
     @nodes = @project.nodes
@@ -13,10 +14,29 @@ class NodesController < ApplicationController
   def create
     @node = @project.nodes.build node_attributes
     if @node.save
-      redirect_to project_nodes_path, notice: 'Node successfully created'
+      redirect_to @project, notice: 'Node successfully created'
     else
       render :new
     end
+  end
+
+  def edit
+  end
+
+  def update
+    if @node.update node_attributes
+      redirect_to @node.project, notice: 'Node sucessfully updated'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @node.destroy
+    redirect_to @node.project, notice: 'Node sucessfully updated'
+  end
+
+  def show
   end
 
   private
@@ -29,4 +49,7 @@ class NodesController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
+  def load_node
+    @node = Node.find(params[:id])
+  end
 end

@@ -1,0 +1,6 @@
+<%= simple_form_for [@project, @node] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :credentials %>
+    <%= f.input :config %>
+    <%= f.submit %>
+<% end %>

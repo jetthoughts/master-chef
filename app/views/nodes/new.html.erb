@@ -1,8 +1,3 @@
-<h3>New node for <%= @project.title %></h3>
-<%= simple_form_for [@project, @node] do |f| %>
-    <%= f.input :name %>
-    <%= f.input :credentials %>
-    <%= f.input :config %>
-    <%= f.submit %>
-<% end %>
+<h3>New node for "<%= @project.title %>"</h3>
+<%= render 'form' %>
 <%= link_to 'Back to project', @project %>
