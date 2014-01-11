@@ -1,0 +1,8 @@
+web:
+  project: :bidder
+  name: 'WEB'
+
+db:
+  project: :willow
+  name: 'DB'
+

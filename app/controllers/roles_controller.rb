@@ -4,14 +4,21 @@ class RolesController < ApplicationController
   before_action :load_role, only: [:show, :edit, :update, :destroy]
 
   def index
+    authorize! :read, @project
     @roles = @project.roles
   end
 
+  def show
+    authorize! :read, @role
+  end
+
   def new
+    authorize! :create, Role
     @role = @project.roles.build
   end
 
   def create
+    authorize! :create, Role
     @role = @project.roles.build role_attributes
     if @role.save
       redirect_to project_roles_path(@project), notice: 'Role successfully created'
@@ -20,7 +27,12 @@ class RolesController < ApplicationController
     end
   end
 
+  def edit
+    authorize! :update, @role
+  end
+
   def update
+    authorize! :update, @role
     if @role.update_attributes role_attributes
       redirect_to project_roles_path(@role.project), notice: 'Role successfully updated'
     else
@@ -29,6 +41,7 @@ class RolesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @role
     @role.destroy
 
     redirect_to project_roles_path(@role.project), notice: 'Role successfully deleted'
