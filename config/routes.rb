@@ -16,10 +16,10 @@ MasterChef::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   authenticate do
-    root 'home#index'
+    root 'projects#index'
 
     resources :projects, shallow: true do
-        resources :nodes
+      resources :nodes
     end
   end
 

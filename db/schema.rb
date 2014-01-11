@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140111142913) do
+ActiveRecord::Schema.define(version: 20140111143817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "hstore"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -63,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140111142913) do
     t.integer  "user_id",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "cookbooks"
   end
 
   add_index "projects", ["title"], name: "index_projects_on_title", using: :btree

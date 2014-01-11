@@ -9,7 +9,7 @@ class ProjectsController < InheritedResources::Base
   private
 
   def permitted_params
-    {project: params.fetch(:project, {}).permit(:title)}
+    {project: params.fetch(:project, {}).permit(:title, :cookbooks)}
   end
 
 end

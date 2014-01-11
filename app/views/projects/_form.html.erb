@@ -5,6 +5,12 @@
     <%= f.input :title %>
   </div>
 
+  <%- if @project.persisted? -%>
+    <div class="form-inputs">
+      <%= f.input :cookbooks, input_html: { style: 'width: 800px; height: 600px' } %>
+    </div>
+  <%- end -%>
+
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
