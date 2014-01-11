@@ -23,4 +23,4 @@ public/uploads
 *.DS_Store
 coverage
 .*swp
-/uploads/*
+/projects/
