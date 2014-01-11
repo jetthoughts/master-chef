@@ -17,7 +17,7 @@ gem 'delayed_job_web', '>= 1.2.0'
 
 gem 'handy', github: 'bigbinary/handy'
 
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
 gem 'simple_form'
 
