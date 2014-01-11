@@ -18,8 +18,10 @@ MasterChef::Application.routes.draw do
   end
 
   resources :projects, shallow: true do
-    resources :nodes
     resources :roles
+    resources :nodes do
+      resources :deployments, only: :create
+    end
     resources :deployments, only: [:index, :show]
   end
 

@@ -14,8 +14,8 @@
   <strong>Config:</strong>
 </p>
 <pre><%= @node.config -%></pre>
-<%= form_for [@node.project, @node.deployments.build] do |f| -%>
-  <%= f.hidden_field :node_id -%>
+
+<%= form_for [@node, @node.deployments.build] do |f| -%>
   <%= f.submit 'Deploy', class: 'btn btn-success' -%>
 <%- end -%>
 
