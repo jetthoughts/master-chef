@@ -2,6 +2,10 @@ require 'test_helper'
 
 class ChefProjectGeneratorTest < ActiveSupport::TestCase
 
+  teardown do
+    FileUtils.rm_r projects_directory_path if Dir.exists?(projects_directory_path)
+  end
+
   def test_create_root_folder_for_projects
     FileUtils.rm_r projects_directory_path if Dir.exists?(projects_directory_path)
 
@@ -30,6 +34,13 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     assert File.exists?(projects_directory_path.join('accounter', 'Berksfile')), 'There is no Berksfile after generate'
   end
 
+  def test_create_node_file
+    generator = ChefProjectGenerator.new name: 'accounter', nodes: {production: node_content}
+    generator.start
+
+    assert File.exists?(projects_directory_path.join('accounter', 'nodes', 'production.json')), 'There is no production.json after generate'
+  end
+
   private
   def projects_directory_path
     Rails.root.join('projects')
@@ -39,6 +50,12 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     <<END
 site :opscode
 cookbook 'ntp'
+END
+  end
+
+  def node_content
+    <<END
+{ "run_list": [ "recipe[chef-solo-search]" ] }
 END
   end
 end
