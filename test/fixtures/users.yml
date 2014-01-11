@@ -5,7 +5,7 @@ admin:
   reset_password_token: 5h632xrnASqFanDhKQsB8
   role: 'super_admin'
 
-nancy:
-  email: 'nancy.smith@example.com'
+john:
+  email: 'john@example.com'
   encrypted_password: '$2a$10$3OF9YyLG6D8P8EqFFdudmeIUtIlnX2usIFYhAJ77pep5y93BLuSuu' #welcome
   reset_password_token: 5h632xrnASsFanDhKQsB7
