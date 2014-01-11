@@ -9,3 +9,8 @@ john:
   email: 'john@example.com'
   encrypted_password: '$2a$10$3OF9YyLG6D8P8EqFFdudmeIUtIlnX2usIFYhAJ77pep5y93BLuSuu' #welcome
   reset_password_token: 5h632xrnASsFanDhKQsB7
+
+steve:
+  email: 'steve@example.com'
+  encrypted_password: '$2a$10$3OF9YyLG6D8P8EqFFdudmeIUtIlnX2usIFYhAJ77pep5y93BLuSuu' #welcome
+  reset_password_token: 5h632xrnASsFanDhKQsB6

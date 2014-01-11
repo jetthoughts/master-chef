@@ -2,10 +2,11 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
   fixtures :projects, :users
-  
+
   setup do
     sign_in users(:john)
     @project = projects(:bidder)
+    @an_other_project = projects(:willow)
   end
 
   test "should get index" do
@@ -27,9 +28,15 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_redirected_to project_path(assigns(:project))
   end
 
-  test "should show project" do
+  test "should show self project" do
     get :show, id: @project
     assert_response :success
+  end
+
+  test 'should not allow show foreign projects' do
+    get :show, id: @an_other_project
+    assert_response :redirect
+    assert_redirected_to root_url
   end
 
   test "should get edit" do
@@ -37,9 +44,21 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test 'should not allow edit foreign projects' do
+    get :edit, id: @an_other_project
+    assert_response :redirect
+    assert_redirected_to root_url
+  end
+
   test "should update project" do
     patch :update, id: @project, project: { title: @project.title }
     assert_redirected_to project_path(assigns(:project))
+  end
+
+  test 'should not allow update foreign projects' do
+    patch :update, id: @an_other_project, project: { title: 'Bitwine' }
+    assert_response :redirect
+    assert_redirected_to root_url
   end
 
   test "should destroy project" do
@@ -48,5 +67,13 @@ class ProjectsControllerTest < ActionController::TestCase
     end
 
     assert_redirected_to projects_path
+  end
+
+  test "should not allow destroy foreign project" do
+    assert_difference('Project.count', 0) do
+      delete :destroy, id: @an_other_project
+    end
+
+    assert_redirected_to root_url
   end
 end

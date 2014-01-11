@@ -11,6 +11,7 @@ gem 'angularjs-rails'
 
 gem 'devise', '>= 3.0.2'
 gem 'devise-async'
+gem 'cancan'
 
 gem 'delayed_job_active_record', '>= 4.0.0.beta1'
 gem 'delayed_job_web', '>= 1.2.0'

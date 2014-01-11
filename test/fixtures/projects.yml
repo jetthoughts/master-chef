@@ -7,3 +7,7 @@ bidder:
 accounter:
   title: Accounter
   user: :john
+
+willow:
+  title: Willow
+  user: :steve
