@@ -6,3 +6,7 @@ before_script:
   - cp config/database.yml.ci config/database.yml
   - mysql -e 'create database master_chef_test'
   - psql -c 'create database master_chef_test' -U postgres
+env:
+  - DB=sqlite
+  - DB=mysql
+  - DB=postgres
