@@ -18,7 +18,7 @@ task setup_sample_data: :environment do
   Project.create title: 'accounter', user_id: 1
 
   %w(Node\ #1 Node\ #2).each do |node|
-    Node.create name: node, project_id: 1
+    Node.create name: node, project_id: 1, credentials: {}.to_yaml
   end
 
   Deployment.create user_id: 1, node_id: 1, finished_at: 1.minute.since, success: false
