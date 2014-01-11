@@ -1,9 +1,9 @@
 development:
   adapter: postgresql
-  database: wheel_development
+  database: master_chef_development
   host: localhost
 
 test:
   adapter: postgresql
-  database: wheel_test
+  database: master_chef_test
   host: localhost

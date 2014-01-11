@@ -1,23 +1,20 @@
 common:
-  do_send_email: false
   host: lvh.me:3000
   url_with_port: http://lvh.me:3000
-  default_from_email: "'Wheel' <notifications@wheeldomain.com>"
-  host_for_email_with_www: www.localhost:3000
+  default_from_email: "'MasterChef' <master_chef@jetthoughts.com>"
 
   mailer:
     delivery_method: test
     smtp_settings:
-      user_name: <%=ENV['MAILTRAP_USERNAME']%>
-      password: <%=ENV['MAILTRAP_PASSWORD']%>
-      address: mailtrap.io
+      user_name: 4881eb6270ce01
+      password: cf3ba842ae5bae
+      address: falcon.rw.rw
       port: 2525
       authentication: plain
 
   devise:
-    secret_key: 2f6ca824cff49fd4c6517b1791317c72a80793918d488cf3a9995493cefdb9767569f61e214108346d49e3f24dfa3b428fa5c2ca33bb4a85951bde29bba19ba0
+    secret_key: 2f6ca824aaa49fd4c6517b1791317c72a80793918d488cf3a9995493cefdb9767569f61e214108346d49e3f24dfa3b428fa5c2ca33bb4a85951bde29bba19ba0
 
-  honeybadger_api_key: <%= ENV['HONEYBADGER_API_KEY'] %>
 
 test:
   mailer:
@@ -25,31 +22,18 @@ test:
 
 development:
   mailer:
-    delivery_method: :smtp
+    delivery_method: :test
 
 staging:
   mailer:
     delivery_method: :smtp
 
-  host: wheeldomain.com
-  url_with_port: http://wheeldomain.com
-  host_for_email_with_www: www.wheeldomain.com
+  host: master-chef-master.herokuapp.com
 
 production:
   do_send_email: true
-  bcc: hello.wheeldomain@gmail.com
+  bcc: master-chef@jetthoughts.com
   mailer:
     delivery_method: :smtp
 
-    smtp_settings:
-      user_name: <%=ENV['SENDGRID_USERNAME']%>
-      password: <%=ENV['SENDGRID_PASSWORD']%>
-      domain: www.wheeldomain.com
-      address: smtp.sendgrid.net
-      port: 587
-      authentication: plain
-      enable_starttls_auto: true
-
-  host: www.wheeldomain.com
-  url_with_port: http://wheeldomain.com
-  host_for_email_with_www: www.wheeldomain.com
+  host: master-chef-production.herokuapp.com

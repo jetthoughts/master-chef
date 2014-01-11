@@ -1,4 +1,4 @@
-Wheel::Application.configure do
+MasterChef::Application.configure do
   config.action_mailer.default_url_options = { host: Settings.host }
 end
 

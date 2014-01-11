@@ -1,4 +1,4 @@
-Wheel::Application.routes.draw do
+MasterChef::Application.routes.draw do
 
   resources :projects
   resources :roles

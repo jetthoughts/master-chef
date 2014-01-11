@@ -1,8 +1,7 @@
-### Guidelines
+Master Chef
+===========
 
- - [Workfow](https://github.com/bigbinary/workflow)
- - [Credentials](https://github.com/bigbinary/wheel/wiki/Credentials)
- - [Using PostgreSQL](https://gist.github.com/neerajdotname/f3f22aff617e753bc051)
+<Description goe here>
 
 ### Setting up development machine
 

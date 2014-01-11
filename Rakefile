@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Wheel::Application.load_tasks
+MasterChef::Application.load_tasks
