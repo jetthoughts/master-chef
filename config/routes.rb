@@ -1,14 +1,12 @@
 MasterChef::Application.routes.draw do
 
-  resources :roles
-
-  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, controllers: { registrations: 'registrations' }
 
   # Authentication
   devise_scope :user do
     get '/login' => 'devise/sessions#new', as: :login
-    get '/logout' => 'devise/sessions#destroy', :as => :logout
-    get '/signup' => 'registrations#new', :as => :signup
+    get '/logout' => 'devise/sessions#destroy', as: :logout
+    get '/signup' => 'registrations#new', as: :signup
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,6 +18,7 @@ MasterChef::Application.routes.draw do
 
     resources :projects, shallow: true do
       resources :nodes
+      resources :roles
     end
   end
 
