@@ -23,8 +23,22 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     assert Dir.exists?(projects_directory_path.join('accounter', '.chef')), 'There is no .chef folder after generate'
   end
 
+  def test_create_cookbook_file
+    generator = ChefProjectGenerator.new name: 'accounter', cookbooks: cookbooks_content
+    generator.start
+
+    assert File.exists?(projects_directory_path.join('accounter', 'Berksfile')), 'There is no Berksfile after generate'
+  end
+
   private
   def projects_directory_path
     Rails.root.join('projects')
+  end
+
+  def cookbooks_content
+    <<END
+site :opscode
+cookbook 'ntp'
+END
   end
 end
