@@ -15,6 +15,17 @@
   <%= render @project.nodes %>
   </tbody>
 </table>
+<table class='table'>
+  <thead>
+  <tr>
+    <th>Role</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render @project.roles %>
+  </tbody>
+</table>
 <p>
   <strong>CookBooks:</strong>
   <%= simple_format @project.cookbooks %>
