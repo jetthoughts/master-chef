@@ -20,13 +20,13 @@ MasterChef::Application.routes.draw do
   resources :projects, shallow: true do
     resources :nodes
     resources :roles
+    resources :deployments
   end
 
-  resources :deployments
 
   unauthenticated do
     as :user do
-      root :to => 'devise/sessions#new', as: 'unauthenticated_root'
+      root to: 'devise/sessions#new', as: 'unauthenticated_root'
     end
   end
 

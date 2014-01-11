@@ -16,6 +16,12 @@ task setup_sample_data: :environment do
   end
 
   Project.create title: 'Project #1', user_id: 1
+
+  %w(Node\ #1 Node\ #2).each do |node|
+    Node.create name: node, project_id: 1
+  end
+
+  Deployment.create user_id: 1, node_id: 1, finished_at: 1.minute.since, success: false
 end
 
 def create_user(options={})

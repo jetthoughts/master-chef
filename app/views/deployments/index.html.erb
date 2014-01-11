@@ -1,0 +1,17 @@
+<h3>Deployments</h3>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Node</th>
+      <th>Started At</th>
+      <th>Finished At</th>
+      <th>Success</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render @deployments %>
+  </tbody>
+</table>
+<%= link_to 'Back to project', @project %>
+

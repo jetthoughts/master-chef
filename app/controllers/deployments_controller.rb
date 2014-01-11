@@ -1,15 +1,12 @@
 class DeploymentsController < ApplicationController
-  inherit_resources
 
-  def create
-    @deployment = current_user.deployments.build(permitted_params[:deployment])
-    create!
+  def index
+    @project = Project.find(params[:project_id])
+    @deployments = @project.deployments
   end
 
-  private
-
-  def permitted_params
-    { deployment: params.fetch(:deployment, {}).permit(:node_id, :project_id) }
+  def show
+    @deployment = Deployment.find(params[:id])
   end
 
 end

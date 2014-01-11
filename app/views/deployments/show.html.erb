@@ -4,6 +4,9 @@
 <p>
   Started <%= @deployment.created_at -%>
 </p>
+<p>
+  Finished <%= @deployment.finished_at %>
+</p>
 
 <div id="logs">
 
@@ -22,3 +25,5 @@
     state.innerText = data.message;
   });
 </script>
+
+<%= link_to 'Back', project_deployments_path(@deployment.node.project_id) %>
