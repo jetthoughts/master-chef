@@ -14,11 +14,8 @@ gem 'devise-async'
 
 gem 'delayed_job_active_record', '>= 4.0.0.beta1'
 gem 'delayed_job_web', '>= 1.2.0'
-gem 'delayed_job_honeybadger'
 
 gem 'handy', github: 'bigbinary/handy'
-
-gem 'honeybadger'
 
 gem 'twitter-bootstrap-rails'
 

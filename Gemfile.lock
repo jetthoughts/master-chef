@@ -96,9 +96,6 @@ GEM
     delayed_job_active_record (4.0.0)
       activerecord (>= 3.0, < 4.1)
       delayed_job (>= 3.0, < 4.1)
-    delayed_job_honeybadger (0.0.3)
-      delayed_job
-      honeybadger
     delayed_job_web (1.2.1)
       activerecord (> 3.0.0)
       delayed_job (> 2.0.3)
@@ -126,8 +123,6 @@ GEM
     hashie (2.0.5)
     hashr (0.0.22)
     hike (1.2.3)
-    honeybadger (1.10.1)
-      json
     i18n (0.6.9)
     inherited_resources (1.4.1)
       has_scope (~> 0.6.0.rc)
@@ -247,12 +242,10 @@ DEPENDENCIES
   arel
   coffee-rails!
   delayed_job_active_record (>= 4.0.0.beta1)
-  delayed_job_honeybadger
   delayed_job_web (>= 1.2.0)
   devise (>= 3.0.2)
   devise-async
   handy!
-  honeybadger
   minitest-reporters
   mocha
   pg
