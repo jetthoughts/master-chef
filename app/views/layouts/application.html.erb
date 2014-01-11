@@ -19,26 +19,26 @@
 
 </head>
 <body>
+<header class="navbar navbar-inverse">
+  <div class="container">
 
-<div class="navbar navbar-fluid-top">
-  <div class="navbar-inner">
-    <div class="container-fluid">
-      <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar_menu">
+        <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </a>
-      <a class="brand" href="/">Master Chef</a>
+      </button>
+      <a class="navbar-brand" href="/">Master Chef</a>
+    </div>
 
-      <div class="container-fluid nav-collapse">
-        <ul class="nav">
-          <%= render "shared/nav" %>
-        </ul>
-      </div>
-      <!--/.nav-collapse -->
+    <div class="collapse navbar-collapse" id="navbar_menu">
+      <ul class="nav navbar-nav navbar-right">
+        <%= render "shared/nav" %>
+      </ul>
     </div>
   </div>
-</div>
+</header>
 
 <div class="container-fluid">
   <div class="row-fluid">
