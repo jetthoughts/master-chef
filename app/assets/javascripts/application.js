@@ -13,3 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require ace
+//= require ace_init
