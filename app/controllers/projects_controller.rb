@@ -1,11 +1,17 @@
 class ProjectsController < InheritedResources::Base
-  load_and_authorize_resource
-
   before_filter :authenticate_user!
+
+  load_and_authorize_resource
 
   def create
     @project = current_user.projects.build(permitted_params[:project])
     create!
+  end
+
+  protected
+
+  def begin_of_association_chain
+    current_user
   end
 
   private
