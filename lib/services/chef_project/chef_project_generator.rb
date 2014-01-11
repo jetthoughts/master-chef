@@ -21,7 +21,9 @@ class ChefProjectGenerator
   private
 
   def create_project_folder
-    FileUtils.mkdir_p project_path
+    %w(nodes roles).each do |dir|
+      FileUtils.mkdir_p project_path.join(dir)
+    end
   end
 
   def copy_base_files
