@@ -1,5 +1,6 @@
 class Deployment < ActiveRecord::Base
 
+  # user is author of deployment
   belongs_to :user
   belongs_to :node, inverse_of: :deployments
 

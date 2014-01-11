@@ -12,8 +12,6 @@ class NodeBuilder
     @base_folder = base_folder
     @node    = node
     @options = options
-
-    init_node_config
   end
 
   def build
@@ -97,20 +95,6 @@ class NodeBuilder
   def cleanup_host
     command = "bundle exec knife solo clean #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command, ">> Clean #{options['hostname']}:\n"
-  end
-
-  def init_node_config
-    stack_file_template = File.join(base_folder, 'roles', "#{options['stack']}.json")
-    node_config_file = config_file_path
-
-    unless File.exist? stack_file_template
-      log "Config file `#{stack_file_template}` is missing. Execute below command to copy a sample file."
-      log "cp roles/rails-stack.json.example roles/#{options['stack']}.json"
-      exit 1
-    end
-
-    command = "cp -n #{stack_file_template} #{node_config_file}"
-    system_cmd command, ">> Create node config file:\n"
   end
 
   def prepare_host
