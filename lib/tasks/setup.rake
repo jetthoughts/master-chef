@@ -15,7 +15,7 @@ task setup_sample_data: :environment do
     create_user email: 'john@example.com', super_admin: true
   end
 
-  Project.create title: 'Project #1', user_id: 1
+  Project.create title: 'accounter', user_id: 1
 
   %w(Node\ #1 Node\ #2).each do |node|
     Node.create name: node, project_id: 1

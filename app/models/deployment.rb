@@ -33,6 +33,13 @@ class Deployment < ActiveRecord::Base
     "deployments_#{id}"
   end
 
+  def deploy
+    builder = BoxBuilder.new args[:node]
+    builder.verbose = (verbose == true)
+    builder.bundle_install
+    builder.berkshelf_update_cookbooks
+    builder.build
+  end
 
   def notify_client event, message
     Pusher[channel_name].trigger(event, {
