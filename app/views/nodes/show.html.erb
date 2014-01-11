@@ -1,15 +1,22 @@
 <p>
+  <strong>Project:</strong>
+  <%= @node.project.title %>
+</p>
+<p>
+  <strong>Node:</strong>
   <%= @node.name %>
 </p>
 <p>
-  <%= @node.credentials %>
+  <strong>Credentials:</strong>
 </p>
+<pre><%= @node.credentials -%></pre>
 <p>
-  <%= @node.config %>
+  <strong>Config:</strong>
 </p>
-<%= form_for @node.deployments.build do |f| -%>
+<pre><%= @node.config -%></pre>
+<%= form_for [@node.project, @node.deployments.build] do |f| -%>
   <%= f.hidden_field :node_id -%>
-  <%= f.submit 'Deploy' -%>
+  <%= f.submit 'Deploy', class: 'btn btn-success' -%>
 <%- end -%>
 
 <%= link_to 'Edit', edit_node_path(@node) %> |
