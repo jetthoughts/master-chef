@@ -9,7 +9,10 @@ class ChefProjectGenerator
   end
 
   def process!
-    FileUtils.mkdir_p BASE_FOLDER.join(name)
+    FileUtils.mkdir_p project_path
   end
 
+  def project_path
+    BASE_FOLDER.join(name)
+  end
 end

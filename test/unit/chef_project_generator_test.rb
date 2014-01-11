@@ -12,4 +12,8 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     assert Dir.exists?(projects_directory_path.join('accounter')), 'There is no projects folder after generate chef project'
   end
 
+  def test_project_path
+    generator = ChefProjectGenerator.new name: 'accounter'
+    assert_includes generator.project_path.to_s, '/projects/accounter'
+  end
 end
