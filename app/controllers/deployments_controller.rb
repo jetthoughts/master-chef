@@ -9,7 +9,7 @@ class DeploymentsController < ApplicationController
   private
 
   def permitted_params
-    {deployment: params.fetch(:deployment, {}).permit(:node_id, :project_id)}
+    { deployment: params.fetch(:deployment, {}).permit(:node_id, :project_id) }
   end
 
 end

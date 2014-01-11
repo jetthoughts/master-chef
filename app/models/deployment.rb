@@ -1,7 +1,7 @@
 class Deployment < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :node
+  belongs_to :node, inverse_of: :deployments
 
   state_machine :state, initial: :initial do
     event :deploy do

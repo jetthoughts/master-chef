@@ -1,6 +1,7 @@
 class Node < ActiveRecord::Base
   belongs_to :project, inverse_of: :nodes
-  has_many :deployments
+  has_many :deployments, inverse_of: :node
+
   validates :name, presence: true, uniqueness: { scope: :project_id }
   validate :validate_credentials
 
