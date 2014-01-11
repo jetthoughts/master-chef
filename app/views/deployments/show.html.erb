@@ -1,0 +1,24 @@
+<p>
+  <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
+</p>
+<p>
+  Started <%= @deployment.created_at -%>
+</p>
+
+<div id="logs">
+
+</div>
+
+<script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  var pusher = new Pusher('3e9e19963f64bb532442');
+  var channel = pusher.subscribe('<%= @deployment.channel_name -%>');
+  var logs = document.getElementById('logs');
+  var state = document.getElementById('state');
+  channel.bind('append_log', function(data) {
+    logs.appendChild(document.createTextNode(data.message));
+  });
+  channel.bind('changed_state', function(data) {
+    state.innerText = data.message;
+  });
+</script>

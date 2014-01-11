@@ -25,6 +25,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'unicorn-rails'
 gem 'state_machine'
+gem 'pusher'
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'

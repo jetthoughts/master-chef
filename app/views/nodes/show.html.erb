@@ -7,5 +7,10 @@
 <p>
   <%= @node.config %>
 </p>
+<%= form_for @node.deployments.build do |f| -%>
+  <%= f.hidden_field :node_id -%>
+  <%= f.submit 'Deploy' -%>
+<%- end -%>
+
 <%= link_to 'Edit', edit_node_path(@node) %> |
 <%= link_to 'Back', project_nodes_path(@node.project) %>

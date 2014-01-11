@@ -10,8 +10,8 @@ module BaseWorkersMethods
     def error(job, exception)
       Rails.logger.info exception
       Rails.logger.info exception.backtrace.join("\n")
-      Honeybadger.context job: job.inspect
-      Honeybadger.notify exception
+      #  Honeybadger.context job: job.inspect
+      #  Honeybadger.notify exception
     end
   end
 end
