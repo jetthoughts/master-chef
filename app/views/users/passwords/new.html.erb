@@ -1,20 +1,20 @@
-<div class="container" >
-  <h2 class="center-text" style="margin-left: 5%;">Forgot your password?</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
 
-  <div class="row" style="padding-top: 10px;">
-    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, class: 'form-horizontal'}) do |f| %>
+      <h2 class="text-center">Forgot your password?</h2>
+
+      <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, class: 'form'}) do |f| %>
         <%= f.error_notification %>
 
-        <div class="form-inputs">
-          <%= f.input :email, :required => true, :autofocus => true %>
+        <div class="form-group">
+          <%= f.lable :email, 'Email', class: 'control-label' %>
+          <%= f.text_field :email, required: true, autofocus: true, class: 'form-control' %>
         </div>
 
-        <div class="form-actions">
-          <%= f.button :submit, "Send me reset password instructions", class: 'btn-primary submit-button2' %>
-        </div>
-    <% end %>
-    <div class="text-center" style="width: 45%;">
+        <%= f.submit 'Send me reset password instructions', class: 'btn-primary' %>
+      <% end %>
       <%= render "users/shared/links" %>
     </div>
   </div>
-  </div>
+</div>
