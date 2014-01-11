@@ -17,6 +17,7 @@ Wheel::Application.routes.draw do
   # You can have the root of your site routed with "root"
   authenticate do
     root 'home#index'
+    resources :nodes
   end
 
   unauthenticated do
