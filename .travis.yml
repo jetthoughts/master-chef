@@ -7,6 +7,4 @@ before_script:
   - mysql -e 'create database master_chef_test'
   - psql -c 'create database master_chef_test' -U postgres
 env:
-  - DB=sqlite
-  - DB=mysql
   - DB=postgres
