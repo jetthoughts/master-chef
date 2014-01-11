@@ -1,0 +1,10 @@
+<% if super_admin_signed_in? %>
+    <li><%= nav_link("Active Admin", active_admin_root_path)%></li>
+    <li><%= nav_link('DJ', '/delayed_job', false, "target" => '_blank') %></li>
+<% end %>
+
+<% if user_signed_in? %>
+    <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+<% else %>
+    <li><%= link_to "Sign in", new_session_path(:user) %></li>
+<% end %>

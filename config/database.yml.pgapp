@@ -1,0 +1,9 @@
+development:
+  adapter: postgresql
+  database: wheel_development
+  host: localhost
+
+test:
+  adapter: postgresql
+  database: wheel_test
+  host: localhost

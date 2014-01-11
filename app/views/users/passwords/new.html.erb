@@ -1,0 +1,20 @@
+<div class="container" >
+  <h2 class="center-text" style="margin-left: 5%;">Forgot your password?</h2>
+
+  <div class="row" style="padding-top: 10px;">
+    <%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => {:method => :post, class: 'form-horizontal'}) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email, :required => true, :autofocus => true %>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Send me reset password instructions", class: 'btn-primary submit-button2' %>
+        </div>
+    <% end %>
+    <div class="text-center" style="width: 45%;">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+  </div>
