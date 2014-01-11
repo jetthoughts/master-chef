@@ -27,6 +27,11 @@ gem 'unicorn-rails'
 gem 'state_machine'
 gem 'pusher'
 
+group :production, :staging do
+  gem 'memcachier'
+  gem 'dalli'
+end
+
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
   gem 'sass-rails',   github: 'rails/sass-rails'

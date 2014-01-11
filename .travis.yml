@@ -1,4 +1,5 @@
 language: ruby
+bundler_args: --without development production staging --deployment
 rvm:
   - 2.1.0
 before_script:
