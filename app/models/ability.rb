@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     can :manage, Project, user_id: user.id
+    can :manage, Node, project: { user_id: user.id }
 
     # Define abilities for the passed in user here. For example:
     #

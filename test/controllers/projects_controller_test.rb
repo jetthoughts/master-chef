@@ -6,7 +6,7 @@ class ProjectsControllerTest < ActionController::TestCase
   setup do
     sign_in users(:john)
     @project = projects(:bidder)
-    @an_other_project = projects(:willow)
+    @another_project = projects(:willow)
   end
 
   test "should get index" do
@@ -34,7 +34,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should not allow show foreign projects' do
-    get :show, id: @an_other_project
+    get :show, id: @another_project
     assert_response :redirect
     assert_redirected_to root_url
   end
@@ -45,7 +45,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should not allow edit foreign projects' do
-    get :edit, id: @an_other_project
+    get :edit, id: @another_project
     assert_response :redirect
     assert_redirected_to root_url
   end
@@ -56,7 +56,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should not allow update foreign projects' do
-    patch :update, id: @an_other_project, project: { title: 'Bitwine' }
+    patch :update, id: @another_project, project: { title: 'Bitwine' }
     assert_response :redirect
     assert_redirected_to root_url
   end
@@ -71,7 +71,7 @@ class ProjectsControllerTest < ActionController::TestCase
 
   test "should not allow destroy foreign project" do
     assert_difference('Project.count', 0) do
-      delete :destroy, id: @an_other_project
+      delete :destroy, id: @another_project
     end
 
     assert_redirected_to root_url

@@ -8,10 +8,12 @@ class NodesController < ApplicationController
   end
 
   def new
+    authorize! :create, Node
     @node = @project.nodes.build
   end
 
   def create
+    authorize! :create, Node
     @node = @project.nodes.build node_attributes
     if @node.save
       redirect_to @project, notice: 'Node successfully created'
@@ -21,9 +23,11 @@ class NodesController < ApplicationController
   end
 
   def edit
+    authorize! :update, @node
   end
 
   def update
+    authorize! :update, @node
     if @node.update node_attributes
       redirect_to @node.project, notice: 'Node successfully updated'
     else
@@ -32,11 +36,13 @@ class NodesController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @node
     @node.destroy
     redirect_to @node.project, notice: 'Node successfully updated'
   end
 
   def show
+    authorize! :read, @node
   end
 
   private
