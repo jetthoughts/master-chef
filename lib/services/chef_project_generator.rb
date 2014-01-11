@@ -8,7 +8,7 @@ class ChefProjectGenerator
     @name = name
   end
 
-  def process!
+  def start
     FileUtils.mkdir_p project_path
   end
 

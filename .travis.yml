@@ -1,3 +1,7 @@
 language: ruby
 rvm:
   - 2.1.0
+before_script:
+  - cp config/database.yml.ci config/database.yml
+  - mysql -e 'create database master_chef_test'
+  - psql -c 'create database master_chef_test' -U postgres

@@ -7,7 +7,7 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     FileUtils.rm_r projects_directory_path if Dir.exists?(projects_directory_path)
 
     generator = ChefProjectGenerator.new name: 'accounter'
-    generator.process!
+    generator.start
 
     assert Dir.exists?(projects_directory_path.join('accounter')), 'There is no projects folder after generate chef project'
   end
