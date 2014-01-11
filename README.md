@@ -34,3 +34,7 @@ rake test:controllers
 # running an individual test file
 rake test test/models/comment_test.rb
 ```
+
+## Code Status
+
+[![Build Status](https://travis-ci.org/jetthoughts/master-chef.png?branch=master)](https://travis-ci.org/jetthoughts/master-chef)
