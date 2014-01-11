@@ -15,7 +15,7 @@ task setup_sample_data: :environment do
     create_user email: 'john@example.com', super_admin: true
   end
 
-  puts 'sample data was added successfully'
+  Project.create title: 'Project #1', user_id: 1
 end
 
 def create_user(options={})
