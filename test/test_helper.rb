@@ -18,9 +18,7 @@ require 'rails/test_help'
 require 'minitest/reporters'
 require 'mocha/setup'
 
-
 MiniTest::Reporters.use!
-
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
