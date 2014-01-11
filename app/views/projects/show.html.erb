@@ -8,6 +8,7 @@
 <p>
   <%= link_to 'Deployments', project_deployments_path(@project) %>
 </p>
+
 <table class='table'>
   <thead>
   <tr>
@@ -45,5 +46,6 @@
   <strong>CookBooks:</strong>
   <%= simple_format @project.cookbooks %>
 </p>
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

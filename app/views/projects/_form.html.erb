@@ -1,21 +1,28 @@
-<%= simple_form_for(@project) do |f| %>
+<%= simple_form_for(@project, class: 'form-horizontal') do |f| %>
   <%= f.error_notification %>
-  <div class="form-inline">
 
-    <div class="form-group">
-      <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
-    </div>
-    <%- if !@project.persisted? -%>
-      <button type="submit" class="btn btn-success">Create</button>
-    <%- end -%>
+  <div class="form-group">
+    <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
   </div>
 
   <%- if @project.persisted? -%>
+
     <div class="form-group">
       <%= f.label :cookbooks %>
-      <%= f.text_area :cookbooks, class: 'form-control' %>
+      <%= f.text_area :cookbooks, class: 'form-control', rows: 10 %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :cookbooks_lock %>
+      <%= simple_format @project.cookbooks_lock %>
+    </div>
+
     <%= f.submit 'Update project', class: 'btn btn-success' %>
+
+  <% else %>
+
+    <button type="submit" class="btn btn-success">Create</button>
+
   <%- end -%>
 
 <% end %>
