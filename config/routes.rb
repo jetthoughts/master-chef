@@ -1,6 +1,5 @@
 MasterChef::Application.routes.draw do
 
-  resources :projects
   resources :roles
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
@@ -18,7 +17,10 @@ MasterChef::Application.routes.draw do
   # You can have the root of your site routed with "root"
   authenticate do
     root 'home#index'
-    resources :nodes
+
+    resources :projects, shallow: true do
+        resources :nodes
+    end
   end
 
   unauthenticated do

@@ -4,6 +4,17 @@
   <strong>Title:</strong>
   <%= @project.title %>
 </p>
-
+<table class='table'>
+  <thead>
+  <tr>
+    <th>Node</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <%= render @project.nodes %>
+  </tbody>
+</table>
 <%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Back', projects_path %> |
+<%= link_to 'New node', new_project_node_path(@project) %>
