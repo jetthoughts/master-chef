@@ -30,7 +30,7 @@ class RolesControllerTest < ActionController::TestCase
     end
 
     assert_equal @project, assigns(:role).project
-    assert_redirected_to project_roles_path(@project)
+    assert_redirected_to @project
   end
 
   test 'should show self role' do
@@ -57,7 +57,7 @@ class RolesControllerTest < ActionController::TestCase
 
   test 'should update role' do
     patch :update, id: @role, role: { name: 'nginx' }
-    assert_redirected_to project_roles_path(@role.project)
+    assert_redirected_to @role.project
   end
 
   test 'should not allow update foreign roles' do
@@ -71,7 +71,7 @@ class RolesControllerTest < ActionController::TestCase
       delete :destroy, id: @role
     end
 
-    assert_redirected_to project_roles_path(@role.project)
+    assert_redirected_to @role.project
   end
 
   test 'should not allow destroy foreign role' do

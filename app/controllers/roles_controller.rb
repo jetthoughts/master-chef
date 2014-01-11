@@ -21,7 +21,7 @@ class RolesController < ApplicationController
     authorize! :create, Role
     @role = @project.roles.build role_attributes
     if @role.save
-      redirect_to project_roles_path(@project), notice: 'Role successfully created'
+      redirect_to @project, notice: 'Role successfully created'
     else
       render :new
     end
@@ -34,7 +34,7 @@ class RolesController < ApplicationController
   def update
     authorize! :update, @role
     if @role.update_attributes role_attributes
-      redirect_to project_roles_path(@role.project), notice: 'Role successfully updated'
+      redirect_to @role.project, notice: 'Role successfully updated'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class RolesController < ApplicationController
     authorize! :destroy, @role
     @role.destroy
 
-    redirect_to project_roles_path(@role.project), notice: 'Role successfully deleted'
+    redirect_to @role.project, notice: 'Role successfully deleted'
   end
 
   private
