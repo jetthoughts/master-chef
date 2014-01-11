@@ -4,6 +4,10 @@
   <strong>Title:</strong>
   <%= @project.title %>
 </p>
+
+<p>
+  <%= link_to 'Deployments', project_deployments_path(@project) %>
+</p>
 <table class='table'>
   <thead>
   <tr>
