@@ -1,5 +1,5 @@
 class NodesController < ApplicationController
-
+  before_filter :authenticate_user!
   before_action :load_project, only: %i{ index new create }
   before_action :load_node, only: %i{ show edit update destroy }
 
@@ -25,7 +25,7 @@ class NodesController < ApplicationController
 
   def update
     if @node.update node_attributes
-      redirect_to @node.project, notice: 'Node sucessfully updated'
+      redirect_to @node.project, notice: 'Node successfully updated'
     else
       render :edit
     end
@@ -33,7 +33,7 @@ class NodesController < ApplicationController
 
   def destroy
     @node.destroy
-    redirect_to @node.project, notice: 'Node sucessfully updated'
+    redirect_to @node.project, notice: 'Node successfully updated'
   end
 
   def show
