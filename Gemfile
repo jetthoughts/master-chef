@@ -27,6 +27,8 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 
 gem 'state_machine'
 gem 'pusher'
+gem 'net-ssh'
+gem 'net-scp'
 
 group :production do
   gem 'daemons'
