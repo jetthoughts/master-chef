@@ -19,7 +19,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
 
-set :bundle_flags, '--deployment -j 3'
+set :bundle_flags, '--deployment -j 2'
 set :bundle_without, %w{development test deploy}.join(' ')
 
 namespace :deploy do

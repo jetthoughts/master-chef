@@ -51,13 +51,13 @@ group :test do
   gem 'simplecov', require: false
 end
 
-group :chef do
-  gem 'chef'
-  gem 'knife-solo'
-  gem 'knife-solo_data_bag'
-  gem 'rake'
-  gem 'berkshelf'
-end
+#group :chef do
+#  gem 'chef'
+#  gem 'knife-solo'
+#  gem 'knife-solo_data_bag'
+#  gem 'rake'
+#  gem 'berkshelf'
+#end
 
 group :deploy do
   gem 'j-cap-recipes'
