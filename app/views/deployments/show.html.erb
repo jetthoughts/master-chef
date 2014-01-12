@@ -8,7 +8,7 @@
   Finished <%= @deployment.finished_at %>
 </p>
 
-<pre id="logs">
+<pre id="logs" style="overflow-y: scroll; height: 500px">
 <%= @deployment.logs -%>
 </pre>
 
@@ -20,6 +20,7 @@
   var state = document.getElementById('state');
   channel.bind('append_log', function(data) {
     logs.appendChild(document.createTextNode(data.message));
+    $(logs).scrollTop(logs.scrollHeight);
   });
   channel.bind('changed_state', function(data) {
     state.innerText = data.message;

@@ -1,3 +1,5 @@
+require 'net/ssh'
+
 class NodeBuilder
 
   include SystemCommand
@@ -33,7 +35,7 @@ class NodeBuilder
 
   def add_public_key_to_bag
     if public_key base_folder
-      system_cmd "bundle exec knife solo data bag create keys deployer -d --data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key base_folder}\"}'"
+      system_cmd "bundle exec knife solo data bag create keys deployer -c knife.rb -d --data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key base_folder}\"}'"
     end
   end
 
@@ -101,17 +103,17 @@ class NodeBuilder
   end
 
   def setup_host
-    command = "bundle exec knife solo cook -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
+    command = "bundle exec knife solo cook -c knife.rb -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command, ">> Setup host #{options['hostname']}:\n"
   end
 
   def cleanup_host
-    command = "bundle exec knife solo clean #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
+    command = "bundle exec knife solo clean -c knife.rb #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command, ">> Clean #{options['hostname']}:\n"
   end
 
   def prepare_host
-    command = "bundle exec knife solo prepare -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
+    command = "bundle exec knife solo prepare -c knife.rb -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
     system_cmd command,  ">> Install chef to the host #{node}(#{options['hostname']}):\n"
   end
 
