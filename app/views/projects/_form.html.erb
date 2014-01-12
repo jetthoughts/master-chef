@@ -9,12 +9,17 @@
 
     <div class="form-group">
       <%= f.label :cookbooks %>
-      <%= f.text_area :cookbooks, class: 'form-control', rows: 10 %>
+      <%= f.text_area :cookbooks, class: 'form-control', rows: 10, data: {language: 'ruby'} %>
     </div>
 
     <div class="form-group">
       <%= f.label :cookbooks_lock %>
-      <%= simple_format @project.cookbooks_lock %>
+      <%= link_to 'Update', project_cookbook_path(@project, format: :json), method: :patch, remote: true, disable_with: 'Processing...' %>
+
+      <pre data-language="yaml">
+        <%= simple_format @project.cookbooks_lock %>
+      </pre>
+
     </div>
 
     <%= f.submit 'Update project', class: 'btn btn-success' %>

@@ -1,5 +1,4 @@
 class NodesController < ApplicationController
-  before_filter :authenticate_user!
 
   before_action :load_project, only: %i{ index new create}
   before_action :load_node, only: %i{ show edit update destroy }

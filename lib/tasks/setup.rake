@@ -36,7 +36,7 @@ def delete_all_records_from_all_tables
 end
 
 def cookbooks_content
-  <<END
+<<END
 site :opscode
 
 cookbook 'ntp'
@@ -64,7 +64,7 @@ cookbook 'windows'
 cookbook 'yum'
 cookbook 'logrotate'
 cookbook 's3cmd'
-cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git' #path: '../ssl-cookbook'
+cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git'
 cookbook 'chef-solo-search'
 END
 end

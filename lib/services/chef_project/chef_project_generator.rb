@@ -1,12 +1,11 @@
 class ChefProjectGenerator
 
-  BASE_FOLDER = Rails.root.join('projects')
   TEMPLATE_PATH = File.expand_path('../templates', __FILE__)
 
-  attr_accessor :name
+  attr_accessor :name, :project_path
 
-  def initialize(name: 'chef', cookbooks: 'site :opscode', nodes: {}, roles: {})
-    @name = name
+  def initialize(project_path: 'chef_project_path', cookbooks: 'site :opscode', nodes: {}, roles: {})
+    @project_path = project_path
     @cookbooks = cookbooks
     @nodes = nodes
     @roles = roles
@@ -20,10 +19,11 @@ class ChefProjectGenerator
     create_or_update_roles
   end
 
-  def project_path
-    BASE_FOLDER.join(name)
+  def update_cookbooks
+    #TODO: ....
+    sleep 3
+    'cooooobook lock'
   end
-
   private
 
   def create_project_folder

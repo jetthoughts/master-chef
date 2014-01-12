@@ -23,6 +23,7 @@ MasterChef::Application.routes.draw do
       resources :deployments, only: :create
     end
     resources :deployments, only: [:index, :show]
+    resource :cookbook, only: [:update]
   end
 
 

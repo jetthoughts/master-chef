@@ -44,7 +44,10 @@
 
 <p>
   <strong>CookBooks:</strong>
-  <%= simple_format @project.cookbooks %>
+  <pre>
+    <%= @project.cookbooks %>
+  </pre>
+
 </p>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
