@@ -27,7 +27,7 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     generator = ChefProjectGenerator.new project_path: @project_path
     generator.start
 
-    assert Dir.exists?(@project_path.join('.chef')), 'There is no .chef folder after generate'
+    assert File.exists?(@project_path.join('knife.rb')), 'There is no knife after generate'
   end
 
   def test_create_cookbook_file

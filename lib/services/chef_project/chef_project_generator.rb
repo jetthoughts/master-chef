@@ -35,7 +35,7 @@ class ChefProjectGenerator
   end
 
   def copy_base_files
-    FileUtils.cp_r Dir.glob("#{TEMPLATE_PATH}/.chef"), project_path
+    FileUtils.cp File.join(TEMPLATE_PATH, 'knife.rb'), project_path
   end
 
   def create_or_update_cookbooks_file
