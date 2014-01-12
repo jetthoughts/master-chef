@@ -14,7 +14,7 @@ set :log_level, :debug
 set :pty, true
 
 set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/assets projects}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/assets projects}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
@@ -23,7 +23,7 @@ set :bundle_flags, '--deployment -j 2'
 set :bundle_without, %w{development test deploy}.join(' ')
 
 namespace :deploy do
-  before 'deploy:migrate', 'db:backup'
+  #before 'deploy:migrate', 'db:backup'
 
   desc 'Restart application'
   task :restart do
@@ -44,7 +44,8 @@ namespace :deploy do
 
   task :bundle_chef_install do
     on roles(:app) do
-      within current_path do
+      within current_path.join('projects') do
+        execute :mv, current_path.join('GemfileChef*'), '.'
         execute :bundle, '--gemfile GemfileChef', '--without', fetch(:bundle_without), fetch(:bundle_flags),
                 '--path', fetch(:bundle_path)
       end
