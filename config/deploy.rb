@@ -42,18 +42,7 @@ namespace :deploy do
   #  end
   #end
 
-  task :bundle_chef_install do
-    on roles(:app) do
-      within current_path.join('projects') do
-        execute :mv, current_path.join('GemfileChef*'), '.'
-        execute :bundle, '--gemfile GemfileChef', '--without', fetch(:bundle_without), fetch(:bundle_flags),
-                '--path', fetch(:bundle_path)
-      end
-    end
-  end
-
   after :publishing, 'deploy:restart'
-  after :publishing, 'deploy:bundle_chef_install'
   after :finishing, 'deploy:cleanup'
 
 end

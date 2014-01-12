@@ -30,6 +30,7 @@ class NodeBuilder
 
   def go_to_project_dir
     Dir.chdir(base_folder)
+    system_cmd 'bundle install'
   end
 
   def add_public_key_to_bag
