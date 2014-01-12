@@ -17,7 +17,7 @@ task setup_sample_data: :environment do
   nodes = %w(production staging).map do |node|
     Node.create! name:        node,
                  project_id:  project.id,
-                 credentials: { 'hostname' => 'localhost', 'user' => 'root', 'password' => 'welcome' }.to_yaml,
+                 credentials: { 'hostname' => '77.120.57.83', 'user' => 'root', 'password' => ' ' }.to_yaml,
                  config:      node_config_content
   end
 
