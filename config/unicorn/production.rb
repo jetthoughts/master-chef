@@ -10,7 +10,7 @@ stderr_path 'log/unicorn.stderr.log'
 stdout_path 'log/unicorn.stdout.log'
 
 # Set unicorn options
-worker_processes 4
+worker_processes 2
 preload_app true
 timeout 60
 

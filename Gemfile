@@ -28,6 +28,10 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'state_machine'
 gem 'pusher'
 
+group :production do
+  gem 'daemons'
+end
+
 group :production, :staging do
   gem 'memcachier'
   gem 'dalli'
