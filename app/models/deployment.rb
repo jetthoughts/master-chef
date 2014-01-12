@@ -12,7 +12,7 @@ class Deployment < ActiveRecord::Base
     end
 
     event :finish do
-      transition processing: :finished
+      transition any => :finished
     end
 
     event :stop do
