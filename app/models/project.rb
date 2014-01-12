@@ -12,7 +12,6 @@ class Project < ActiveRecord::Base
 
   def update_cookbooks
     chef_project_generator.start
-
     self.cookbooks_lock = chef_project_generator.update_cookbooks
     self.save!
   end

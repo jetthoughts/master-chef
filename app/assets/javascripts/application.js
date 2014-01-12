@@ -15,3 +15,5 @@
 //= require angular
 //= require ace
 //= require ace_init
+
+//= require project

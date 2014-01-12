@@ -7,6 +7,7 @@ class CookbooksController < ApplicationController
   def update
     #@project.delay.update_cookbooks
     @project.update_cookbooks
-    respond_with @project
+    #respond_with @project
+    render json: @project
   end
 end

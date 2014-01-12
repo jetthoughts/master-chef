@@ -4,9 +4,10 @@ class ChefProjectGenerator
 
   attr_accessor :name, :project_path
 
-  def initialize(project_path: 'chef_project_path', cookbooks: 'site :opscode', nodes: {}, roles: {})
+  def initialize(project_path: 'chef_project_path', cookbooks: '', cookbooks_lock: '', nodes: {}, roles: {})
     @project_path = project_path
     @cookbooks = cookbooks
+    @cookbooks_lock = cookbooks_lock
     @nodes = nodes
     @roles = roles
   end
@@ -14,7 +15,7 @@ class ChefProjectGenerator
   def start
     create_project_folder
     copy_base_files
-    create_or_update_cookbook_file
+    create_or_update_cookbooks_file
     create_or_update_nodes
     create_or_update_roles
   end
@@ -22,7 +23,7 @@ class ChefProjectGenerator
   def update_cookbooks
     #TODO: ....
     sleep 3
-    'cooooobook lock'
+    "# Cookbook updated at #{Time.current}"
   end
 
   private
@@ -37,8 +38,9 @@ class ChefProjectGenerator
     FileUtils.cp_r Dir.glob("#{TEMPLATE_PATH}/.chef"), project_path
   end
 
-  def create_or_update_cookbook_file
+  def create_or_update_cookbooks_file
     create_or_update_file('Berksfile', @cookbooks)
+    create_or_update_file('Berksfile.lock', @cookbooks_lock)
   end
 
   def create_or_update_nodes
