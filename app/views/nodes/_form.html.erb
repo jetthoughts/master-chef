@@ -9,7 +9,9 @@
   </div>
   <div class="form-group">
     <%= f.label :config %>
-    <%= f.text_area :config, class: 'form-control code', rows: 8 %>
+    <%= f.hidden_field :config, class: 'ace-source' %>
+    <div class='form-control ace-editor' data-language='json'>
+    </div>
   </div>
   <button type="submit" class="btn btn-success">Upate node</button>
 <% end %>
