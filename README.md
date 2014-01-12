@@ -39,6 +39,5 @@ rake test test/models/comment_test.rb
 
 [![Build Status](https://travis-ci.org/jetthoughts/master-chef.png?branch=master)](https://travis-ci.org/jetthoughts/master-chef)
 
-
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jetthoughts/master-chef/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
