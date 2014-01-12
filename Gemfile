@@ -25,7 +25,6 @@ gem 'simple_form'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
 
-gem 'unicorn-rails'
 gem 'state_machine'
 gem 'pusher'
 
@@ -34,10 +33,12 @@ group :production, :staging do
   gem 'dalli'
 end
 
+gem 'unicorn-rails', group: [:staging, :development]
+
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',   github: 'rails/sass-rails'
-  gem 'coffee-rails', github: 'rails/coffee-rails'
+  gem 'sass-rails',      github: 'rails/sass-rails'
+  gem 'coffee-rails',    github: 'rails/coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
