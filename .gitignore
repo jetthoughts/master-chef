@@ -19,6 +19,7 @@
 /tmp
 /db/backups
 public/uploads
+public/assets
 .idea
 *.DS_Store
 coverage
