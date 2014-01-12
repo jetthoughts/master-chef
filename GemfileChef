@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+ruby '2.1.0'
+
+group :chef do
+  gem 'chef'
+  gem 'knife-solo'
+  gem 'knife-solo_data_bag'
+  gem 'rake'
+  gem 'berkshelf'
+end
