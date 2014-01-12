@@ -14,7 +14,7 @@ set :log_level, :debug
 set :pty, true
 
 set :linked_files, %w{config/database.yml}
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system projects}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/assets projects}
 
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
@@ -42,6 +42,17 @@ namespace :deploy do
   #  end
   #end
 
+  task :bundle_chef_install do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, '--gemfile GemfileChef', '--without', fetch(:bundle_without), fetch(:bundle_flags),
+                '--path', fetch(:bundle_path)
+      end
+    end
+  end
+
+  after :publishing, 'deploy:restart'
+  after :publishing, 'deploy:bundle_chef_install'
   after :finishing, 'deploy:cleanup'
 
 end
