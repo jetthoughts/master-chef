@@ -8,7 +8,7 @@ module SystemCommand
 
   def system_cmd(cmd, prompt='COMMAND:')
     log "#{prompt}#{cmd}"
-    Open3.popen2e(cmd) do |i, oe, t|
+    Open3.popen2e(environment, cmd) do |i, oe, t|
       oe.each { |line| logger.append_log line }
     end
   end
@@ -18,6 +18,6 @@ module SystemCommand
   end
 
   def environment
-    { 'BUNDLE_GEMFILE' => Rails.root.join('GemfileChef').to_s }
+    { 'BUNDLE_GEMFILE' => File.join(Dir.pwd,('GemfileChef')).to_s }
   end
 end
