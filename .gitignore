@@ -24,3 +24,5 @@ public/uploads
 coverage
 .*swp
 /projects/
+/config/deploy/
+/config/deploy.rb

@@ -58,3 +58,12 @@ group :chef do
   gem 'rake'
   gem 'berkshelf'
 end
+
+group :deploy do
+  gem 'j-cap-recipes'
+  gem 'capistrano', github: 'capistrano/capistrano'
+  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+  gem 'capistrano-rails', github: 'capistrano/rails'
+  gem 'capistrano-bundler', github: 'capistrano/bundler'
+  gem 'sshkit', github: 'leehambley/sshkit'
+end
