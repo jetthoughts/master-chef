@@ -9,7 +9,9 @@
 
     <div class="form-group">
       <%= f.label :cookbooks %>
-      <%= f.text_area :cookbooks, class: 'form-control', rows: 10, data: {language: 'ruby'} %>
+      <%= f.hidden_field :cookbooks, class: 'ace-source' %>
+      <div class='form-control ace-editor' data-language='ruby'>
+      </div>
     </div>
 
     <div class="form-group">
@@ -21,7 +23,6 @@
       <pre data-language="yaml" id="<%= dom_id(f.object)%>_cookbooks_lock" data-relation="cookbooks_lock">
         <%= @project.cookbooks_lock %>
       </pre>
-
     </div>
 
     <%= f.submit 'Update project', class: 'btn btn-success' %>
