@@ -39,6 +39,15 @@ jQuery ->
           editorSource.val(editor.getValue())
 
     initHighlights: ->
-      console.log('stub!')
+      highlightSelector = $('.ace-highlight')
+
+      highlightSelector.each (index, highlightSource) ->
+        highlightSource = $(highlightSource)
+
+        editor = ace.edit(highlightSource[0])
+        AceInitializer.setTheme(highlightSource, editor)
+        AceInitializer.setLanguage(highlightSource, editor)
+        editor.setReadOnly(true)
+        editor.setHighlightGutterLine(false)
 
   AceInitializer.init()
