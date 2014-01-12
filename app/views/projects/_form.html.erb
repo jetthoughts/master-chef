@@ -9,9 +9,7 @@
 
     <div class="form-group">
       <%= f.label :cookbooks %>
-      <%= f.hidden_field :cookbooks, class: 'ace-source' %>
-      <div class='form-control ace-editor' data-language='ruby'>
-      </div>
+      <%= f.hidden_field :cookbooks, class: 'form-control ace-editor', data: { language: 'ruby' } %>
     </div>
 
     <div class="form-group">
