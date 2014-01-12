@@ -26,7 +26,16 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/console'
 
-require 'j-cap-recipes'
+require 'j-cap-recipes/check'
+require 'j-cap-recipes/database'
+require 'j-cap-recipes/delayed_job'
+require 'j-cap-recipes/log'
+require 'j-cap-recipes/monit'
+require 'j-cap-recipes/nginx'
+require 'j-cap-recipes/rails'
+require 'j-cap-recipes/rake'
+require 'j-cap-recipes/setup'
+require 'j-cap-recipes/unicorn'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }
