@@ -29,7 +29,7 @@ class ChefProjectGenerator
   private
 
   def create_project_folder
-    %w(nodes roles).each do |dir|
+    %w(nodes roles data_bags).each do |dir|
       FileUtils.mkdir_p project_path.join(dir)
     end
   end
