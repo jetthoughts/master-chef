@@ -24,6 +24,7 @@ class ChefProjectGenerator
     sleep 3
     'cooooobook lock'
   end
+
   private
 
   def create_project_folder
@@ -58,6 +59,5 @@ class ChefProjectGenerator
       file.write content
     end
   end
-
 
 end

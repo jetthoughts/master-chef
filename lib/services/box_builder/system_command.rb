@@ -1,12 +1,16 @@
+require 'open3'
+
 module SystemCommand
 
   def log(msg)
-    logger.append_log("-----> #{msg.to_s}")
+    logger.append_log("-----> #{msg.to_s}\n")
   end
 
   def system_cmd(cmd, prompt='COMMAND:')
     log "#{prompt} #{cmd}"
-    logger.append_log(`#{cmd}`)
+    Open3.popen2e(cmd) do |i, oe, t|
+      oe.each { |line| logger.append_log line }
+    end
   end
 
   def bundle_install

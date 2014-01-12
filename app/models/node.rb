@@ -9,12 +9,8 @@ class Node < ActiveRecord::Base
     YAML.load(credentials)
   end
 
-  def prepare_settings
-    config_folder = project.base_folder.join('config')
-    FileUtils.mkdir_p config_folder
-    File.open(config_folder.join('settings.yml'), 'w') do |file|
-      file.write({ name => credentials_hash }.to_yaml)
-    end
+  def parameterized_name
+    name.parameterize
   end
 
   private
@@ -24,4 +20,5 @@ class Node < ActiveRecord::Base
   rescue Psych::SyntaxError
     self.errors.add(:credentials, 'need to be valid YAML')
   end
+
 end

@@ -15,13 +15,26 @@ class NodeBuilder
   end
 
   def build
+    log "options: #{options}"
     log "started setting up host: #{node}"
 
+    go_to_project_dir
+    add_public_key_to_bag
     grant_ssh_access
     prepare_host
     setup_host
     cleanup_host
     revoke_ssh_access
+  end
+
+  def go_to_project_dir
+    Dir.chdir(base_folder)
+  end
+
+  def add_public_key_to_bag
+    if public_key base_folder
+      system_cmd "bundle exec knife solo data bag create keys deployer -d --data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key base_folder}\"}'"
+    end
   end
 
   def grant_ssh_access
@@ -40,7 +53,7 @@ class NodeBuilder
         session.exec!("mkdir -p .ssh")
         session.exec!("chmod 0700 .ssh")
         session.exec!("touch .ssh/authorized_keys")
-        session.exec!("echo '#{public_key}' >> .ssh/authorized_keys")
+        session.exec!("echo '#{public_key base_folder}' >> .ssh/authorized_keys")
         session.exec!("chmod 0600 .ssh/authorized_keys")
       end
 

@@ -29,8 +29,6 @@ gem 'unicorn-rails'
 gem 'state_machine'
 gem 'pusher'
 
-gem 'net-ssh'
-
 group :production, :staging do
   gem 'memcachier'
   gem 'dalli'
@@ -53,3 +51,10 @@ group :test do
   gem 'simplecov', require: false
 end
 
+group :chef do
+  gem 'chef'
+  gem 'knife-solo'
+  gem 'knife-solo_data_bag'
+  gem 'rake'
+  gem 'berkshelf'
+end

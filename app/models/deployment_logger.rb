@@ -8,12 +8,15 @@ class DeploymentLogger
   end
 
   def append_log(text)
-    self.logs += text
+    self.logs += "#{text}"
     notify_client 'append_log', text
   end
 
+  def complete_log
+    self.logs
+  end
+
   def notify_client(event, message)
-    p message
     Pusher[channel_name].trigger(event, {
         message: message
     })

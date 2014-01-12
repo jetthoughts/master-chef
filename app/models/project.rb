@@ -17,9 +17,31 @@ class Project < ActiveRecord::Base
     self.save!
   end
 
+  def prepare_project
+    chef_project_generator.start
+  end
+
   private
 
   def chef_project_generator
-    @_chef_project_generator = ChefProjectGenerator.new project_path: base_folder
+    @_chef_project_generator = ChefProjectGenerator.new project_path: base_folder,
+                                                        cookbooks:    cookbooks,
+                                                        nodes:        nodes_hash,
+                                                        roles:        roles_hash
+  end
+
+  def nodes_hash
+    items_to_hash(nodes)
+  end
+
+  def roles_hash
+    items_to_hash(roles)
+  end
+
+  def items_to_hash(items)
+    items.inject({}) do |hash, item|
+      hash[item.parameterized_name] = item.config
+      hash
+    end
   end
 end

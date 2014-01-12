@@ -20,18 +20,18 @@ class Deployment < ActiveRecord::Base
     end
 
     before_transition initial: :processing do |deployment, transition|
-      deployment.node.prepare_settings
+      deployment.project.prepare_project
+      deployment.build_node
+    end
 
-      builder = ::BoxBuilder.new(deployment.project.base_folder, deployment.logger)
-
-      builder.verbose = verbose
-      builder.bundle_install
-      builder.berkshelf_update_cookbooks
-      builder.build
+    before_transition processing: any do |deployment, transition|
+      deployment.update logs: deployment.logger.complete_log
     end
 
     after_transition any => any do |deployment, transition|
-      deployment.notify_client 'changed_state', deployment.state
+      Pusher[deployment.channel_name].trigger('changed_state', {
+          message: deployment.state
+      })
     end
   end
 
@@ -43,6 +43,13 @@ class Deployment < ActiveRecord::Base
 
   def logger
     @_logger ||= DeploymentLogger.new(channel_name)
+  end
+
+  def build_node
+    NodeBuilder.new(project.base_folder,
+                    logger,
+                    node.name.parameterize,
+                    node.credentials_hash).build
   end
 
   private
