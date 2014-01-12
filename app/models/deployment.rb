@@ -19,19 +19,19 @@ class Deployment < ActiveRecord::Base
       transition processing: :stopped
     end
 
-    before_transition initial: :processing do |deployment, transition|
+    after_transition initial: :processing do |deployment, transition|
+      deployment.notify_client 'changed_state', deployment.state
       deployment.project.prepare_project
       deployment.build_node
     end
 
     before_transition processing: any do |deployment, transition|
-      deployment.update logs: deployment.logger.complete_log
+      deployment.notify_client 'changed_state', deployment.state
+      deployment.update logs: deployment.logger.complete_log, finished_at: Time.current
     end
 
     after_transition any => any do |deployment, transition|
-      Pusher[deployment.channel_name].trigger('changed_state', {
-          message: deployment.state
-      })
+      deployment.notify_client 'changed_state', deployment.state
     end
   end
 
@@ -42,7 +42,7 @@ class Deployment < ActiveRecord::Base
   end
 
   def logger
-    @_logger ||= DeploymentLogger.new(channel_name)
+    @_logger ||= DeploymentLogger.new(self)
   end
 
   def build_node
@@ -50,6 +50,12 @@ class Deployment < ActiveRecord::Base
                     logger,
                     node.name.parameterize,
                     node.credentials_hash).build
+  end
+
+  def notify_client(event, message)
+    Pusher[channel_name].trigger(event, {
+        message: message
+    })
   end
 
   private

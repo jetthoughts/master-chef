@@ -6,8 +6,13 @@ class DeployWorker < Struct.new(:id)
 
   def perform
     deployment = Deployment.find(id)
-    deployment.deploy
-    deployment.finish
+    deployment.deploy!
+    deployment.update! success: true
+  rescue StandardError => ex
+    deployment.update! state: 'processing', success: false
+    deployment.logger.append_log ex.message
+  ensure
+    deployment.finish!
   end
 
 end

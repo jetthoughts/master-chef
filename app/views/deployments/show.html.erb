@@ -23,7 +23,10 @@
     $(logs).scrollTop(logs.scrollHeight);
   });
   channel.bind('changed_state', function(data) {
-    state.innerText = data.message;
+    while (state.firstChild) {
+      state.removeChild(state.firstChild);
+    }
+    state.appendChild(document.createTextNode(data.message))
   });
 </script>
 

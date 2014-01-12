@@ -1,25 +1,19 @@
 class DeploymentLogger
 
-  attr_accessor :channel_name, :logs
+  attr_accessor :deployment, :logs
 
-  def initialize(channel_name)
-    @channel_name = channel_name
+  def initialize(deployment)
+    @deployment = deployment
     @logs = ''
   end
 
   def append_log(text)
     self.logs += "#{text}"
-    notify_client 'append_log', text
+    deployment.notify_client 'append_log', text
   end
 
   def complete_log
     self.logs
-  end
-
-  def notify_client(event, message)
-    Pusher[channel_name].trigger(event, {
-        message: message
-    })
   end
 
 end

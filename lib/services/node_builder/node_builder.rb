@@ -10,15 +10,14 @@ class NodeBuilder
   attr_accessor :options, :node
 
   def initialize(base_folder, logger, node, options={})
-    @logger = logger
+    @logger      = logger
     @base_folder = base_folder
-    @node    = node
-    @options = options
+    @node        = node
+    @options     = options
   end
 
   def build
-    log "options: #{options}"
-    log "started setting up host: #{node}"
+    log "Started setting up host: #{node}"
 
     go_to_project_dir
     add_public_key_to_bag
@@ -114,11 +113,7 @@ class NodeBuilder
 
   def prepare_host
     command = "bundle exec knife solo prepare -c knife.rb -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
-    system_cmd command,  ">> Install chef to the host #{node}(#{options['hostname']}):\n"
-  end
-
-  def config_file_path
-    File.join(base_folder, 'nodes', "#{node}.json")
+    system_cmd command, ">> Install chef to the host #{node}(#{options['hostname']}):\n"
   end
 
 end
