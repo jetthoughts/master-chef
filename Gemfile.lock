@@ -1,11 +1,4 @@
 GIT
-  remote: git://github.com/bigbinary/handy.git
-  revision: 9af9a6ff43a6d990ada726dff2db7ea8974bce0b
-  specs:
-    handy (0.0.24)
-      hashr
-
-GIT
   remote: git://github.com/capistrano/bundler.git
   revision: 079f221b6bf1637097dfd7f8ab392c7f4e0510d1
   specs:
@@ -64,6 +57,13 @@ GIT
       net-scp (>= 1.1.2)
       net-ssh
       term-ansicolor
+
+GIT
+  remote: git://github.com/miry/handy.git
+  revision: 4c0ee96daf0ff91f2d2c444217aa179bc7ef6fce
+  specs:
+    handy (0.0.24)
+      hashr
 
 GIT
   remote: git://github.com/rails/coffee-rails.git

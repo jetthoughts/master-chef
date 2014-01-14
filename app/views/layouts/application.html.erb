@@ -57,7 +57,7 @@
 
 <%= yield :js %>
 
-<%= render 'shared/ga' %>
+<%= render 'shared/ga' if Settings.google_analitycs.tracking_id.present? %>
 
 </body>
 </html>

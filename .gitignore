@@ -25,4 +25,4 @@ public/assets
 coverage
 .*swp
 /projects/
-/config/settings.production.yml
+/config/settings/*.yml

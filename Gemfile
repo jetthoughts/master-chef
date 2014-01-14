@@ -15,7 +15,7 @@ gem 'cancan'
 gem 'delayed_job_active_record', '>= 4.0.0.beta1'
 gem 'delayed_job_web', '>= 1.2.0'
 
-gem 'handy', github: 'bigbinary/handy'
+gem 'handy', github: 'miry/handy'
 
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
