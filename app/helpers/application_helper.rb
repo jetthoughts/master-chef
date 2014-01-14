@@ -3,11 +3,11 @@ module ApplicationHelper
     user_signed_in? && current_user.superadmin?
   end
 
-  def nav_link text, path, condition = false, options = {}
+  def nav_link(text, path, condition = false, options = {})
     class_name = (current_page?(path) || condition) ? 'active' : ''
     content_tag(:li, class: class_name) do
       options[:title] = text unless options.has_key?(:title)
-      link_to text, path, options
+      link_to(text, path, options)
     end
   end
 

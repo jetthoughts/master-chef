@@ -8,26 +8,8 @@
   Finished <%= @deployment.finished_at %>
 </p>
 
-<pre id="logs" style="overflow-y: scroll; height: 500px">
+<pre id="logs" style="overflow-y: scroll; height: 500px" data-behavior="real_time_logs" data-pusher-key="<%= Settings.pusher_key %>" data-pusher-channel="<%= @deployment.channel_name -%>">
 <%= @deployment.logs -%>
 </pre>
-
-<script src="http://js.pusher.com/2.1/pusher.min.js" type="text/javascript"></script>
-<script type="text/javascript">
-  var pusher = new Pusher('3e9e19963f64bb532442');
-  var channel = pusher.subscribe('<%= @deployment.channel_name -%>');
-  var logs = document.getElementById('logs');
-  var state = document.getElementById('state');
-  channel.bind('append_log', function(data) {
-    logs.appendChild(document.createTextNode(data.message));
-    $(logs).scrollTop(logs.scrollHeight);
-  });
-  channel.bind('changed_state', function(data) {
-    while (state.firstChild) {
-      state.removeChild(state.firstChild);
-    }
-    state.appendChild(document.createTextNode(data.message))
-  });
-</script>
 
 <%= link_to 'Back', project_deployments_path(@deployment.node.project_id) %>

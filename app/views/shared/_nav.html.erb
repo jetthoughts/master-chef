@@ -1,6 +1,6 @@
 <% if super_admin_signed_in? %>
-    <li><%= nav_link("Active Admin", active_admin_root_path)%></li>
-    <li><%= nav_link('DJ', '/delayed_job', false, "target" => '_blank') %></li>
+    <li><%= nav_link('Active Admin', active_admin_root_path)%></li>
+    <li><%= nav_link('DJ', '/delayed_job', false, target: '_blank') %></li>
 <% end %>
 
 <% if user_signed_in? %>

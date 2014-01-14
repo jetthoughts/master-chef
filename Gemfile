@@ -6,8 +6,6 @@ gem 'arel'
 
 gem 'pg'
 
-# https://github.com/hiravgandhi/angularjs-rails
-gem 'angularjs-rails'
 gem 'jquery-rails'
 
 gem 'devise', '>= 3.0.2'
@@ -34,12 +32,12 @@ group :production do
   gem 'daemons'
 end
 
-group :production, :staging do
+group :staging do
   gem 'memcachier'
-  gem 'dalli'
 end
 
 gem 'unicorn-rails', group: [:staging, :development]
+gem 'dalli', group: [:staging, :production]
 
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
@@ -57,14 +55,6 @@ group :test do
   gem 'mocha', require: false
   gem 'simplecov', require: false
 end
-
-#group :chef do
-#  gem 'chef'
-#  gem 'knife-solo'
-#  gem 'knife-solo_data_bag'
-#  gem 'rake'
-#  gem 'berkshelf'
-#end
 
 group :deploy do
   gem 'j-cap-recipes'
