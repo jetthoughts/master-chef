@@ -1,0 +1,20 @@
+namespace :config do
+
+  namespace :settings do
+    desc 'Upload settings file'
+    task :upload => [:delete, 'config/settings.yml']
+
+    desc 'Delete remote settins file'
+    task :delete do
+      on roles(:all) do |host|
+        within shared_path do
+          execute :rm, '-f', 'config/settings.yml'
+        end
+      end
+    end
+  end
+
+end
+
+remote_file 'config/settings.yml' => File.join(Dir.pwd, 'config', 'settings.yml')
+after 'deploy:check', 'config/settings.yml'

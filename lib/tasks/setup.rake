@@ -17,7 +17,7 @@ task setup_sample_data: :environment do
   nodes = %w(production staging).map do |node|
     Node.create! name:        node,
                  project_id:  project.id,
-                 credentials: { 'hostname' => '77.120.57.83', 'user' => 'root', 'password' => ' ' }.to_yaml,
+                 credentials: { 'hostname' => '77.120.57.83'}.to_yaml,
                  config:      node_config_content
   end
 
@@ -25,7 +25,7 @@ task setup_sample_data: :environment do
 end
 
 def create_user(options={})
-  user_attributes = { email: 'john@example.com', password: 'welcome', first_name: "John", last_name: "Smith", role: "super_admin" }
+  user_attributes = { email: 'john@example.com', password: 'welcome', first_name: 'John', last_name: 'Smith', role: 'super_admin' }
   attributes = user_attributes.merge options
   User.create! attributes
 end
@@ -37,6 +37,7 @@ end
 
 def cookbooks_content
 <<END
+
 site :opscode
 
 cookbook 'ntp'
@@ -62,10 +63,16 @@ cookbook 'sudo'
 cookbook 'watcher', git: 'https://github.com/Azrael808/chef-watcher.git'
 cookbook 'windows'
 cookbook 'yum'
+cookbook 'rails-stack', git: 'https://github.com/jetthoughts/rails_stack_cookbook.git'
+cookbook 'unicorn',     git: 'https://github.com/jetthoughts/unicorn_cookbook.git'
+cookbook 'delayed_job', git: 'https://github.com/jetthoughts/delayed_job_cookbook.git'
 cookbook 'logrotate'
 cookbook 's3cmd'
 cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git'
 cookbook 'chef-solo-search'
+cookbook 'rsyslog'
+cookbook 'papertrail-rsyslog'
+
 END
 end
 
@@ -86,7 +93,7 @@ def node_config_content
     "nameservers": [ "8.8.8.8" ]
   },
 
-  "run_list": [ "recipe[nginx]" ],
+  "run_list": [ "recipe[nginx]", "recipe[postgresql]" ],
 
   "postgresql": {
     "enable_pgdg_apt": "true",
