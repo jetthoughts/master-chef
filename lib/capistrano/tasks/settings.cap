@@ -2,19 +2,32 @@ namespace :config do
 
   namespace :settings do
     desc 'Upload settings file'
-    task :upload => [:delete, 'config/settings.yml']
+    task :upload do
+      invoke "config/settings/#{fetch(:stage)}.yml"
+    end
 
     desc 'Delete remote settins file'
     task :delete do
       on roles(:all) do |host|
         within shared_path do
-          execute :rm, '-f', 'config/settings.yml'
+          execute :rm, '-f', "config/settings/#{fetch(:stage)}.yml"
         end
       end
     end
+
+    desc 'Show current settings'
+    task :show do
+      on roles(:all) do |host|
+        within shared_path do
+          execute :cat, "config/settings/#{fetch(:stage)}.yml"
+        end
+      end
+    end
+
   end
 
 end
 
-remote_file 'config/settings.yml' => File.join(Dir.pwd, 'config', 'settings.yml')
-after 'deploy:check', 'config/settings.yml'
+stages.each do |stage|
+  remote_file "config/settings/#{stage}.yml" => File.join(Dir.pwd, 'config', 'settings', "#{stage}.yml")
+end
