@@ -57,7 +57,7 @@ group :test do
 end
 
 group :deploy do
-  gem 'j-cap-recipes', path: '../j-cap-recipes'
+  gem 'j-cap-recipes'
   gem 'capistrano', github: 'capistrano/capistrano'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails', github: 'capistrano/rails'
