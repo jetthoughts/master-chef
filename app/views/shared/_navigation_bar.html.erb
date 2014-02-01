@@ -1,0 +1,31 @@
+<header class="navbar navbar">
+  <div class="container">
+
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/"><%= Settings.title %></a>
+    </div>
+
+    <% if user_signed_in? %>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <%= current_user.name %>
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <% if super_admin_signed_in? %>
+              <li><%= nav_link('Active Admin', active_admin_root_path) %></li>
+              <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
+            <% end %>
+
+            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+
+    <% end %>
+  </div>
+</header>

@@ -1,4 +1,5 @@
 common:
+  title: Master Chef
   host: lvh.me:3000
   default_from_email: "'MasterChef' <no-reply@masterchef.io>"
 
@@ -6,9 +7,9 @@ common:
     delivery_method: test
     smtp_settings:
       user_name: <%= ENV['MAILER_USERNAME'] %>
-      password: <%= ENV['MAILER_PASSWORD'] %>
-      address: <%= ENV['MAILER_HOST'] %>
-      port: <%= ENV['MAILER_PORT'] %>
+      password:  <%= ENV['MAILER_PASSWORD'] %>
+      address:   <%= ENV['MAILER_HOST'] %>
+      port:      <%= ENV['MAILER_PORT'] %>
       authentication: plain
 
   devise:

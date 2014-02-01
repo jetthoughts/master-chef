@@ -1,8 +1,8 @@
 desc 'sets up the project by running migration and populating sample data'
-task :setup => :environment do
+task setup: :environment do
   raise 'do not run in production' if Rails.env.production?
 
-  ["db:drop", "db:create", "db:migrate", "setup_sample_data"].each { |cmd| system "rake #{cmd}" }
+  ['db:drop', 'db:create', 'db:migrate', 'setup_sample_data'].each { |cmd| system "rake #{cmd}" }
 end
 
 desc 'Deletes all records and populates sample data'

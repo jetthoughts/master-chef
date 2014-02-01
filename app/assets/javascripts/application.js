@@ -11,7 +11,14 @@
 // about supported directives.
 //
 //= require jquery_ujs
+
+// Online Code Editor
 //= require ace_init
 
-//= require project
-//= require deployment
+// Bootstrap modules
+//= require twitter/bootstrap/alert
+//= require twitter/bootstrap/dropdown
+
+//= require ./bootstrap
+//= require ./project
+//= require ./deployment
