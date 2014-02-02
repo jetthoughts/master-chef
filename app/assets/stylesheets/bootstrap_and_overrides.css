@@ -6,7 +6,7 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-a.btn:visited {
+a.btn, a.btn:visited {
   color: white;
 }
 

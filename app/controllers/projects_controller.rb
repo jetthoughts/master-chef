@@ -2,6 +2,10 @@ class ProjectsController < InheritedResources::Base
   before_filter :load_projects
   load_and_authorize_resource
 
+  def show
+    return redirect_to([@project, :nodes], notice: 'Add at least one server') if @project.nodes.empty?
+  end
+
   def create
     @project = current_user.projects.build(permitted_params[:project])
     create!
@@ -17,10 +21,6 @@ class ProjectsController < InheritedResources::Base
 
   def permitted_params
     {project: params.fetch(:project, {}).permit(:title, :cookbooks)}
-  end
-
-  def load_projects
-    @projects = current_user.projects.order(:title)
   end
 
 end

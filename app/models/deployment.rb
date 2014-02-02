@@ -58,6 +58,10 @@ class Deployment < ActiveRecord::Base
     })
   end
 
+  def duration
+    finished_at - created_at
+  end
+
   private
 
   def schedule_deploy

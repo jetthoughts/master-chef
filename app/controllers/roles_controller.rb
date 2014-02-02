@@ -1,5 +1,5 @@
 class RolesController < ApplicationController
-
+  before_filter :load_projects
   before_action :load_project, except: [:show, :edit, :update, :destroy]
   before_action :load_role, only: [:show, :edit, :update, :destroy]
 
@@ -54,7 +54,7 @@ class RolesController < ApplicationController
   end
 
   def load_project
-    @project = Project.find(params[:project_id])
+    @project = @projects.find(params[:project_id])
   end
 
   def load_role

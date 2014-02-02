@@ -1,17 +1,15 @@
-<h3>Deployments</h3>
-<table class='table'>
+<%= render 'shared/project_navigation_tabs' %>
+
+<table class='table table-striped table-hover'>
   <thead>
     <tr>
+      <th>Build</th>
       <th>Node</th>
-      <th>Started At</th>
-      <th>Finished At</th>
-      <th>Success</th>
-      <th>Actions</th>
+      <th>Duration</th>
+      <th>Finished</th>
     </tr>
   </thead>
   <tbody>
     <%= render @deployments %>
   </tbody>
 </table>
-<%= link_to 'Back to project', @project %>
-

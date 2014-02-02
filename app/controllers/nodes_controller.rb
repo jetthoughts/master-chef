@@ -1,7 +1,8 @@
 class NodesController < ApplicationController
 
-  before_action :load_project, only: %i{ index new create}
   before_action :load_node, only: %i{ show edit update destroy }
+  before_action :load_project
+  before_filter :load_projects
 
   respond_to :html, :json
 
@@ -50,7 +51,7 @@ class NodesController < ApplicationController
   end
 
   def load_project
-    @project = Project.find(params[:project_id])
+    @project = params[:project_id] ? Project.find(params[:project_id]) : @node.project
   end
 
   def load_node

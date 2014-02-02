@@ -1,7 +1,4 @@
-<p>
-  <strong>Project:</strong>
-  <%= @node.project.title %>
-</p>
+<%= render 'shared/project_navigation_tabs' %>
 
 <p>
   <strong>Node:</strong>
@@ -25,4 +22,3 @@
 <%- end -%>
 
 <%= link_to 'Edit', edit_node_path(@node) %> |
-<%= link_to 'Back', project_nodes_path(@node.project) %>

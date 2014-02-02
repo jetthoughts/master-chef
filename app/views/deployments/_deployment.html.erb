@@ -1,9 +1,9 @@
-<tr>
-  <td><%= deployment.node.name %></td>
-  <td><%= deployment.created_at %></td>
-  <td><%= deployment.finished_at %></td>
-  <td><%= deployment.success %></td>
+<tr class="<%= deployment.success ? 'success' : 'danger' %>">
   <td>
-    <%= link_to 'Show', deployment %>
+    <i class="icon-<%= deployment.success ? 'check-circle' : 'ambulance' %>"></i>
+    <%= link_to deployment.id, deployment %>
   </td>
+  <td><%= link_to deployment.node, deployment.node %></td>
+  <td><%= distance_of_time_in_words deployment.created_at, deployment.finished_at %></td>
+  <td><%= distance_of_time_in_words Time.current, deployment.finished_at %> ago</td>
 </tr>

@@ -1,0 +1,5 @@
+<ul class="nav nav-tabs">
+  <%= nav_link('Deployments', project_deployments_path(@project), controller.controller_name == 'deployments') %>
+  <%= nav_link('Nodes', project_nodes_path(@project), controller.controller_name == 'nodes') %>
+  <%= nav_link('Roles', project_roles_path(@project), controller.controller_name == 'roles') %>
+</ul>

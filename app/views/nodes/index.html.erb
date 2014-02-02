@@ -1,4 +1,5 @@
-<h3>Nodes of "<%= @project.title %>"</h3>
+<%= render 'shared/project_navigation_tabs' %>
+
 <table class='table'>
   <thead>
     <tr>
@@ -10,5 +11,6 @@
     <%= render @nodes %>
   </tbody>
 </table>
-<%= link_to 'New node', new_project_node_path(@project) %> |
-<%= link_to 'Back to project', @project %>
+
+<br/>
+<%= link_to 'New node', new_project_node_path(@project) %>

@@ -15,4 +15,9 @@ class ApplicationController < ActionController::Base
     @project ||= Project.find params[:project_id]
   end
 
+  def load_projects
+    @projects = current_user.projects.order(:title)
+  end
+
+
 end

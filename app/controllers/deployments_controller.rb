@@ -1,5 +1,7 @@
 class DeploymentsController < ApplicationController
-
+  before_filter :load_projects
+  before_filter :load_deployment, only: [:show]
+  before_filter :load_project, only: [:show]
   before_action :load_node, only: :create
 
   def index
@@ -9,7 +11,6 @@ class DeploymentsController < ApplicationController
   end
 
   def show
-    @deployment = Deployment.find(params[:id])
     authorize! :read, @deployment
   end
 
@@ -22,6 +23,14 @@ class DeploymentsController < ApplicationController
 
   def load_node
     @node = Node.find(params[:node_id])
+  end
+
+  def load_project
+    @project = @deployment.project
+  end
+
+  def load_deployment
+    @deployment = Deployment.find(params[:id])
   end
 
 end

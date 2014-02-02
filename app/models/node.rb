@@ -13,6 +13,10 @@ class Node < ActiveRecord::Base
     name.parameterize
   end
 
+  def to_s
+    name
+  end
+
   private
 
   def validate_credentials
