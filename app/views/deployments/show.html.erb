@@ -1,17 +1,27 @@
 <%= render 'shared/project_navigation_tabs' %>
 
 <p>
-  <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
-</p>
-<p>
-  Started <%= @deployment.created_at -%>
-</p>
-<p>
-  Finished <%= @deployment.finished_at %>
+  Node: <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
 </p>
 
-<pre id="logs" style="overflow-y: scroll; height: 500px" data-behavior="real_time_logs" data-pusher-key="<%= Settings.pusher_key %>" data-pusher-channel="<%= @deployment.channel_name -%>">
-<%= @deployment.logs -%>
+<p>
+  Status: <%= @deployment.state %>
+</p>
+
+<p>
+  Length: <%= @deployment.duration.to_i -%> seconds
+</p>
+
+<p>
+  Started: <%= l @deployment.created_at, format: :long %>
+</p>
+
+<p>
+  Finished: <%= l @deployment.finished, format: :long %>
+</p>
+
+<pre id="logs" style="overflow-y: scroll; height: 500px" data-behavior="real_time_logs"
+     data-pusher-key="<%= Settings.pusher_key %>"
+     data-pusher-channel="<%= @deployment.channel_name -%>">
+  <%= @deployment.logs -%>
 </pre>
-
-<%= link_to 'Back', project_deployments_path(@deployment.node.project_id) %>

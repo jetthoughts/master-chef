@@ -4,13 +4,12 @@
   <thead>
     <tr>
       <th>Node</th>
-      <th>Actions</th>
+      <th><%= link_to '+ Add node', new_project_node_path(@project), class: 'btn btn-primary'%></th>
     </tr>
   </thead>
+
   <tbody>
     <%= render @nodes %>
   </tbody>
-</table>
 
-<br/>
-<%= link_to 'New node', new_project_node_path(@project) %>
+</table>

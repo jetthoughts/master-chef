@@ -3,7 +3,11 @@
     <h3 class="panel-title">New Node</h3>
   </div>
   <div class="panel-body">
-    <%= render 'form' %>
+    <%= form_for [@project, @node] do |f| %>
+      <%= render 'form', f: f %>
+
+      <button type="submit" class="btn btn-success">Save</button>
+    <% end %>
   </div>
 </div>
 

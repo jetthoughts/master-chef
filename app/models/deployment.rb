@@ -49,7 +49,7 @@ class Deployment < ActiveRecord::Base
     NodeBuilder.new(project.base_folder,
                     logger,
                     node.name.parameterize,
-                    node.credentials_hash).build
+                    node.credentials).build
   end
 
   def notify_client(event, message)
@@ -59,7 +59,11 @@ class Deployment < ActiveRecord::Base
   end
 
   def duration
-    finished_at - created_at
+    finished - created_at
+  end
+
+  def finished
+    finished_at || Time.current
   end
 
   private

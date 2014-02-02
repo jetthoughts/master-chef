@@ -2,8 +2,16 @@
   <td>
     <%= link_to node.name, node, class: 'node_title' %>
   </td>
-  <td>
-    <%= link_to 'Edit', edit_node_path(node) %> |
-    <%= link_to 'Destroy', node, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+  <td class="col-md-2 col-sm-3 col-xs-4">
+    <%= link_to 'Build', [@project, @node, :deployments], class: 'btn btn-primary', method: :post %>
+
+    <%= link_to edit_node_path(node), title: 'Edit' do %>
+      <span class="icon-edit"></span>
+    <% end %>
+
+    <%= link_to node, method: :delete, title: 'Destroy', data: { confirm: 'Are you sure?' } do %>
+      <span class="icon-remove"></span>
+    <% end %>
   </td>
 </tr>

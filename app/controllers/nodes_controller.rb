@@ -20,7 +20,7 @@ class NodesController < ApplicationController
 
     @node = @project.nodes.build node_attributes
     flash[:notice] = 'Node successfully created!' if @node.save
-    respond_with @node, location: [@project]
+    respond_with @node, location: [@project, :nodes]
   end
 
   def edit
@@ -31,13 +31,13 @@ class NodesController < ApplicationController
     authorize! :update, @node
     @node.attributes = node_attributes
     flash[:notice] = 'Node successfully updated' if @node.save
-    respond_with @node, location: [@node.project]
+    respond_with @node, location: [@node.project, :nodes]
   end
 
   def destroy
     authorize! :destroy, @node
     @node.destroy
-    redirect_to @node.project, notice: "Node '#{@node.name}' successfully destroyed"
+    redirect_to [@project, @node], notice: "Node '#{@node.name}' successfully destroyed"
   end
 
   def show
@@ -47,7 +47,7 @@ class NodesController < ApplicationController
   private
 
   def node_attributes
-    params.require(:node).permit(:name, :credentials, :config)
+    params.require(:node).permit(:name, :credentials, :config, :hostname, :user, :password)
   end
 
   def load_project
