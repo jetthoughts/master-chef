@@ -1,15 +1,29 @@
-<%= simple_form_for [@project, @node] do |f| %>
-  <div class="form-group">
-    <%= f.label :name %>
+<%= form_for [@project, @node] do |f| %>
+
+  <div class="form-group <%= @node.errors['name'] ? 'has-error' : 'has-success' %>">
+    <%= f.label :name, class: 'control-label' %>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :credentials %>
-    <%= f.hidden_field :credentials, class: 'form-control ace-editor', data: { language: 'yaml' } %>
+
+  <div class="form-group <%= @node.errors['hostname'] ? 'has-error' : 'has-success' %>">
+    <%= f.label :hostname, class: 'control-label' %>
+    <%= f.text_field :hostname, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= f.label :config %>
-    <%= f.hidden_field :config, class: 'form-control ace-editor' %>
+
+  <div class="form-group <%= @node.errors['user'] ? 'has-error' : 'has-success' %>">
+    <%= f.label :user, class: 'control-label' %>
+    <%= f.text_field :user, class: 'form-control' %>
   </div>
-  <button type="submit" class="btn btn-success">Upate node</button>
+
+  <div class="form-group <%= @node.errors['password'] ? 'has-error' : 'has-success' %>">
+    <%= f.label :password, class: 'control-label' %>
+    <%= f.text_field :password, class: 'form-control' %>
+  </div>
+
+  <div class="form-group <%= @node.errors['config'] ? 'has-error' : 'has-success' %>">
+    <%= f.label :config, class: 'control-label' %>
+    <%= f.hidden_field :config, class: 'form-control ace-editor', data: {language: :json} %>
+  </div>
+
+  <button type="submit" class="btn btn-success">Save</button>
 <% end %>
