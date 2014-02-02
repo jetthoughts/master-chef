@@ -14,3 +14,11 @@ textarea.code {
 .ace-editor, .ace-highlight {
   min-height: 600px;
 }
+
+.projects_panel {
+  .row.active {
+    div:first-child span {
+      font-weight: 800;
+    }
+  }
+}

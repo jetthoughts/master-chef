@@ -1,11 +1,11 @@
-<div class="panel panel-default">
+<div class="panel panel-default projects_panel">
   <div class="panel-heading">
     <%= link_to '+ Projects', new_project_path, class: 'panel-title btn btn-primary' %>
   </div>
 
-  <div class="panel-body">
+  <div class="panel-body" >
     <% @projects.each do |project| %>
-      <div class="row">
+      <div class="row <%= (@project == project) && 'active' %>">
         <div class="col-md-8 col-sm-8 pull-left">
           <span><%= link_to project.title, project %></span>
         </div>

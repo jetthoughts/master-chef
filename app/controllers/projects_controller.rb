@@ -20,7 +20,7 @@ class ProjectsController < InheritedResources::Base
   end
 
   def load_projects
-    @projects = current_user.projects
+    @projects = current_user.projects.order(:title)
   end
 
 end
