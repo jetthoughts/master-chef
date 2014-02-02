@@ -1,0 +1,29 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <%= link_to '+ Projects', new_project_path, class: 'panel-title btn btn-primary' %>
+  </div>
+
+  <div class="panel-body">
+    <% @projects.each do |project| %>
+      <div class="row">
+        <div class="col-md-8 col-sm-8 pull-left">
+          <span><%= link_to project.title, project %></span>
+        </div>
+
+        <div class="pull-right actions">
+          <%= link_to project_nodes_path(project), title: 'Nodes' do %>
+            <span class="icon-list"></span>
+          <% end %>
+
+          <%= link_to edit_project_path(project), title: 'Edit' do %>
+            <span class="icon-gear"></span>
+          <% end %>
+
+          <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Destroy' do %>
+            <span class="icon-remove"></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 class ProjectsController < InheritedResources::Base
+  before_filter :load_projects
   load_and_authorize_resource
 
   def create
@@ -16,6 +17,10 @@ class ProjectsController < InheritedResources::Base
 
   def permitted_params
     {project: params.fetch(:project, {}).permit(:title, :cookbooks)}
+  end
+
+  def load_projects
+    @projects = current_user.projects
   end
 
 end

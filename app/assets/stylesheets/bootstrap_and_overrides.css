@@ -9,3 +9,7 @@
 a.btn:visited {
   color: white;
 }
+
+.container-fluid-wrapper {
+    padding: 0 15px;
+}

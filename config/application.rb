@@ -25,5 +25,13 @@ module MasterChef
     # config.i18n.default_locale = :de
 
     config.autoload_paths += Dir["#{config.root}/lib/services/*"]
+
+    config.to_prepare do
+      Devise::SessionsController.layout 'devise'
+      Devise::RegistrationsController.layout 'devise'
+      Devise::ConfirmationsController.layout 'devise'
+      Devise::UnlocksController.layout 'devise'
+      Devise::PasswordsController.layout 'devise'
+    end
   end
 end
