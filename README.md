@@ -21,5 +21,5 @@ password: welcome
 ## Code Status
 
 [![Build Status](https://travis-ci.org/jetthoughts/master-chef.png?branch=master)](https://travis-ci.org/jetthoughts/master-chef)
-[![Coverage Status](https://coveralls.io/repos/jetthoughts/master-chef/badge.png?branch=master)](https://coveralls.io/r/jetthoughts/master-chef?branch=master)
+[![Coverage Status](https://coveralls.io/repos/jetthoughts/master-chef/badge.png?branch=master)](https://coveralls.io/r/jetthoughts/master-chef)
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jetthoughts/master-chef/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
