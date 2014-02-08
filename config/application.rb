@@ -27,11 +27,11 @@ module MasterChef
     config.autoload_paths += Dir["#{config.root}/lib/services/*"]
 
     config.to_prepare do
-      Devise::SessionsController.layout 'devise'
-      Devise::RegistrationsController.layout 'devise'
-      Devise::ConfirmationsController.layout 'devise'
-      Devise::UnlocksController.layout 'devise'
-      Devise::PasswordsController.layout 'devise'
+      Devise::SessionsController.layout 'landing'
+      Devise::RegistrationsController.layout 'landing'
+      Devise::ConfirmationsController.layout 'landing'
+      Devise::UnlocksController.layout 'landing'
+      Devise::PasswordsController.layout 'landing'
     end
   end
 end

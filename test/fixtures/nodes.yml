@@ -3,9 +3,8 @@
 amazon:
   project: :bidder
   name: 'Amazing'
-  credentials: {}
-
+  credentials: "--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nhostname: localhost\nuser: root\n"
 rackspace:
   project: :willow
   name: 'Space'
-  credentials: {}
+  credentials: "--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess\nhostname: localhost\nuser: root\n"

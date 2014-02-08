@@ -1,4 +1,4 @@
-class DeploymentsController < ApplicationController
+class DeploymentsController < UserBaseController
   before_filter :load_projects
   before_filter :load_deployment, only: [:show]
   before_filter :load_project, only: [:show]

@@ -1,4 +1,4 @@
-class RolesController < ApplicationController
+class RolesController < UserBaseController
   before_filter :load_projects
   before_action :load_project, except: [:show, :edit, :update, :destroy]
   before_action :load_role, only: [:show, :edit, :update, :destroy]

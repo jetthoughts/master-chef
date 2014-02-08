@@ -54,6 +54,7 @@ group :test do
   gem 'minitest-reporters', require: false
   gem 'mocha', require: false
   gem 'simplecov', require: false
+  gem 'coveralls', require: false
 end
 
 group :deploy do

@@ -1,4 +1,4 @@
-class CookbooksController < ApplicationController
+class CookbooksController < UserBaseController
 
   respond_to :json
 

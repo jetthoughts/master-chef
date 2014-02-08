@@ -25,12 +25,12 @@ class NodesControllerTest < ActionController::TestCase
 
   test 'should create node' do
     assert_difference('Node.count') do
-      post :create, node: { name: 'Donetsk Node', credentials: {}.to_yaml },
+      post :create, node: { name: 'Donetsk Node', hostname: 'localhost' },
                     project_id: @project.id
     end
 
     assert_equal @project, assigns(:node).project
-    assert_redirected_to project_path(@project)
+    assert_redirected_to project_nodes_path(@project)
   end
 
   test 'should show self node' do
@@ -57,7 +57,13 @@ class NodesControllerTest < ActionController::TestCase
 
   test 'should update node' do
     patch :update, id: @node, node: { name: 'Sweet' }
-    assert_redirected_to project_path(@node.project)
+    @node.reload
+    assert_equal 'Sweet', @node.name
+  end
+
+  test 'should redirect to nodes list after update' do
+    patch :update, id: @node, node: { name: 'Sweet' }
+    assert_redirected_to project_nodes_path(@node.project)
   end
 
   test 'should not allow update foreign nodes' do
@@ -71,7 +77,7 @@ class NodesControllerTest < ActionController::TestCase
       delete :destroy, id: @node
     end
 
-    assert_redirected_to project_path(@node.project)
+    assert_redirected_to project_nodes_path(@node.project)
   end
 
   test 'should not allow destroy foreign node' do

@@ -1,0 +1,8 @@
+<div class="header">
+  <ul class="nav nav-pills pull-right">
+    <%= nav_link('Home', root_path) %>
+    <%= nav_link('Login', new_user_session_path, controller_name == 'sessions') %>
+    <%= nav_link('Registration', new_user_registration_path, controller_name == 'registrations') %>
+  </ul>
+  <h3 class="text-muted"><%= Settings.title %></h3>
+</div>

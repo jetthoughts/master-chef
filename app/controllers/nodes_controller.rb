@@ -1,4 +1,4 @@
-class NodesController < ApplicationController
+class NodesController < UserBaseController
 
   before_action :load_node, only: %i{ show edit update destroy }
   before_action :load_project

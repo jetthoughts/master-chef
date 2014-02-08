@@ -1,26 +1,9 @@
 # Set your full path to application.
-base_path = '/data/apps/master_chef'
-app_path = "#{base_path}/current"
-shared_path = "#{base_path}/shared"
-listen "#{shared_path}/tmp/sockets/unicorn.sock", backlog: 64
-pid "#{app_path}/tmp/pids/unicorn.pid"
-
-working_directory app_path
-stderr_path 'log/unicorn.stderr.log'
-stdout_path 'log/unicorn.stdout.log'
-
-# Set unicorn options
-worker_processes 2
 preload_app true
 timeout 60
 
-
-# Spawn unicorn master worker for user apps (group: apps)
-#user 'deploy', 'www-data'
-
 # Should be 'production' by default, otherwise use other env
 rails_env = ENV['RAILS_ENV'] || 'production'
-
 
 GC.respond_to?(:copy_on_write_friendly=) and
     GC.copy_on_write_friendly = true
