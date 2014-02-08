@@ -12,13 +12,18 @@ textarea.code {
 }
 
 .ace-editor, .ace-highlight {
-  min-height: 600px;
+  min-height: 300px;
 }
+.ace_editor p, .ace_editor div { font-size: 10pt}
 
 .projects_panel {
   .row.active {
     div:first-child span {
       font-weight: 800;
     }
+  }
+
+  .actions {
+    text-align: right;
   }
 }

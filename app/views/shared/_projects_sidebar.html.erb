@@ -6,11 +6,11 @@
   <div class="panel-body" >
     <% @projects.each do |project| %>
       <div class="row <%= (@project == project) && 'active' %>">
-        <div class="col-md-8 col-sm-8 pull-left">
+        <div class="col-md-7 col-sm-7 col-xs-9">
           <span><%= link_to project.title, project %></span>
         </div>
 
-        <div class="pull-right actions">
+        <div class="col-md-5 actions">
           <%= link_to project_nodes_path(project), title: 'Nodes' do %>
             <span class="icon-list"></span>
           <% end %>
