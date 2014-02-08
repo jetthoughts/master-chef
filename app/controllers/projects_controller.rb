@@ -4,6 +4,7 @@ class ProjectsController < InheritedResources::Base
 
   def show
     return redirect_to([@project, :nodes], notice: 'Add at least one server') if @project.nodes.empty?
+    redirect_to([@project, :deployments])
   end
 
   def create

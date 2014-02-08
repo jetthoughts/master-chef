@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :rememberable, :async
 
-  validates :email, uniqueness: true, presence: true
+  validates :email, uniqueness: true
 
   has_many :projects
   has_many :deployments

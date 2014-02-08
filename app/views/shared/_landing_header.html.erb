@@ -1,8 +1,35 @@
 <div class="header">
   <ul class="nav nav-pills pull-right">
     <%= nav_link('Home', root_path) %>
-    <%= nav_link('Login', new_user_session_path, controller_name == 'sessions') %>
-    <%= nav_link('Registration', new_user_registration_path, controller_name == 'registrations') %>
+
+    <% if current_user %>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <%= image_tag avatar_url(current_user), size: '40x40' %>
+          <%= current_user.name %>
+          <span class="caret"></span>
+        </a>
+
+        <ul class="dropdown-menu">
+
+          <li><%= nav_link('Projects', projects_path) %></li>
+
+          <li role="presentation" class="divider"></li>
+
+          <% if current_user.superadmin? %>
+            <li><%= nav_link('Active Admin', active_admin_root_path) %></li>
+            <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
+          <% end %>
+
+          <li role="presentation" class="divider"></li>
+
+          <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    <% else %>
+      <%= nav_link('Login', new_user_session_path, controller_name == 'sessions') %>
+      <%= nav_link('Registration', new_user_registration_path, controller_name == 'registrations') %>
+    <% end %>
   </ul>
   <h3 class="text-muted"><%= Settings.title %></h3>
 </div>

@@ -28,9 +28,9 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_redirected_to project_path(assigns(:project))
   end
 
-  test "should show self project" do
+  test 'should redirect to deployments' do
     get :show, id: @project
-    assert_response :success
+    assert_redirected_to project_deployments_path(@project)
   end
 
   test 'should not allow show foreign projects' do
