@@ -30,6 +30,7 @@ gem 'net-scp'
 
 group :production do
   gem 'daemons'
+  gem 'newrelic_rpm'
 end
 
 group :staging do

@@ -26,3 +26,4 @@ coverage
 .*swp
 /projects/
 /config/settings/*.yml
+config/newrelic.yml

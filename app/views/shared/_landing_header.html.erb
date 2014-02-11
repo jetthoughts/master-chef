@@ -19,9 +19,9 @@
           <% if current_user.superadmin? %>
             <li><%= nav_link('Active Admin', active_admin_root_path) %></li>
             <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
-          <% end %>
 
-          <li role="presentation" class="divider"></li>
+            <li role="presentation" class="divider"></li>
+          <% end %>
 
           <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
         </ul>
