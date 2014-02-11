@@ -10,12 +10,11 @@
 
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag('application', media: 'all') %>
+  <%= stylesheet_link_tag('landing', media: 'all') %>
   <link rel="icon" href="/favicon.png" type="image/png">
   <link rel="shortcut icon" href="/favicon.png" type="image/png">
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900,900italic' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=News+Cycle:400,700' rel='stylesheet' type='text/css'>
-  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="//getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet" type="text/css">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -40,11 +39,14 @@
 </div>
 <!--/container-->
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-<!-- Placed at the end of the document so the pages load faster -->
+
+<%= javascript_include_tag 'landing' %>
+
 <%= yield :js %>
 
+<!--Analytics-->
 <%= render 'shared/ga' if Settings.google_analitycs.tracking_id.present? %>
 
 </body>
