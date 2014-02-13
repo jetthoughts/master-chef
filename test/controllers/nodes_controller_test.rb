@@ -55,10 +55,22 @@ class NodesControllerTest < ActionController::TestCase
     assert_redirected_to root_url
   end
 
-  test 'should update node' do
+  test 'should update node name' do
     patch :update, id: @node, node: { name: 'Sweet' }
     @node.reload
     assert_equal 'Sweet', @node.name
+  end
+
+  test 'should update node user' do
+    patch :update, id: @node, node: { user: 'admin' }
+    @node.reload
+    assert_equal 'admin', @node.user
+  end
+
+  def test_update_node_config
+    patch :update, id: @node, node: { config: '{"new_attribute": "Time"}' }
+    @node.reload
+    assert_equal '{"new_attribute": "Time"}', @node.config
   end
 
   test 'should redirect to nodes list after update' do
