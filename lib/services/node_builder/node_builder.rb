@@ -28,6 +28,18 @@ class NodeBuilder
     revoke_ssh_access
   end
 
+  def hostname
+    options['hostname']
+  end
+
+  def user
+    options['user']
+  end
+
+  def password
+    options['password']
+  end
+
   def go_to_project_dir
     Dir.chdir(base_folder)
     system_cmd 'bundle install'
@@ -42,27 +54,28 @@ class NodeBuilder
   end
 
   def grant_ssh_access
-    return if options['user'] == 'root' && options['password'].nil?
+    return if self.user == 'root' && self.password.nil?
 
     # Reset known file
-    system_cmd "ssh-keygen -R #{options['hostname']}", ">> Reset known host\n"
+    system_cmd "ssh-keygen -R #{self.hostname}", ">> Reset known host\n"
 
     # Upload public key
     ssh_options = {}
-    ssh_options[:password] = options['password'] unless options['password'].nil?
+    ssh_options[:password] = self.password unless self.password.nil?
 
-    Net::SSH.start(options['hostname'], options['user'], ssh_options) do |session|
+    Net::SSH.start(self.hostname, self.user, ssh_options) do |session|
 
-      if !options['password'].nil?
+      if !password.nil?
         session.exec!("mkdir -p .ssh")
         session.exec!("chmod 0700 .ssh")
         session.exec!("touch .ssh/authorized_keys")
         session.exec!("echo '#{public_key base_folder}' >> .ssh/authorized_keys")
         session.exec!("chmod 0600 .ssh/authorized_keys")
+        session.exec!('restorecon -FRvv ~/.ssh')
       end
 
-      if options['user'] != 'root'
-        puts ">> Adding user #{options['user']} to sudo without password...."
+      if user != 'root'
+        log ">> Adding user #{user} to sudo without password...."
         ch = session.open_channel do |channel|
           channel.request_pty
 
@@ -71,10 +84,10 @@ class NodeBuilder
 
             # "on_data" is called when the process writes something to stdout
             ch.on_data do |c, data|
-              if data.include?("password for #{options['user']}")
-                c.send_data "#{options['password']}\n"
+              if data.include?("password for #{user}")
+                c.send_data "#{self.password}\n"
               else
-                c.send_data("echo \"#{options['user']} ALL = NOPASSWD: ALL\" > /etc/sudoers.d/zchef-installer ; chmod 0440 /etc/sudoers.d/zchef-installer ; exit\n")
+                c.send_data("echo \"#{self.user} ALL = NOPASSWD: ALL\" > /etc/sudoers.d/zchef-installer ; chmod 0440 /etc/sudoers.d/zchef-installer ; exit\n")
               end
             end
 
@@ -93,30 +106,30 @@ class NodeBuilder
   end
 
   def revoke_ssh_access
-    return if options['password'].nil?
-    Net::SSH.start(options['hostname'], options['user'], password: options['password']) do |session|
+    return if self.password.nil?
+    Net::SSH.start(self.hostname, self.user, password: self.password) do |session|
       session.exec!("sed -i.bak '$d' .ssh/authorized_keys")
       log 'Removing the sudoers file....'
       #TODO: use pty channel
-      #session.exec!("sudo rm -f /etc/sudoers.d/zchef-installer") if options['user'] != 'root'
+      #session.exec!("sudo rm -f /etc/sudoers.d/zchef-installer") if self.user != 'root'
     end
 
-    system_cmd "ssh-keygen -R #{options['hostname']}", ">> Reset known host\n"
+    system_cmd "ssh-keygen -R #{self.hostname}", ">> Reset known host\n"
   end
 
   def setup_host
-    command = "bundle exec knife solo cook -c knife.rb -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
-    system_cmd command, ">> Setup host #{options['hostname']}:\n"
+    command = "bundle exec knife solo cook -N #{node} #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    system_cmd command, ">> Setup host #{self.hostname}:\n"
   end
 
   def cleanup_host
-    command = "bundle exec knife solo clean -c knife.rb #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
-    system_cmd command, ">> Clean #{options['hostname']}:\n"
+    command = "bundle exec knife solo clean #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    system_cmd command, ">> Clean #{self.hostname}:\n"
   end
 
   def prepare_host
-    command = "bundle exec knife solo prepare -c knife.rb -N #{node} #{options['user']}@#{options['hostname']} -i #{private_key_path base_folder} -V"
-    system_cmd command, ">> Install chef to the host #{node}(#{options['hostname']}):\n"
+    command = "bundle exec knife solo prepare -N #{node} #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    system_cmd command,  ">> Install chef to the host #{node}(#{self.hostname}):\n"
   end
 
 end
