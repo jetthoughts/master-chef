@@ -8,34 +8,8 @@ class Node < ActiveRecord::Base
   validate :config_is_json_format
 
   after_initialize do
-    self.user = 'root'
-    self.config = <<END
-{
-  // Default user created by role machine. This user is required for rails-stack.
-  //"user": ["deployer"],
-
-  // Example of Overiding default value for nginx package
-  // "nginx": {
-  //  "worker_processes": 1
-  // },
-  //
-  // "ruby": {
-  //   "version": "2.1.0"
-  // },
-  //
-  // "run_list": [
-  // This recipe required for cookbooks that depends on data-bags serach functionality.
-  //  "recipe[chef-solo-search]",
-
-  // Setup basic required users, tools and packages for all type of machines
-  // "role[machine]",
-  // "role[application]",
-  // "role[nginx]",
-  // "role[pg_ubuntu]",
-  // "recipe[memcached]"
-  // ]
-}
-END
+    self.user   ||= 'root'
+    self.config ||= default_config
   end
 
   def parameterized_name
@@ -52,4 +26,16 @@ END
     errors[:config] << 'not in json format' unless JSON.parse(self.config)
   end
 
+  private
+
+  def default_config
+<<END
+{
+  // You can find examples in: http://bit.ly/1kDPBpu
+  "run_list": [
+    "recipe[chef-solo-search]"
+  ]
+}
+END
+  end
 end
