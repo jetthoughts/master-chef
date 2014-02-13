@@ -1,5 +1,7 @@
 class Deployment < ActiveRecord::Base
 
+  validates :user, :node, presence: true
+
   # user is author of deployment
   belongs_to :user
   belongs_to :node, inverse_of: :deployments
