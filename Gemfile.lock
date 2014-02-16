@@ -199,7 +199,6 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    memcachier (0.0.2)
     metaclass (0.0.2)
     mime-types (1.25.1)
     minitest (4.7.5)
@@ -323,7 +322,6 @@ DEPENDENCIES
   handy!
   j-cap-recipes
   jquery-rails
-  memcachier
   minitest-reporters
   mocha
   net-scp
