@@ -4,6 +4,8 @@ class DeploymentsControllerTest < ActionController::TestCase
   fixtures :nodes, :users
 
   setup do
+    Deployment.any_instance.stubs(:start)
+    Deployment.any_instance.stubs(:deploy!)
     sign_in users(:john)
   end
 

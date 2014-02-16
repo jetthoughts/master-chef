@@ -21,9 +21,7 @@ class ChefProjectGenerator
   end
 
   def update_cookbooks
-    #TODO: ....
-    sleep 3
-    "# Cookbook updated at #{Time.current}"
+    raise 'deprecated method'
   end
 
   private

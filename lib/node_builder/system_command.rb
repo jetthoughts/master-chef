@@ -19,6 +19,6 @@ module SystemCommand
   end
 
   def environment
-    { 'BUNDLE_GEMFILE' => File.join(Dir.pwd,('GemfileChef')).to_s }
+    { 'BUNDLE_GEMFILE' => File.join(Dir.pwd,('Gemfile')).to_s }
   end
 end

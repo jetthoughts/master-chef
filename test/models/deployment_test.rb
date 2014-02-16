@@ -4,6 +4,11 @@ class DeploymentTest < ActiveSupport::TestCase
 
   fixtures :nodes, :users
 
+  setup do
+    Deployment.any_instance.stubs(:start)
+    Deployment.any_instance.stubs(:deploy!)
+  end
+
   def test_create_deployment
     Deployment.create! user: user, node: node
   end

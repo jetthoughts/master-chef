@@ -22,13 +22,10 @@ class Deployment < ActiveRecord::Base
     end
 
     after_transition initial: :processing do |deployment, transition|
-      deployment.notify_client 'changed_state', deployment.state
-      deployment.project.prepare_project
-      deployment.build_node
+      deployment.start
     end
 
     before_transition processing: any do |deployment, transition|
-      deployment.notify_client 'changed_state', deployment.state
       deployment.update logs: deployment.logger.complete_log, finished_at: Time.current
     end
 
@@ -39,19 +36,18 @@ class Deployment < ActiveRecord::Base
 
   after_create :schedule_deploy
 
+  def start
+    chef_project = ChefProject.new project
+    chef_project.prepare
+    chef_project.build_node(node, logger)
+  end
+
   def channel_name
     "deployments_#{id}"
   end
 
   def logger
     @_logger ||= DeploymentLogger.new(self)
-  end
-
-  def build_node
-    NodeBuilder.new(project.base_folder,
-                    logger,
-                    node.name.parameterize,
-                    node.credentials).build
   end
 
   def notify_client(event, message)

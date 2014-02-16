@@ -6,9 +6,7 @@ class DeployWorker < Struct.new(:id)
 
   def perform
     deployment = Deployment.find(id)
-    Rails.logger.info '>>>>>>>>>> before deploy'
     deployment.deploy!
-    Rails.logger.info '>>>>>>>>>> before update success'
     deployment.update! success: true
   rescue StandardError => ex
     Rails.logger.info '>>>>>>>>>> EXCEPTION:'

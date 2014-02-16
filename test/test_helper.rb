@@ -29,3 +29,6 @@ require 'minitest/reporters'
 MiniTest::Reporters.use!
 
 Dir[File.expand_path('test/support/*.rb')].each { |file| require file }
+
+require 'mocha/setup'
+

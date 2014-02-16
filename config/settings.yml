@@ -2,7 +2,7 @@ common:
   title: Master Chef
   host: lvh.me:3000
   default_from_email: "'MasterChef' <no-reply@masterchef.io>"
-
+  base_projects_path: "<%= Rails.root.join('projects') %>"
   mailer:
     delivery_method: test
     smtp_settings:
@@ -21,6 +21,7 @@ common:
   pusher_key: <%= ENV['PUSHER_KEY'] %>
 
 test:
+  base_projects_path: "<%= Rails.root.join('tmp', 'projects') %>"
   mailer:
     delivery_method: :test
 
