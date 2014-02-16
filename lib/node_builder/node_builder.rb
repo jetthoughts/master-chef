@@ -46,75 +46,23 @@ class NodeBuilder
   end
 
   def add_public_key_to_bag
-    if public_key base_folder
+    if public_key
       system_cmd "bundle exec knife solo data bag create keys deployer -c knife.rb -d "\
-                 "--data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key base_folder}\"}'",
+                 "--data-bag-path data_bags -j '{\"id\": \"deployer\", \"authorized_keys\": \"#{public_key}\"}'",
                  ">> Adding public key to data_bag:\n"
     end
   end
 
   def grant_ssh_access
     return if self.user == 'root' && self.password.nil?
-
-    # Reset known file
-    system_cmd "ssh-keygen -R #{self.hostname}", ">> Reset known host\n"
-
-    # Upload public key
-    ssh_options = {}
-    ssh_options[:password] = self.password unless self.password.nil?
-
-    Net::SSH.start(self.hostname, self.user, ssh_options) do |session|
-
-      if !password.nil?
-        session.exec!("mkdir -p .ssh")
-        session.exec!("chmod 0700 .ssh")
-        session.exec!("touch .ssh/authorized_keys")
-        session.exec!("echo '#{public_key base_folder}' >> .ssh/authorized_keys")
-        session.exec!("chmod 0600 .ssh/authorized_keys")
-        session.exec!('restorecon -FRvv ~/.ssh')
-      end
-
-      if user != 'root'
-        log ">> Adding user #{user} to sudo without password...."
-        ch = session.open_channel do |channel|
-          channel.request_pty
-
-          channel.exec 'sudo -i' do |ch, success|
-            raise 'could not execute command' unless success
-
-            # "on_data" is called when the process writes something to stdout
-            ch.on_data do |c, data|
-              if data.include?("password for #{user}")
-                c.send_data "#{self.password}\n"
-              else
-                c.send_data("echo \"#{self.user} ALL = NOPASSWD: ALL\" > /etc/sudoers.d/zchef-installer ; chmod 0440 /etc/sudoers.d/zchef-installer ; exit\n")
-              end
-            end
-
-            # "on_extended_data" is called when the process writes something to stderr
-            ch.on_extended_data do |c, type, data|
-              $STDERR.print data
-            end
-
-            ch.on_close { puts "done!" }
-          end
-        end
-
-        ch.wait
-      end
-    end
+    reset_known_host
+    net_ssh_grant_access
   end
 
   def revoke_ssh_access
     return if self.password.nil?
-    Net::SSH.start(self.hostname, self.user, password: self.password) do |session|
-      session.exec!("sed -i.bak '$d' .ssh/authorized_keys")
-      log 'Removing the sudoers file....'
-      #TODO: use pty channel
-      #session.exec!("sudo rm -f /etc/sudoers.d/zchef-installer") if self.user != 'root'
-    end
-
-    system_cmd "ssh-keygen -R #{self.hostname}", ">> Reset known host\n"
+    net_ssh_revoke_access
+    reset_known_host
   end
 
   def setup_host

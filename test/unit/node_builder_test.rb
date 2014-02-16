@@ -27,6 +27,44 @@ class NodeBuilderTest < ActiveSupport::TestCase
     subject.berkshelf_update_cookbooks
   end
 
+  def test_add_public_key_to_bag
+    subject.expects(:system_cmd).once
+    subject.add_public_key_to_bag
+  end
+
+  def test_setup_host
+    subject.expects(:system_cmd).once
+    subject.setup_host
+  end
+
+  def test_cleanup_host
+    subject.expects(:system_cmd).once
+    subject.cleanup_host
+  end
+
+  def test_prepare_host
+    subject.expects(:system_cmd).once
+    subject.prepare_host
+  end
+
+  def test_grant_ssh_access
+    subject.expects(:system_cmd).once
+    subject.expects(:net_ssh_grant_access).once
+    subject.grant_ssh_access
+  end
+
+  def test_revoke_ssh_access_if_password_nil
+    subject.expects(:system_cmd).never
+    subject.expects(:net_ssh_revoke_access).never
+    subject.revoke_ssh_access
+  end
+
+  def test_revoke_ssh_access
+    subject.expects(:system_cmd).once
+    subject.expects(:net_ssh_revoke_access).once
+    subject.options['password'] = 'password'
+    subject.revoke_ssh_access
+  end
 
   private
   def logger
