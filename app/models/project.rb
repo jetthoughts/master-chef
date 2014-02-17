@@ -6,41 +6,26 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: { scope: :user_id }
 
-  def base_folder
-    Rails.root.join('projects', user_id.to_s, title.parameterize)
+  after_initialize do
+    self.cookbooks ||= default_cookbooks
   end
 
-  def update_cookbooks
-    chef_project_generator.start
-    self.cookbooks_lock = chef_project_generator.update_cookbooks
-    self.save!
+  def update_cookbooks!
+    chef_project.update_cookbooks!
   end
 
   def prepare_project
-    chef_project_generator.start
+    chef_project.prepare
   end
+  deprecate :prepare_project
 
   private
 
-  def chef_project_generator
-    @_chef_project_generator = ChefProjectGenerator.new project_path: base_folder,
-                                                        cookbooks:    cookbooks,
-                                                        nodes:        nodes_hash,
-                                                        roles:        roles_hash
+  def chef_project
+    @_chef_project ||= ChefProject.new(self)
   end
 
-  def nodes_hash
-    items_to_hash(nodes)
-  end
-
-  def roles_hash
-    items_to_hash(roles)
-  end
-
-  def items_to_hash(items)
-    items.inject({}) do |hash, item|
-      hash[item.parameterized_name] = item.config
-      hash
-    end
+  def default_cookbooks
+    Settings.project.default_cookbooks || ""
   end
 end

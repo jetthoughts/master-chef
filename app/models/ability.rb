@@ -2,9 +2,12 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :manage, Project, user_id: user.id
-    can :manage, [Node, Role], project: { user_id: user.id }
-    can :read, Deployment, node: { project: { user_id: user.id } }
+
+    if user
+      can :manage, Project, user_id: user.id
+      can :manage, [Node, Role], project: {user_id: user.id}
+      can :read, Deployment, node: {project: {user_id: user.id}}
+    end
 
     # Define abilities for the passed in user here. For example:
     #

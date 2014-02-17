@@ -1,7 +1,30 @@
 require 'test_helper'
 
 class DeploymentTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+
+  fixtures :nodes, :users
+
+  setup do
+    Deployment.any_instance.stubs(:start)
+    Deployment.any_instance.stubs(:deploy!)
+  end
+
+  def test_create_deployment
+    Deployment.create! user: user, node: node
+  end
+
+  def test_schedule_deploy_on_create
+    deployment = Deployment.new user: user, node: node
+    deployment.expects(:schedule_deploy).once
+    deployment.save!
+  end
+
+  private
+  def user
+    @user ||= users(:john)
+  end
+
+  def node
+    @node ||= nodes(:rackspace)
+  end
 end

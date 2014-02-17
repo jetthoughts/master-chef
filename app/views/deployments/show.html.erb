@@ -1,27 +1,42 @@
 <%= render 'shared/project_navigation_tabs' %>
 
-<p>
-  Node: <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-inline">
+      <li>
+        Node: <%= @deployment.node.name -%>
+      </li>
 
-<p>
-  Status: <%= @deployment.state %>
-</p>
+      <li>
+        State: <span data-behavior="<%= @deployment.channel_name -%>_state"><%= @deployment.state -%></span>
+      </li>
 
-<p>
-  Length: <%= @deployment.duration.to_i -%> seconds
-</p>
+      <li>
+        Status: <span><%= (@deployment.success ? 'Success' : 'Failed') if @deployment.finished? -%></span>
+      </li>
 
-<p>
-  Started: <%= l @deployment.created_at, format: :long %>
-</p>
+      <li>
+        Length: <%= @deployment.duration.to_i -%> seconds
+      </li>
 
-<p>
-  Finished: <%= l @deployment.finished, format: :long %>
-</p>
+      <li>
+        Started: <%= l @deployment.created_at, format: :long %>
+      </li>
 
-<pre id="logs" style="overflow-y: scroll; height: 500px" data-behavior="real_time_logs"
-     data-pusher-key="<%= Settings.pusher_key %>"
-     data-pusher-channel="<%= @deployment.channel_name -%>">
-  <%= @deployment.logs -%>
-</pre>
+      <li>
+        Finished: <%= l @deployment.finished, format: :long %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <pre id="console" class=""
+         style="background-color: rgb(47, 49, 41); color: rgb(143, 144, 138)"
+         data-behavior="real_time_logs"
+         data-pusher-key="<%= Pusher.key %>"
+         data-pusher-channel="<%= @deployment.channel_name -%>"><%= @deployment.logs -%></pre>
+  </div>
+</div>
+
