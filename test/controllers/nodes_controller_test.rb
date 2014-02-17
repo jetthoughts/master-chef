@@ -39,9 +39,11 @@ class NodesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow show foreign nodes' do
-    get :show, id: @another_node
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      get :show, id: @another_node
+    end
+
+    assert_response :success
   end
 
   test 'should get edit' do
@@ -50,9 +52,10 @@ class NodesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow edit foreign node' do
-    get :edit, id: @another_node
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      get :edit, id: @another_node
+    end
+    assert_response :success
   end
 
   test 'should update node name' do
@@ -79,9 +82,10 @@ class NodesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow update foreign nodes' do
-    patch :update, id: @another_node, node: { name: 'Haos' }
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      patch :update, id: @another_node, node: {name: 'Haos'}
+    end
+    assert_response :success
   end
 
   test 'should destroy node' do
@@ -94,10 +98,12 @@ class NodesControllerTest < ActionController::TestCase
 
   test 'should not allow destroy foreign node' do
     assert_difference('Node.count', 0) do
-      delete :destroy, id: @another_node
+      assert_raise ActionController::RoutingError do
+        delete :destroy, id: @another_node
+      end
     end
 
-    assert_redirected_to root_url
+    assert_response :success
   end
 
 end

@@ -1,34 +1,8 @@
-<%= simple_form_for(@project, class: 'form-horizontal') do |f| %>
-  <%= f.error_notification %>
+<div class="form-group">
+  <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
+</div>
 
-  <div class="form-group">
-    <%= f.text_field :title, class: 'form-control', placeholder: 'Title' %>
-  </div>
-
-  <%- if @project.persisted? -%>
-
-    <div class="form-group">
-      <%= f.label :cookbooks %>
-      <%= f.hidden_field :cookbooks, class: 'form-control ace-editor', data: { language: 'ruby' } %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :cookbooks_lock %>
-      <%= link_to 'Update', project_cookbook_path(@project, format: :json), method: :put,
-                  data: {disable_with: 'Processing...', remote: true, behavior: 'update_cookbooks_lock', type: 'json',
-                         rel: "##{dom_id(f.object)}_cookbooks_lock" } %>
-
-      <pre data-language="yaml" id="<%= dom_id(f.object)%>_cookbooks_lock" data-relation="cookbooks_lock">
-        <%= @project.cookbooks_lock %>
-      </pre>
-    </div>
-
-    <%= f.submit 'Update project', class: 'btn btn-success' %>
-
-  <% else %>
-
-    <button type="submit" class="btn btn-success">Create</button>
-
-  <%- end -%>
-
-<% end %>
+<div class="form-group">
+  <%= f.label :cookbooks %>
+  <%= f.hidden_field :cookbooks, class: 'form-control ace-editor', data: {language: 'ruby'} %>
+</div>

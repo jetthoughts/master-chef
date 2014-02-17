@@ -52,6 +52,7 @@ group :test do
   gem 'mocha', require: false
   gem 'simplecov', require: false
   gem 'coveralls', require: false
+  gem 'timecop', require: false
 end
 
 group :deploy do

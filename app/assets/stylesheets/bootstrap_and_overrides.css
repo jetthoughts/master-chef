@@ -6,6 +6,7 @@
 
 a.btn, a.btn:visited {
   color: white;
+  font-family: 'News Cycle', 'Arial Narrow Bold', sans-serif;
 }
 
 .container-fluid-wrapper {

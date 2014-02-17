@@ -1,26 +1,34 @@
 <%= render 'shared/project_navigation_tabs' %>
 
-<p>
-  Node: <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <ul class="list-inline">
+      <li>
+        Started: <%= l @deployment.created_at, format: :long %>
+      </li>
 
-<p>
-  Status: <%= @deployment.state %>
-</p>
+      <li>
+        Finished: <%= l @deployment.finished, format: :long %>
+      </li>
+    </ul>
+  </div>
 
-<p>
-  Length: <%= @deployment.duration.to_i -%> seconds
-</p>
+  <div class="col-md-6">
+    <ul class="list-inline">
+      <li>
+        Started: <%= l @deployment.created_at, format: :long %>
+      </li>
 
-<p>
-  Started: <%= l @deployment.created_at, format: :long %>
-</p>
+      <li>
+        Finished: <%= l @deployment.finished, format: :long %>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<p>
-  Finished: <%= l @deployment.finished, format: :long %>
-</p>
 
-<pre id="logs" style="overflow-y: scroll; height: 500px" data-behavior="real_time_logs"
+<pre id="logs" style="overflow-y: scroll; height: 500px"
+     data-behavior="real_time_logs"
      data-pusher-key="<%= Settings.pusher_key %>"
      data-pusher-channel="<%= @deployment.channel_name -%>">
   <%= @deployment.logs -%>

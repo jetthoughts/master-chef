@@ -39,9 +39,10 @@ class RolesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow show foreign roles' do
-    get :show, id: @another_role
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      get :show, id: @another_role
+    end
+    assert_response :success
   end
 
   test 'should get edit' do
@@ -50,9 +51,10 @@ class RolesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow edit foreign role' do
-    get :edit, id: @another_role
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      get :edit, id: @another_role
+    end
+    assert_response :success
   end
 
   test 'should update role' do
@@ -61,9 +63,10 @@ class RolesControllerTest < ActionController::TestCase
   end
 
   test 'should not allow update foreign roles' do
-    patch :update, id: @another_role, role: { name: 'thin' }
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActionController::RoutingError do
+      patch :update, id: @another_role, role: {name: 'thin'}
+    end
+    assert_response :success
   end
 
   test 'should destroy role' do
@@ -76,10 +79,12 @@ class RolesControllerTest < ActionController::TestCase
 
   test 'should not allow destroy foreign role' do
     assert_difference('Role.count', 0) do
-      delete :destroy, id: @another_role
+      assert_raise ActionController::RoutingError do
+        delete :destroy, id: @another_role
+      end
     end
 
-    assert_redirected_to root_url
+    assert_response :success
   end
 
 end

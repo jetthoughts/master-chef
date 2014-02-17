@@ -13,7 +13,7 @@ MasterChef::Application.routes.draw do
       resources :deployments, only: [:create]
     end
     resources :deployments, only: [:index, :show]
-    resource :cookbook, only: [:update]
+    resource :cookbook, only: [:update], defaults: {format: :json}
   end
 
   authenticate :user, ->(u) { u.superadmin? } do

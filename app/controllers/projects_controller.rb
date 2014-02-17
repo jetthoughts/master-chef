@@ -1,4 +1,6 @@
 class ProjectsController < InheritedResources::Base
+
+  before_filter :authenticate_user!
   before_filter :load_projects
   load_and_authorize_resource
 

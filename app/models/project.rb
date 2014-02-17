@@ -6,8 +6,12 @@ class Project < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: { scope: :user_id }
 
-  def update_cookbooks
-    chef_project.update_cookbooks
+  after_initialize do
+    self.cookbooks ||= default_cookbooks
+  end
+
+  def update_cookbooks!
+    chef_project.update_cookbooks!
   end
 
   def prepare_project
@@ -18,6 +22,10 @@ class Project < ActiveRecord::Base
   private
 
   def chef_project
-    @_chef_project ||= ChefProject.new(project)
+    @_chef_project ||= ChefProject.new(self)
+  end
+
+  def default_cookbooks
+    Settings.project.default_cookbooks || ""
   end
 end

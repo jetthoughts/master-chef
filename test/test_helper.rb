@@ -25,6 +25,7 @@ end
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'minitest/reporters'
+require 'timecop'
 
 MiniTest::Reporters.use!
 
