@@ -4,17 +4,20 @@
   <div class="col-md-12">
     <ul class="list-inline">
       <li>
-        Node: <%= @deployment.node.name -%> (<span id="state"><%= @deployment.state -%></span>)
+        Node: <%= @deployment.node.name -%>
       </li>
 
       <li>
-        Status: <%= @deployment.state %>
+        State: <span data-behavior="<%= @deployment.channel_name -%>_state"><%= @deployment.state -%></span>
+      </li>
+
+      <li>
+        Status: <span><%= (@deployment.success ? 'Success' : 'Failed') if @deployment.finished? -%></span>
       </li>
 
       <li>
         Length: <%= @deployment.duration.to_i -%> seconds
       </li>
-
 
       <li>
         Started: <%= l @deployment.created_at, format: :long %>
@@ -32,7 +35,7 @@
     <pre id="console" class=""
          style="background-color: rgb(47, 49, 41); color: rgb(143, 144, 138)"
          data-behavior="real_time_logs"
-         data-pusher-key="<%= Settings.pusher_key %>"
+         data-pusher-key="<%= Pusher.key %>"
          data-pusher-channel="<%= @deployment.channel_name -%>"><%= @deployment.logs -%></pre>
   </div>
 </div>

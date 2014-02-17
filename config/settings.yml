@@ -18,7 +18,10 @@ common:
   google_analitycs:
     tracking_id: <%= ENV['GA_TRACK_ID'] %>
 
-  pusher_key: <%= ENV['PUSHER_KEY'] %>
+  pusher:
+    key: <%= ENV['PUSHER_KEY'] %>
+    app_id: <%= ENV['PUSHER_APP_ID'] %>
+    secret: <%= ENV['PUSHER_SECRET'] %>
 
   project:
     default_cookbooks: |

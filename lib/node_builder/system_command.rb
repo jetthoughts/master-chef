@@ -3,13 +3,13 @@ require 'open3'
 module SystemCommand
 
   def log(msg)
-    format_msg = "\e[1;35m-----> \e[1;33m" + msg.to_s + "\e[0m"
+    format_msg = "\e[1;35m-----> \e[1;33m" + msg.to_s + "\e[0m\n"
     simple_log format_msg
   end
 
   def simple_log(msg)
-    puts msg
-    logger.append_log("#{msg}\n")
+    print msg
+    logger.append_log(msg)
   end
 
   def system_cmd(cmd, prompt='COMMAND:')

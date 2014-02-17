@@ -1,7 +1,8 @@
 class Deployment
   constructor: ->
-    $('[data-behavior=real_time_logs]').each @colorize
-    $('[data-behavior=real_time_logs]').each @init_pusher_for
+    $logElements = $('[data-behavior=real_time_logs]')
+    $logElements.each @colorize
+    $logElements.each @init_pusher_for
 
   colorize: (index, element) ->
     $this = $ element
@@ -14,7 +15,6 @@ class Deployment
     channel_name = $this.data('pusher-channel')
     pusher = new Pusher(pusher_key)
     channel = pusher.subscribe(channel_name)
-
     @channel_bindings(channel, $this)
 
   channel_bindings: (channel, $element) ->
@@ -23,6 +23,9 @@ class Deployment
       content = ansi_up.ansi_to_html data.message
       $element.append content
       $element.scrollTop $element.scrollHeight
+
+    channel.bind 'changed_state', (data) ->
+      $("[data-behavior=#{channel.name}_state]").text(data.message)
 
 $ ->
   new Deployment
