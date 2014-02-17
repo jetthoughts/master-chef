@@ -1,7 +1,7 @@
 module SshKeyHelpers
 
-  def default_ssh_key(base_folder)
-    File.join(base_folder, '.chef/id_rsa.pem')
+  def default_ssh_key
+    File.join(@base_folder, '.chef/id_rsa.pem')
   end
 
   def private_key_path
