@@ -35,16 +35,19 @@ class NodeBuilderTest < ActiveSupport::TestCase
 
   def test_setup_host
     subject.expects(:system_cmd).once
+    subject.expects(:private_key_path).returns('/tmp/id_rsa').once
     subject.setup_host
   end
 
   def test_cleanup_host
     subject.expects(:system_cmd).once
+    subject.expects(:private_key_path).returns('/tmp/id_rsa').once
     subject.cleanup_host
   end
 
   def test_prepare_host
     subject.expects(:system_cmd).once
+    subject.expects(:private_key_path).returns('/tmp/id_rsa').once
     subject.prepare_host
   end
 
