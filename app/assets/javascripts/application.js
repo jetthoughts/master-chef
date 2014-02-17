@@ -14,9 +14,12 @@
 
 // Online Code Editor
 //= require ace_init
+//= require ansi_up.js
 
 // Bootstrap modules
 //= require ./bootstrap
+
+
 
 //= require ./project
 //= require ./deployment
