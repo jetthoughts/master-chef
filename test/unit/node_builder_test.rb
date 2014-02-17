@@ -13,7 +13,7 @@ class NodeBuilderTest < ActiveSupport::TestCase
   end
 
   def test_change_to_project_folder
-    subject.expects(:system_cmd).once
+    subject.expects(:system_cmd).twice
     subject.go_to_project_dir
   end
 

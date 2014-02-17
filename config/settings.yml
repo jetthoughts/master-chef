@@ -22,6 +22,7 @@ common:
     key: <%= ENV['PUSHER_KEY'] %>
     app_id: <%= ENV['PUSHER_APP_ID'] %>
     secret: <%= ENV['PUSHER_SECRET'] %>
+    url: <%= ENV['PUSHER_URL'] || '' %>
 
   project:
     default_cookbooks: |

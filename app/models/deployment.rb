@@ -51,6 +51,8 @@ class Deployment < ActiveRecord::Base
   end
 
   def notify_client(event, message)
+    return if Pusher.key.blank?
+
     Pusher[channel_name].trigger(event, {
         message: message
     })
