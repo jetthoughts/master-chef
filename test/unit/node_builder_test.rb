@@ -28,6 +28,7 @@ class NodeBuilderTest < ActiveSupport::TestCase
   end
 
   def test_add_public_key_to_bag
+    subject.expects(:public_key).returns('/tmp/true').twice
     subject.expects(:system_cmd).once
     subject.add_public_key_to_bag
   end
