@@ -10,10 +10,10 @@ MasterChef::Application.routes.draw do
   resources :projects, shallow: true do
     resources :roles
     resources :nodes do
-      resources :deployments, only: :create
+      resources :deployments, only: [:create]
     end
     resources :deployments, only: [:index, :show]
-    resource :cookbook, only: [:update]
+    resource :cookbook, only: [:update], defaults: {format: :json}
   end
 
   authenticate :user, ->(u) { u.superadmin? } do

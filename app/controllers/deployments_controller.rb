@@ -2,12 +2,13 @@ class DeploymentsController < UserBaseController
   before_filter :load_projects
   before_filter :load_deployment, only: [:show]
   before_filter :load_project, only: [:show]
-  before_action :load_node, only: :create
+  before_action :load_node, only: [:create]
 
   def index
-    authorize! :read, Deployment
     @project = Project.find(params[:project_id])
-    @deployments = @project.deployments
+
+    authorize! :read, @project
+    @deployments = @project.deployments.order(id: :desc)
   end
 
   def show

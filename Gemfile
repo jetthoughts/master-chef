@@ -33,11 +33,6 @@ group :production do
   gem 'newrelic_rpm'
 end
 
-group :staging do
-  gem 'memcachier'
-end
-
-gem 'unicorn-rails', group: [:staging, :development]
 gem 'dalli', group: [:staging, :production]
 
 group :assets do
@@ -48,6 +43,7 @@ group :assets do
 end
 
 group :development do
+  gem 'unicorn-rails'
   gem 'quiet_assets'
 end
 
@@ -56,6 +52,7 @@ group :test do
   gem 'mocha', require: false
   gem 'simplecov', require: false
   gem 'coveralls', require: false
+  gem 'timecop', require: false
 end
 
 group :deploy do

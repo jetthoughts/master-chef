@@ -5,9 +5,9 @@ class CookbooksController < UserBaseController
   before_filter :load_project
 
   def update
-    #@project.delay.update_cookbooks
-    @project.update_cookbooks
-    #respond_with @project
-    render json: @project
+    @project.delay.update_cookbooks!
+    respond_with @project do |format|
+      format.json { head :ok }
+    end
   end
 end

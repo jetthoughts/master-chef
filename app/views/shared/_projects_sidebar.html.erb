@@ -6,21 +6,10 @@
   <div class="panel-body" >
     <% @projects.each do |project| %>
       <div class="row <%= (@project == project) && 'active' %>">
-        <div class="col-md-7 col-sm-7 col-xs-9">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <span><%= link_to project.title, project %></span>
-        </div>
-
-        <div class="col-md-5 actions">
-          <%= link_to project_nodes_path(project), title: 'Nodes' do %>
-            <span class="icon-list"></span>
-          <% end %>
-
-          <%= link_to edit_project_path(project), title: 'Edit' do %>
+          <%= link_to edit_project_path(project), title: 'Settings', class: 'pull-right' do %>
             <span class="icon-gear"></span>
-          <% end %>
-
-          <%= link_to project, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Destroy' do %>
-            <span class="icon-remove"></span>
           <% end %>
         </div>
       </div>

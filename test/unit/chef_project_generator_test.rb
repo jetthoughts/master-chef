@@ -28,6 +28,8 @@ class ChefProjectGeneratorTest < ActiveSupport::TestCase
     generator.start
 
     assert File.exists?(@project_path.join('knife.rb')), 'There is no knife after generate'
+    assert File.exists?(@project_path.join('Gemfile')), 'There is no Gemfile after generate'
+    assert File.exists?(@project_path.join('.ruby-version')), 'There is no .ruby-version after generate'
   end
 
   def test_create_cookbook_file

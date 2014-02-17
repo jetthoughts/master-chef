@@ -2,7 +2,7 @@ common:
   title: Master Chef
   host: lvh.me:3000
   default_from_email: "'MasterChef' <no-reply@masterchef.io>"
-
+  base_projects_path: "<%= Rails.root.join('projects') %>"
   mailer:
     delivery_method: test
     smtp_settings:
@@ -18,9 +18,54 @@ common:
   google_analitycs:
     tracking_id: <%= ENV['GA_TRACK_ID'] %>
 
-  pusher_key: <%= ENV['PUSHER_KEY'] %>
+  pusher:
+    key: <%= ENV['PUSHER_KEY'] %>
+    app_id: <%= ENV['PUSHER_APP_ID'] %>
+    secret: <%= ENV['PUSHER_SECRET'] %>
+    url: <%= ENV['PUSHER_URL'] || '' %>
+
+  project:
+    default_cookbooks: |
+                       site :opscode
+
+                       cookbook 'ntp'
+                       cookbook 'timezone'
+                       cookbook 'apt'
+                       cookbook 'imagemagick'
+                       cookbook 'build-essential'
+                       cookbook 'chef_handler'
+                       cookbook 'dmg'
+                       cookbook 'git'
+                       cookbook 'monit'
+                       cookbook 'nginx'
+                       cookbook 'nodejs', git: 'https://github.com/miry/nodejs-cookbook.git'
+                       cookbook 'ohai'
+                       cookbook 'openssl'
+                       cookbook 'postfix'
+                       cookbook 'postgresql'
+                       cookbook 'locale'
+                       cookbook 'python'
+                       cookbook 'rbenv'
+                       cookbook 'memcached'
+                       cookbook 'runit'
+                       cookbook 'sudo'
+                       cookbook 'watcher', git: 'https://github.com/Azrael808/chef-watcher.git'
+                       cookbook 'windows'
+                       cookbook 'yum'
+                       cookbook 'rails-stack', git: 'https://github.com/jetthoughts/rails_stack_cookbook.git'
+                       cookbook 'unicorn', git: 'https://github.com/jetthoughts/unicorn_cookbook.git'
+                       cookbook 'delayed_job', git: 'https://github.com/jetthoughts/delayed_job_cookbook.git'
+                       cookbook 'logrotate'
+                       cookbook 's3cmd'
+                       cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git'
+                       cookbook 'chef-solo-search'
+                       cookbook 'rsyslog'
+                       cookbook 'papertrail-rsyslog'
+                       cookbook 'newrelic'
+                       cookbook 'user'
 
 test:
+  base_projects_path: "<%= Rails.root.join('tmp', 'projects') %>"
   mailer:
     delivery_method: :test
 

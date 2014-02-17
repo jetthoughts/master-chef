@@ -8,7 +8,7 @@ Bundler.require(:default, Rails.env)
 
 module MasterChef
   class Application < Rails::Application
-    VERSION = '0.0.1'
+    VERSION = '0.0.2'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -24,7 +24,8 @@ module MasterChef
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.autoload_paths += Dir["#{config.root}/lib/services/*"]
+    config.autoload_paths += Dir[config.root.join('lib/chef_project')]
+    config.autoload_paths += Dir[config.root.join('lib/node_builder')]
 
     config.to_prepare do
       Devise::SessionsController.layout 'landing'
