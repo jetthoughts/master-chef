@@ -17,7 +17,7 @@ class NodeBuilder
   end
 
   def build
-    log "Started setting up host: #{node}"
+    log "%s %s" % [prompt_style('Started setting up host:'), command_style(node)]
 
     go_to_project_dir
     add_public_key_to_bag
@@ -42,7 +42,8 @@ class NodeBuilder
 
   def go_to_project_dir
     Dir.chdir(base_folder)
-    system_cmd 'bundle install', '>>'
+    system_cmd 'pwd', '>>'
+    system_cmd 'bundle install --verbose', '>>'
   end
 
   def add_public_key_to_bag

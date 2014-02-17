@@ -40,7 +40,7 @@ module SshKeyHelpers
         session.exec!("mkdir -p .ssh")
         session.exec!("chmod 0700 .ssh")
         session.exec!("touch .ssh/authorized_keys")
-        session.exec!("echo '#{public_key base_folder}' >> .ssh/authorized_keys")
+        session.exec!("echo '#{public_key}' >> .ssh/authorized_keys")
         session.exec!("chmod 0600 .ssh/authorized_keys")
         session.exec!('restorecon -FRvv ~/.ssh')
       end

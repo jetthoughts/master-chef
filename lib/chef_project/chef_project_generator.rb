@@ -34,6 +34,7 @@ class ChefProjectGenerator
 
   def copy_base_files
     FileUtils.cp Dir.glob("#{TEMPLATE_PATH}/*"), project_path
+    FileUtils.cp Dir.glob("#{TEMPLATE_PATH}/.ruby-version"), project_path
   end
 
   def create_or_update_cookbooks_file
