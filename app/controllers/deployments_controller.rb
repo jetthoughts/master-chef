@@ -8,7 +8,7 @@ class DeploymentsController < UserBaseController
     @project = Project.find(params[:project_id])
 
     authorize! :read, @project
-    @deployments = @project.deployments
+    @deployments = @project.deployments.order(id: :desc)
   end
 
   def show
