@@ -27,6 +27,7 @@ gem 'state_machine'
 gem 'pusher'
 gem 'net-ssh'
 gem 'net-scp'
+gem 'unicorn-rails'
 
 group :production do
   gem 'daemons'
@@ -43,7 +44,6 @@ group :assets do
 end
 
 group :development do
-  gem 'unicorn-rails'
   gem 'quiet_assets'
 end
 
