@@ -1,15 +1,26 @@
 require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
+  tests ProjectsController
+
   fixtures :projects, :users
 
   setup do
-    sign_in users(:john)
+    @user = users(:john)
+    sign_in @user
     @project = projects(:bidder)
     @another_project = projects(:willow)
   end
 
-  test "should get index" do
+  test 'should get index' do
+    get :index
+    assert_response :success
+    assert_not_nil assigns(:projects)
+  end
+
+  test 'should get index for admin' do
+    sign_out @user
+    sign_in users(:admin)
     get :index
     assert_response :success
     assert_not_nil assigns(:projects)
@@ -25,7 +36,7 @@ class ProjectsControllerTest < ActionController::TestCase
       post :create, project: { title: @project.title + 'new' }
     end
 
-    assert_redirected_to project_path(assigns(:project))
+    assert_redirected_to project_nodes_path(assigns(:project))
   end
 
   test 'should redirect to deployments' do
@@ -34,22 +45,22 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should not allow show foreign projects' do
-    skip
-    get :show, id: @another_project
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActiveRecord::RecordNotFound do
+      get :show, id: @another_project
+    end
+    assert_response :success
   end
 
-  test "should get edit" do
+  test 'should get edit' do
     get :edit, id: @project
     assert_response :success
   end
 
   test 'should not allow edit foreign projects' do
-    skip
-    get :edit, id: @another_project
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActiveRecord::RecordNotFound do
+      get :edit, id: @another_project
+    end
+    assert_response :success
   end
 
   test "should update project" do
@@ -58,10 +69,10 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should not allow update foreign projects' do
-    skip
-    patch :update, id: @another_project, project: { title: 'Bitwine' }
-    assert_response :redirect
-    assert_redirected_to root_url
+    assert_raise ActiveRecord::RecordNotFound do
+      patch :update, id: @another_project, project: { title: 'Bitwine' }
+    end
+    assert_response :success
   end
 
   test "should destroy project" do
@@ -72,12 +83,13 @@ class ProjectsControllerTest < ActionController::TestCase
     assert_redirected_to projects_path
   end
 
-  test "should not allow destroy foreign project" do
-    skip
+  test 'should not allow destroy foreign project' do
     assert_difference('Project.count', 0) do
-      delete :destroy, id: @another_project
+      assert_raise ActiveRecord::RecordNotFound do
+        delete :destroy, id: @another_project
+      end
     end
 
-    assert_redirected_to root_url
+    assert_response :success
   end
 end

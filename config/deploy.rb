@@ -46,3 +46,6 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
 
 end
+
+        require './config/boot'
+        require 'airbrake/capistrano'

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.1.0.beta2'
 gem 'arel'
 
 gem 'pg'
@@ -21,25 +21,23 @@ gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branc
 
 gem 'simple_form'
 
-gem 'activeadmin', github: 'gregbell/active_admin'
-
 gem 'state_machine'
 gem 'pusher'
 gem 'net-ssh'
 gem 'net-scp'
 gem 'unicorn-rails'
+gem 'airbrake'
 
-group :production do
+group :production, :staging do
+  gem 'dalli'
   gem 'daemons'
   gem 'newrelic_rpm'
 end
 
-gem 'dalli', group: [:staging, :production]
-
 group :assets do
-  gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',      github: 'rails/sass-rails'
-  gem 'coffee-rails',    github: 'rails/coffee-rails'
+  gem 'sprockets-rails'
+  gem 'sass-rails'
+  gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 

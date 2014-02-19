@@ -4,7 +4,7 @@
   </div>
 
   <div class="panel-body" >
-    <% @projects.each do |project| %>
+    <% recent_projects.each do |project| %>
       <div class="row <%= (@project == project) && 'active' %>">
         <div class="col-md-12 col-sm-12 col-xs-12">
           <span><%= link_to project.title, project %></span>

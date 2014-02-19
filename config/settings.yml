@@ -18,6 +18,8 @@ common:
   google_analitycs:
     tracking_id: <%= ENV['GA_TRACK_ID'] %>
 
+  airbrake_key: <%= ENV['AIRBRAKE_KEY'] %>
+
   pusher:
     key: <%= ENV['PUSHER_KEY'] %>
     app_id: <%= ENV['PUSHER_APP_ID'] %>

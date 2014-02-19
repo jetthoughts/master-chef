@@ -18,7 +18,6 @@
 
           <ul class="dropdown-menu">
             <% if super_admin_signed_in? %>
-              <li><%= nav_link('Active Admin', active_admin_root_path) %></li>
               <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
             <% end %>
 
