@@ -38,6 +38,7 @@ require 'j-cap-recipes/setup'
 require 'j-cap-recipes/unicorn'
 require 'j-cap-recipes/handy'
 require 'j-cap-recipes/files'
+require 'j-cap-recipes/airbrake'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
 Dir.glob('lib/capistrano/tasks/*.cap').each { |r| import r }

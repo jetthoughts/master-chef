@@ -7,11 +7,6 @@ class NodeBuilderTest < ActiveSupport::TestCase
     assert_includes subject.base_folder.to_s, 'tmp'
   end
 
-  def test_environments
-    assert subject.environment.has_key? 'BUNDLE_GEMFILE'
-    assert_includes subject.environment['BUNDLE_GEMFILE'], 'Gemfile'
-  end
-
   def test_change_to_project_folder
     subject.expects(:system_cmd).twice
     subject.go_to_project_dir

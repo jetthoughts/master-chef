@@ -7,4 +7,5 @@ server 'masterchef',
 set :rails_env, 'production'
 fetch(:default_env).merge!(rails_env: :production)
 
-#after 'deploy:check', 'config/settings/production.yml'
+after 'deploy:check', 'config/settings/production.yml'
+after 'deploy:finishing', 'airbrake:deploy'

@@ -24,7 +24,7 @@ module SystemCommand
   end
 
   def environment
-    { 'BUNDLE_GEMFILE' => File.join(Dir.pwd,('Gemfile')).to_s }
+    { }
   end
 
   def prompt_style(msg)
