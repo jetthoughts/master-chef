@@ -10,7 +10,7 @@ class DeployWorker < Struct.new(:id)
     deployment.update! success: true
   rescue StandardError => ex
     Rails.logger.info '>>>>>>>>>> EXCEPTION:'
-    Rails.logger.info ex
+    Rails.logger.info ex.message
     Rails.logger.info ex.backtrace.join("\n")
     deployment.update! state: 'processing', success: false
     deployment.logger.append_log ex.message
