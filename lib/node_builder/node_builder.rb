@@ -20,7 +20,7 @@ class NodeBuilder
     log "%s %s" % [prompt_style('Started setting up host:'), command_style(node)]
 
     go_to_project_dir
-    add_public_key_to_bag
+    #add_public_key_to_bag
     grant_ssh_access
     prepare_host
     setup_host
