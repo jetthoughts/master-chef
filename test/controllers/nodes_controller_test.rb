@@ -106,5 +106,9 @@ class NodesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  def test_update_node_with_invalid_json
+    patch :update, id: @node, node: { config: '1 = 1 Invalid Json Format' }
+    assert_response :success
+  end
 end
 

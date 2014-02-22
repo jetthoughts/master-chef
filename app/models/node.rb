@@ -23,7 +23,9 @@ class Node < ActiveRecord::Base
   private
 
   def config_is_json_format
-    errors[:config] << 'not in json format' unless JSON.parse(self.config)
+    JSON.parse(self.config)
+  rescue JSON::ParserError
+    errors[:config] << 'not in json format'
   end
 
   private
