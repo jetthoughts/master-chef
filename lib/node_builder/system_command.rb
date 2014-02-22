@@ -14,7 +14,8 @@ module SystemCommand
 
   def system_cmd(cmd, prompt='COMMAND:')
     log "%s %s" % [prompt_style(prompt), command_style(cmd)]
-    Open3.popen2e(environment, cmd) do |i, oe, t|
+    exec_cmd = "sudo -u #{run_as_user} /bin/bash -c 'cd #{@base_folder}; /data/bin/rbenv-exec #{cmd}'"
+    Open3.popen2e(environment, exec_cmd) do |i, oe, t|
       oe.each { |line| simple_log line }
     end
   end
@@ -35,4 +36,7 @@ module SystemCommand
     "\e[0;32m#{msg}"
   end
 
+  def run_as_user
+    Settings.deployment_user || ENV['USER']
+  end
 end
