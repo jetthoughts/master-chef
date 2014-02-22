@@ -17,7 +17,6 @@
           <li role="presentation" class="divider"></li>
 
           <% if current_user.superadmin? %>
-            <li><%= nav_link('Active Admin', active_admin_root_path) %></li>
             <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
 
             <li role="presentation" class="divider"></li>

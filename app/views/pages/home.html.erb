@@ -1,6 +1,10 @@
 <div class="jumbotron">
-  <h1>Under Construction</h1>
-  <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+  <h1>MasterChef IO</h1>
+
+  <p class="lead">
+    This is an alpha version of automated deployment services.
+  </p>
+
   <p>
     <%= link_to('Sign up today', new_user_registration_path, class: 'btn btn-lg btn-success', role: 'button') %>
   </p>
@@ -8,24 +12,87 @@
 
 <div class="row marketing">
   <div class="col-lg-6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+    <h4>Services</h4>
 
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    <p>
+      To run a simple web application like this we required a bunch of web services:
+    <ul>
 
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      <li>
+        <%= link_to('GitHub', 'https://github.com') %> - Hosting for Git repositories.
+      </li>
+
+      <li>
+        <%= link_to('TravisCI', 'https://travis-ci.org') %> - Simple CI for public repositories
+      </li>
+
+      <li>
+        <%= link_to('NewRelic', 'https://newrelic.com') %> - Web application monitoring tool for your application.
+        We use it in every project. You like charts - it is for you.
+      </li>
+
+      <li>
+        <%= link_to('Pusher', 'http://pusher.com') %> - Realtime web notificaitons.
+      </li>
+
+      <li>
+        <%= link_to('Airbrake', 'https://airbrake.io') %> - Exception notificaion service.
+      </li>
+
+      <li>
+        <%= link_to('Mandrill', 'https://mandrillapp.com/') %> - SMTP gateway.
+      </li>
+
+      <li>
+        <%= link_to('Digital Ocean', 'https://www.digitalocean.com') %> - Simple Cloud Hosting.
+      </li>
+    </ul>
+    </p>
+
+    <h4>Technologies</h4>
+
+    <p>
+    <ul>
+      <li>
+        <%= link_to('Ruby on Rails', 'http://rubyonrails.org') %> - Open source web framework
+      </li>
+
+    </ul>
+
+    </p>
+
   </div>
 
   <div class="col-lg-6">
-    <h4>Subheading</h4>
-    <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+    <h4>Tools</h4>
 
-    <h4>Subheading</h4>
-    <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+    <p>
+    <ul>
+      <li>
+        <%= link_to('Chef', 'http://docs.opscode.com') %> -
+        Chef is a systems and cloud infrastructure automation framework that makes it easy to deploy servers and
+        applications to any physical, virtual, or cloud location, no matter the size of the infrastructure.
+      </li>
 
-    <h4>Subheading</h4>
-    <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+      <li>
+        <%= link_to('Knife Solo', 'https://github.com/matschaffer/knife-solo') %> -
+        Knife is a command-line tool that provides an interface between a local chef-repo and the server.
+      </li>
+
+      <li>
+        <%= link_to('Capistrano', 'http://capistranorb.com') %> - A remote server automation and deployment tool.
+      </li>
+    </ul>
+    </p>
+
+    <h4>Development Flow</h4>
+    <p>
+      <ul>
+        <li>
+          <%= link_to 'GithubFlow', 'http://datasift.github.io/gitflow/GitFlowForGitHub.html' %>
+        </li>
+      </ul>
+    </p>
+
   </div>
 </div>
