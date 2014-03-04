@@ -1,7 +1,8 @@
 class RolesController < UserBaseController
-  before_filter :load_projects
-  before_action :load_project, except: [:show, :edit, :update, :destroy]
   before_action :load_role, only: [:show, :edit, :update, :destroy]
+  before_filter :load_projects
+  before_action :load_project, except: [:show, :update, :destroy]
+
 
   def index
     authorize! :read, @project
@@ -21,7 +22,7 @@ class RolesController < UserBaseController
     authorize! :create, Role
     @role = @project.roles.build role_attributes
     if @role.save
-      redirect_to @project, notice: 'Role successfully created'
+      redirect_to [@project, :roles], notice: 'Role successfully created'
     else
       render :new
     end
@@ -54,7 +55,7 @@ class RolesController < UserBaseController
   end
 
   def load_project
-    @project = @projects.find(params[:project_id])
+    @project = params[:project_id] ? Project.find(params[:project_id]) : @role.project
   end
 
   def load_role

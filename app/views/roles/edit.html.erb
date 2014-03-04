@@ -1,6 +1,16 @@
-<h1>Editing role</h1>
+<%= render 'shared/project_navigation_tabs' %>
 
-<%= render 'form' %>
+<br/>
 
-<%= link_to 'Show', @role %> |
-<%= link_to 'Back', project_roles_path(@role.project) %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Edit Role</h3>
+  </div>
+  <div class="panel-body">
+    <%= form_for [@project, @role] do |f| %>
+      <%= render 'form', f: f %>
+
+      <button type="submit" class="btn btn-success">Update</button>
+    <% end %>
+  </div>
+</div>

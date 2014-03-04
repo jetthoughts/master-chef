@@ -47,7 +47,7 @@ class NodesController < UserBaseController
   private
 
   def node_attributes
-    params.require(:node).permit(:name, :credentials, :config, :hostname, :user, :password)
+    params.require(:node).permit(:name, :credentials, :config, :hostname, :user, :password, :port)
   end
 
   def load_project

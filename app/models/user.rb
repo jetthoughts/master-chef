@@ -6,8 +6,12 @@ class User < ActiveRecord::Base
 
   validates :email, uniqueness: true
 
-  has_many :projects
-  has_many :deployments
+  has_many :projects, inverse_of: :user
+  has_many :available_deployments, through: :projects, source: :deployments
+
+
+  has_many :deployments, inverse_of: :user
+
 
   def name
     [first_name, last_name].join ' '

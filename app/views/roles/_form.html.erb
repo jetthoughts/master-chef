@@ -1,15 +1,9 @@
-<%= simple_form_for [@project, @role] do |f| %>
-  <%= f.error_notification %>
+<div class="form-group <%= @role.errors.present? && (@role.errors['name'].present? ? 'has-error' : 'has-success') %>">
+  <%= f.label :name, class: 'control-label' %>
+  <%= f.text_field :name, class: 'form-control' %>
+</div>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-  </div>
-  <div class="form-group">
-    <%= f.label :config %>
-    <%= f.hidden_field :config, class: 'form-control ace-editor' %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+<div class="form-group <%= @role.errors.present? && (@role.errors['config'].present? ? 'has-error' : 'has-success') %>">
+  <%= f.label :config, class: 'control-label' %>
+  <%= f.hidden_field :config, class: 'form-control ace-editor', data: { language: :json } %>
+</div>

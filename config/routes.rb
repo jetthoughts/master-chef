@@ -7,7 +7,7 @@ MasterChef::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  resources :projects, shallow: true do
+  resources :projects do
     resources :roles
     resources :nodes do
       resources :deployments, only: [:create]
@@ -15,6 +15,11 @@ MasterChef::Application.routes.draw do
     resources :deployments, only: [:index, :show]
     resource :cookbook, only: [:update], defaults: {format: :json}
   end
+
+  resources :nodes, only: [:destroy, :show, :edit, :update]
+  resources :roles, only: [:destroy, :show, :edit, :update]
+
+  resources :deployments, only: [:index, :show]
 
   authenticate :user, ->(u) { u.superadmin? } do
     match '/delayed_job' => DelayedJobWeb, anchor: false, via: [:get, :post, :put]

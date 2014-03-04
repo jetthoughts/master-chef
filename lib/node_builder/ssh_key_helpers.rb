@@ -33,6 +33,7 @@ module SshKeyHelpers
   def net_ssh_grant_access
     ssh_options = {}
     ssh_options[:password] = self.password unless self.password.nil?
+    ssh_options[:port] = self.port unless self.port.nil?
 
     Net::SSH.start(self.hostname, self.user, ssh_options) do |session|
 
@@ -77,7 +78,7 @@ module SshKeyHelpers
   end
 
   def net_ssh_revoke_access
-    Net::SSH.start(self.hostname, self.user, password: self.password) do |session|
+    Net::SSH.start(self.hostname, self.user, password: self.password, port: self.port) do |session|
       session.exec!("sed -i.bak '$d' .ssh/authorized_keys")
       log 'Removing the sudoers file....'
       #TODO: use pty channel

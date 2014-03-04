@@ -40,14 +40,17 @@ class NodeBuilder
     options['user']
   end
 
+  def port
+    options['port']
+  end
+
   def password
     options['password']
   end
 
   def go_to_project_dir
     Dir.chdir(base_folder)
-    system_cmd 'pwd', '>>'
-    system_cmd 'bundle install --verbose', '>>'
+    system_cmd 'bundle install', '>>'
   end
 
   def add_public_key_to_bag
@@ -71,17 +74,17 @@ class NodeBuilder
   end
 
   def setup_host
-    command = "bundle exec knife solo cook -N #{node} #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    command = "bundle exec knife solo cook -N #{node} #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
     system_cmd command, ">> Setup host #{self.hostname}:\n"
   end
 
   def cleanup_host
-    command = "bundle exec knife solo clean #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    command = "bundle exec knife solo clean #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
     system_cmd command, ">> Clean #{self.hostname}:\n"
   end
 
   def prepare_host
-    command = "bundle exec knife solo prepare -N #{node} #{self.user}@#{self.hostname} -i #{private_key_path} -V"
+    command = "bundle exec knife solo prepare -N #{node} #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
     system_cmd command,  ">> Install chef to the host #{node}(#{self.hostname}):\n"
   end
 

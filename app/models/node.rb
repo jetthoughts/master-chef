@@ -2,13 +2,14 @@ class Node < ActiveRecord::Base
   belongs_to :project, inverse_of: :nodes
   has_many :deployments, inverse_of: :node
 
-  store :credentials, accessors: %i{ hostname user password }
+  store :credentials, accessors: %i{ hostname user password port }
   validates :name, presence: true, uniqueness: { scope: :project_id }, allow_blank: false
   validates :hostname, :user, presence: true
   validate :config_is_json_format
 
   after_initialize do
     self.user   ||= 'root'
+    self.port   ||= 22
     self.config ||= default_config
   end
 
@@ -25,7 +26,7 @@ class Node < ActiveRecord::Base
   def config_is_json_format
     JSON.parse(self.config)
   rescue JSON::ParserError
-    errors[:config] << 'not in json format'
+    errors[:config] << 'not valid json format'
   end
 
   private

@@ -17,8 +17,4 @@
 
 <pre><%= @node.config -%></pre>
 
-<%= form_for [@node, @node.deployments.build] do |f| -%>
-  <%= f.submit 'Deploy', class: 'btn btn-success' -%>
-<%- end -%>
-
 <%= link_to 'Edit', edit_node_path(@node) %> |

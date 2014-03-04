@@ -5,10 +5,14 @@ class DeploymentsController < UserBaseController
   before_action :load_node, only: [:create]
 
   def index
-    @project = Project.find(params[:project_id])
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
 
-    authorize! :read, @project
-    @deployments = @project.deployments.order(id: :desc)
+      authorize! :read, @project
+      @deployments = @project.deployments.order(id: :desc)
+    else
+      @deployments = current_user.available_deployments.load
+    end
   end
 
   def show

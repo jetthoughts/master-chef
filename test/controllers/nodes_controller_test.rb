@@ -71,13 +71,19 @@ class NodesControllerTest < ActionController::TestCase
   end
 
   def test_update_node_config
-    patch :update, id: @node, node: { config: '{"new_attribute": "Time"}' }
+    patch :update, id: @node, project_id: @project.id, node: { config: '{"new_attribute": "Time"}' }
     @node.reload
     assert_equal '{"new_attribute": "Time"}', @node.config
   end
 
+  def test_update_node_port
+    patch :update, id: @node, project_id: @project.id, node: { port: '2244' }
+    @node.reload
+    assert_equal '2244', @node.port
+  end
+
   test 'should redirect to nodes list after update' do
-    patch :update, id: @node, node: { name: 'Sweet' }
+    patch :update, id: @node, project_id: @project.id, node: { name: 'Sweet' }
     assert_redirected_to project_nodes_path(@node.project)
   end
 
@@ -90,7 +96,7 @@ class NodesControllerTest < ActionController::TestCase
 
   test 'should destroy node' do
     assert_difference('Node.count', -1) do
-      delete :destroy, id: @node
+      delete :destroy, id: @node, project_id: @project.id
     end
 
     assert_redirected_to project_nodes_path(@node.project)

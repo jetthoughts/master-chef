@@ -1,9 +1,9 @@
 <tr>
-  <td><%= role.name %></td>
+  <td><%= link_to(role.name, [:edit, role]) %></td>
   <td>
-    <%= link_to 'Show', role %> |
-    <%= link_to 'Edit', edit_role_path(role) %> |
-    <%= link_to 'Destroy', role, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to role, method: :delete, title: 'Destroy', data: { confirm: 'Are you sure?' } do %>
+      <span class="icon-remove"></span>
+    <% end %>
   </td>
 </tr>
 
