@@ -1,4 +1,4 @@
-set :branch, 'master'
+#set :branch, 'master'
 set :stage, :production
 
 server 'masterchef',

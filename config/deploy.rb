@@ -1,5 +1,5 @@
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.1.0'
+set :rbenv_ruby, '2.1.1'
 
 set :application, 'master_chef'
 set :repo_url,    'git@github.com:jetthoughts/master-chef.git'

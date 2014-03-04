@@ -20,10 +20,6 @@ class ChefProjectGenerator
     create_or_update_roles
   end
 
-  def update_cookbooks
-    raise 'deprecated method'
-  end
-
   private
 
   def create_project_folder
@@ -39,7 +35,7 @@ class ChefProjectGenerator
 
   def create_or_update_cookbooks_file
     create_or_update_file('Berksfile', @cookbooks)
-    create_or_update_file('Berksfile.lock', @cookbooks_lock)
+    remove_cookbooks_lock
   end
 
   def create_or_update_nodes
@@ -59,6 +55,10 @@ class ChefProjectGenerator
     File.open(project_path.join(file_path), 'w') do |file|
       file.write content
     end
+  end
+
+  def remove_cookbooks_lock
+    FileUtils.rm(project_path.join('Berksfile.lock')) if File.exist?(project_path.join('Berksfile.lock'))
   end
 
 end

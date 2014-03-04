@@ -8,7 +8,7 @@ class ChefProject
 
   def update_cookbooks!
     prepare
-    @project.cookbooks_lock = "# Time to update cookbooks #{Time.current}"
+    @project.cookbooks_lock = File.read project_path.join('Berksfile.lock')
     @project.save!
   end
 
@@ -35,6 +35,7 @@ class ChefProject
                     node.credentials).build
 
   end
+
   private
 
   def chef_project_generator

@@ -28,6 +28,10 @@ class NodeBuilder
     revoke_ssh_access
   end
 
+  def update_cookbooks
+    go_to_project_dir
+  end
+
   def hostname
     options['hostname']
   end
