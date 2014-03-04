@@ -17,6 +17,9 @@ class DeploymentsController < UserBaseController
 
   def show
     authorize! :read, @deployment
+    if stale?(last_modified: @deployment.updated_at.utc, etag: @deployment.cache_key)
+      render
+    end
   end
 
   def create
