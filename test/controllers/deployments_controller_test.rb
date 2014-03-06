@@ -12,7 +12,7 @@ class DeploymentsControllerTest < ActionController::TestCase
 
   def test_redirect_to_show_page_after_create_deployment
     node = nodes(:rackspace)
-    post :create, node_id: node
+    post :create, node_id: node, project_id: node.project_id
     assert_response :redirect
   end
 

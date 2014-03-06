@@ -8,7 +8,8 @@ class ChefProject
 
   def update_cookbooks!
     prepare
-    @project.cookbooks_lock = File.read project_path.join('Berksfile.lock')
+    lock_file_path = project_path.join('Berksfile.lock')
+    @project.cookbooks_lock = File.read(lock_file_path) if File.exist?(lock_file_path)
     @project.save!
   end
 

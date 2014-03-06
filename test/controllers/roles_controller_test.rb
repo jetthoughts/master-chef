@@ -30,7 +30,7 @@ class RolesControllerTest < ActionController::TestCase
     end
 
     assert_equal @project, assigns(:role).project
-    assert_redirected_to @project
+    assert_redirected_to [@project, :roles]
   end
 
   test 'should show self role' do

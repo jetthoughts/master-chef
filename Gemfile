@@ -26,6 +26,7 @@ gem 'net-ssh'
 gem 'net-scp'
 gem 'unicorn-rails'
 gem 'airbrake'
+gem 'j-cap-recipes'
 
 group :production, :staging do
   gem 'dalli'
@@ -35,7 +36,7 @@ end
 
 group :assets do
   gem 'sprockets-rails'
-  gem 'sass-rails'
+  gem 'sass-rails', require: 'sass'
   gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -53,7 +54,6 @@ group :test do
 end
 
 group :deploy do
-  gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
   gem 'capistrano', github: 'capistrano/capistrano'
   gem 'capistrano-rbenv', github: 'capistrano/rbenv'
   gem 'capistrano-rails', github: 'capistrano/rails'
