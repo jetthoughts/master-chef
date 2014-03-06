@@ -15,7 +15,7 @@ module SystemCommand
   def system_cmd(cmd, prompt='COMMAND:')
     log "%s %s" % [prompt_style(prompt), command_style(cmd)]
     log "with environment: #{environment.to_s}"
-    exec_cmd = "sudo -u #{run_as_user} /bin/bash -c 'cd #{@base_folder}; #{cmd}'"
+    exec_cmd = "sudo -u #{run_as_user} /bin/bash -l -c 'cd #{@base_folder}; #{cmd}'"
     Open3.popen2e(environment, exec_cmd) do |i, oe, t|
       oe.each { |line| simple_log line }
     end
