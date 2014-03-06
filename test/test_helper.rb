@@ -3,16 +3,6 @@ ENV['RAILS_ENV'] ||= 'test'
 if ENV['COVERAGE'] || ENV['CI']
   require 'simplecov'
 
-  if ENV['CI']
-    require 'coveralls'
-    Coveralls.wear!('rails')
-
-    SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
-        SimpleCov::Formatter::HTMLFormatter,
-        Coveralls::SimpleCov::Formatter
-    ]
-  end
-
   SimpleCov.start 'rails' do
     add_filter '/test/'
     add_filter '/config/'

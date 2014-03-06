@@ -21,4 +21,3 @@ password: welcome
 ## Code Status
 
 [![Build Status](https://travis-ci.org/jetthoughts/master-chef.png?branch=master)](https://travis-ci.org/jetthoughts/master-chef)
-[![Coverage Status](https://coveralls.io/repos/jetthoughts/master-chef/badge.png?branch=master)](https://coveralls.io/r/jetthoughts/master-chef)
