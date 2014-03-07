@@ -6,7 +6,6 @@ class DeploymentTest < ActiveSupport::TestCase
 
   setup do
     Deployment.any_instance.stubs(:start)
-    Deployment.any_instance.stubs(:deploy!)
   end
 
   def test_create_deployment
@@ -17,6 +16,14 @@ class DeploymentTest < ActiveSupport::TestCase
     deployment = Deployment.new user: user, node: node
     deployment.expects(:schedule_deploy).once
     deployment.save!
+  end
+
+  def test_change_state_to_processing_on_deploy
+    deployment = Deployment.new user: user, node: node
+    deployment.expects(:schedule_deploy).once
+    deployment.save!
+
+    deployment.start
   end
 
   private
