@@ -38,6 +38,6 @@ module SystemCommand
   end
 
   def run_as_user
-    Settings.deployment_user || ENV['USER']
+    Settings.deployment.user || ENV['USER']
   end
 end

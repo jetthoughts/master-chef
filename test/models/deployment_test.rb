@@ -20,10 +20,25 @@ class DeploymentTest < ActiveSupport::TestCase
 
   def test_change_state_to_processing_on_deploy
     deployment = Deployment.new user: user, node: node
+    deployment.deploy!
+    assert deployment.processing?
+  end
+
+  def test_send_notification_about_change_state
+    deployment = Deployment.new user: user, node: node
+    deployment.expects(:schedule_deploy).once
+    deployment.expects(:notify_client).with('changed_state', 'processing').once
+    deployment.save!
+
+    deployment.deploy!
+  end
+
+  def test_deployment_channel_name
+    deployment = Deployment.new user: user, node: node
     deployment.expects(:schedule_deploy).once
     deployment.save!
 
-    deployment.start
+    assert_equal "deployment_#{deployment.id}", deployment.channel_name
   end
 
   private

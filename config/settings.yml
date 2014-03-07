@@ -3,6 +3,9 @@ common:
   host: lvh.me:3000
   default_from_email: "'MasterChef' <no-reply@masterchef.io>"
   base_projects_path: "<%= Rails.root.join('projects') %>"
+  deployment:
+    user: <%= ENV['USER'] %>
+    channel_template: 'deployment_%d'
   deployment_user: <%= ENV['USER'] %>
   mailer:
     delivery_method: test

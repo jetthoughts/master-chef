@@ -31,6 +31,7 @@ class Deployment < ActiveRecord::Base
     end
 
     after_transition any => any do |deployment, transition|
+      Rails.logger.info "--> Deployment #{deployment.id} changed state from :#{transition.from} to :#{transition.from} via :#{transition.event}"
       deployment.notify_client 'changed_state', deployment.state
     end
   end
@@ -44,7 +45,7 @@ class Deployment < ActiveRecord::Base
   end
 
   def channel_name
-    "deployments_#{id}"
+    Settings.deployment.channel_template % id
   end
 
   def logger
