@@ -9,7 +9,7 @@ class DeploymentsController < UserBaseController
       @project = Project.find(params[:project_id])
 
       authorize! :read, @project
-      @deployments = @project.deployments.order(id: :desc)
+      @deployments = @project.deployments.includes(node: [:project]).order(id: :desc).load
     else
       @deployments = current_user.available_deployments.load
     end
