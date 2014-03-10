@@ -2,6 +2,8 @@ require 'open3'
 
 module SystemCommand
 
+  class FailedCommandException < StandardError; end
+
   def log(msg)
     format_msg = "\e[1;35m-----> \e[1;33m" + msg.to_s + "\e[0m\n"
     simple_log format_msg
@@ -15,9 +17,12 @@ module SystemCommand
   def system_cmd(cmd, prompt='COMMAND:')
     log "%s %s" % [prompt_style(prompt), command_style(cmd)]
     log "with environment: #{environment.to_s}"
+
     exec_cmd = "sudo -u #{run_as_user} /bin/bash -l -c 'cd #{@base_folder}; #{cmd}'"
     Open3.popen2e(environment, exec_cmd) do |i, oe, t|
       oe.each { |line| simple_log line }
+
+      raise FailedCommandException, t.value, caller unless t.value.success?
     end
   end
 

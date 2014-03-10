@@ -10,7 +10,7 @@ class Deployment < ActiveRecord::Base
   delegate :project, to: :node
 
   state_machine :state, initial: :initial do
-    event :deploy do
+    event :processing do
       transition initial: :processing
     end
 
@@ -22,17 +22,13 @@ class Deployment < ActiveRecord::Base
       transition processing: :stopped
     end
 
-    after_transition initial: :processing do |deployment, transition|
-      deployment.start
-    end
-
-    before_transition processing: any do |deployment, transition|
-      deployment.update logs: deployment.logger.complete_log, finished_at: Time.current
-    end
-
     after_transition any => any do |deployment, transition|
-      Rails.logger.info "--> Deployment #{deployment.id} changed state from :#{transition.from} to :#{transition.from} via :#{transition.event}"
+      Rails.logger.info "--> Deployment #{deployment.id} changed state from :#{transition.from} to :#{transition.to} via :#{transition.event}"
       deployment.notify_client 'changed_state', deployment.state
+    end
+
+    before_transition any => :finished do |deployment, transition|
+      deployment.update logs: deployment.logger.complete_log, finished_at: Time.current
     end
   end
 
@@ -42,6 +38,11 @@ class Deployment < ActiveRecord::Base
     chef_project = ChefProject.new project
     chef_project.prepare
     chef_project.build_node(node, logger)
+  end
+
+  def success!(val=true)
+    self.success = val
+    save!
   end
 
   def channel_name
