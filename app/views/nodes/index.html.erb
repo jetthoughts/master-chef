@@ -1,15 +1,8 @@
 <%= render 'shared/project_navigation_tabs' %>
 
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Node</th>
-      <th class="col-md-2 col-sm-3 col-xs-4">
-        <%= link_to '+ Add node', new_project_node_path(@project), class: 'btn btn-primary btn-sm'%>
-      </th>
-    </tr>
-  </thead>
+<br />
 
+<table class='table'>
   <tbody>
     <%= render @nodes %>
   </tbody>

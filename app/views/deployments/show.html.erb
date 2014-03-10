@@ -1,32 +1,40 @@
 <%= render 'shared/project_navigation_tabs' %>
 
+<br/>
+
 <div class="row">
   <div class="col-md-12">
+    <small>
     <ul class="list-inline">
       <li>
-        Node: <%= @deployment.node.name -%>
+        Node: <%= link_to @deployment.node.name, [:edit, @deployment.project, @deployment.node] -%>
       </li>
 
       <li>
-        State: <span data-behavior="<%= @deployment.channel_name -%>_state"><%= @deployment.state -%></span>
+        State: <span class="label label-primary" data-behavior="<%= @deployment.channel_name -%>_state"><%= @deployment.state -%></span>
       </li>
 
-      <li>
-        Status: <span><%= (@deployment.success ? 'Success' : 'Failed') if @deployment.finished? -%></span>
-      </li>
+      <% if @deployment.finished? %>
+        <li>
+          Status: <span><%= (@deployment.success ? 'Success' : 'Failed') -%></span>
+        </li>
+      <% end %>
 
       <li>
         Length: <%= @deployment.duration.to_i -%> seconds
       </li>
 
       <li>
-        Started: <%= l @deployment.created_at, format: :long %>
+        Added at: <%= l @deployment.created_at, format: :long %>
       </li>
 
-      <li>
-        Finished: <%= l @deployment.finished, format: :long %>
-      </li>
+      <% if @deployment.finished? %>
+        <li>
+          Finished: <%= l @deployment.finished, format: :long %>
+        </li>
+      <% end %>
     </ul>
+    </small>
   </div>
 </div>
 

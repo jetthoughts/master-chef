@@ -1,3 +1,7 @@
+<%= render 'shared/project_navigation_tabs' %>
+
+<br />
+
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">Edit Project</h3>
@@ -5,17 +9,6 @@
   <div class="panel-body">
     <%= form_for [@project] do |f| %>
       <%= render 'form', f: f %>
-
-      <div class="form-group">
-        <%= f.label :cookbooks_lock %>
-
-        <%= link_to 'Update', project_cookbook_path(@project, format: :json), method: :put,
-                    data: {disable_with: 'Processing...', remote: true, behavior: 'update_cookbooks_lock', type: 'json',
-                           rel: "##{dom_id(f.object)}_cookbooks_lock"} %>
-
-        <pre data-language="yaml" id="<%= dom_id(f.object) %>_cookbooks_lock"
-             data-relation="cookbooks_lock"><%= @project.cookbooks_lock %></pre>
-      </div>
 
       <%= f.submit 'Save', class: 'btn btn-success' %>
       <%= link_to 'Remove', @project, method: :delete, data: {confirm: 'Are you sure?'},

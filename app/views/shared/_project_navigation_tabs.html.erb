@@ -1,6 +1,40 @@
 <% return unless @project %>
+
+<% if @nodes %>
+  <%= link_to 'New Node', new_project_node_path(@project), class: 'btn btn-primary btn-sm pull-right' %>
+<% end %>
+
+<% if @roles %>
+  <%= link_to 'New Role', new_project_role_path(@project), class: 'btn btn-primary btn-sm pull-right' %>
+<% end %>
+
+
+
 <ul class="nav nav-tabs">
-  <%= nav_link('Deployments', project_deployments_path(@project), controller.controller_name == 'deployments') %>
-  <%= nav_link('Nodes', project_nodes_path(@project), controller.controller_name == 'nodes') %>
-  <%= nav_link('Roles', project_roles_path(@project), controller.controller_name == 'roles') %>
+
+  <%= menu_item(project_deployments_path(@project)) do %>
+    Deployments
+    <% if current_user.available_deployments.processing.count > 0 %>
+      <span class="badge"><%= current_user.available_deployments.processing.count %></span>
+    <% end %>
+  <% end %>
+
+  <%= menu_item('Nodes', project_nodes_path(@project)) %>
+  <%= menu_item('Roles', project_roles_path(@project)) %>
+
+  <% if @role && @role.persisted? %>
+    <li class="active">
+      <%= link_to "@#{@role.name}", '#' %>
+    </li>
+  <% end %>
+
+  <% if @node && @node.persisted? %>
+    <li class="active">
+      <%= link_to "##{@node.name}", '#' %>
+    </li>
+  <% end %>
 </ul>
+
+
+
+

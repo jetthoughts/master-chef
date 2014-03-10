@@ -3,19 +3,17 @@ module ApplicationHelper
     user_signed_in? && current_user.superadmin?
   end
 
-  def nav_link(text, path, condition = false, options = {})
+  def nav_link(text, path, options = {}, &block)
     class_name = ''
-    class_name = 'active' if condition || current_page?(path)
+    coptions = path.is_a?(Hash) ? path : options
+    active_tab = coptions.delete(:active)
+    class_name = 'active' if active_tab || current_page?(path)
+
 
     content_tag(:li, class: class_name) do
-      options[:title] = text unless options.has_key?(:title)
-      link_to(text, path, options)
+      coptions[:title] = text unless coptions.has_key?(:title)
+      link_to(text, path, options, &block)
     end
-  end
-
-  def avatar_url(user, size=40)
-    gravatar_id = Digest::MD5::hexdigest(user.email).downcase
-    "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
   end
 
   def current_version

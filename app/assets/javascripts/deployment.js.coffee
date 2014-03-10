@@ -25,7 +25,8 @@ class Deployment
       $element.scrollTop $element.scrollHeight
 
     channel.bind 'changed_state', (data) ->
-      $("[data-behavior=#{channel.name}_state]").text(data.message)
+      $element = $("[data-behavior=#{channel.name}_state]")
+      $element.text(data.message)
 
 $ ->
   new Deployment

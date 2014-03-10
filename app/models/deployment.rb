@@ -9,6 +9,9 @@ class Deployment < ActiveRecord::Base
 
   delegate :project, to: :node
 
+  scope :processing, -> { where(state: 'processing') }
+  scope :initial, -> { where(state: 'initial') }
+
   state_machine :state, initial: :initial do
     event :processing do
       transition initial: :processing

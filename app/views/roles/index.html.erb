@@ -1,17 +1,9 @@
 <%= render 'shared/project_navigation_tabs' %>
 
-<table class='table'>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th class="col-md-2 col-sm-3 col-xs-4">
-      <%= link_to '+ Add role', new_project_role_path(@project), class: 'btn btn-primary btn-sm'%>
-    </th>
-  </tr>
-  </thead>
+<br />
 
+<table class='table'>
   <tbody>
   <%= render @roles %>
   </tbody>
-
 </table>

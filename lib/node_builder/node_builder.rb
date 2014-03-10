@@ -75,17 +75,17 @@ class NodeBuilder
 
   def setup_host
     command = "bundle exec knife solo cook -N #{node} #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
-    system_cmd command, ">> Setup host #{self.hostname}:\n"
+    system_cmd command, "Setup host #{self.hostname}:\n"
   end
 
   def cleanup_host
     command = "bundle exec knife solo clean #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
-    system_cmd command, ">> Clean #{self.hostname}:\n"
+    system_cmd command, "Clean #{self.hostname}:\n"
   end
 
   def prepare_host
     command = "bundle exec knife solo prepare -N #{node} #{self.user}@#{self.hostname} -p #{port} -i #{private_key_path} -V"
-    system_cmd command,  ">> Install chef to the host #{node}(#{self.hostname}):\n"
+    system_cmd command,  "Install chef to the host #{node}(#{self.hostname}):\n"
   end
 
 end

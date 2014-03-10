@@ -5,6 +5,11 @@
       <a class="navbar-brand" href="/"><%= Settings.title %></a>
     </div>
 
+    <div class="col-md-4 col-md-offset-2 col-sm-offset-2 col-sm-5">
+      <%= bootstrap_flash %>
+    </div>
+
+
     <% if user_signed_in? %>
 
       <ul class="nav navbar-nav navbar-right">
@@ -18,7 +23,7 @@
 
           <ul class="dropdown-menu">
             <% if super_admin_signed_in? %>
-              <li><%= nav_link('Delayed Jobs', delayed_job_path, false, target: '_blank') %></li>
+              <li><%= nav_link('Delayed Jobs', delayed_job_path, target: '_blank') %></li>
             <% end %>
 
             <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>

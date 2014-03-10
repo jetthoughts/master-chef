@@ -31,6 +31,9 @@ module SshKeyHelpers
   end
 
   def net_ssh_grant_access
+
+    log "Grant ssh access"
+
     ssh_options = {}
     ssh_options[:password] = self.password unless self.password.nil?
     ssh_options[:port] = self.port unless self.port.nil?
