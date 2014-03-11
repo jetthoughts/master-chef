@@ -1,5 +1,6 @@
 class DeploymentLogger
 
+  BUFFER_SIZE = 1024
   attr_accessor :deployment, :logs
 
   def initialize(deployment)
@@ -8,13 +9,16 @@ class DeploymentLogger
   end
 
   def append_log(text)
-    self.logs += "#{text}"
+    @logs += "#{text}"
     deployment.notify_client 'append_log', text
-    deployment.save
+
+    if @logs.size - deployment.logs.size > BUFFER_SIZE
+      deployment.update logs: @logs
+    end
   end
 
   def complete_log
-    self.logs
+    @logs
   end
 
 end
