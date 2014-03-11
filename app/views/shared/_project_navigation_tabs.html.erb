@@ -22,17 +22,6 @@
   <%= menu_item('Nodes', project_nodes_path(@project)) %>
   <%= menu_item('Roles', project_roles_path(@project)) %>
 
-  <% if @role && @role.persisted? %>
-    <li class="active">
-      <%= link_to "@#{@role.name}", '#' %>
-    </li>
-  <% end %>
-
-  <% if @node && @node.persisted? %>
-    <li class="active">
-      <%= link_to "##{@node.name}", '#' %>
-    </li>
-  <% end %>
 </ul>
 
 

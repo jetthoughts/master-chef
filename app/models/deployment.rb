@@ -56,6 +56,22 @@ class Deployment < ActiveRecord::Base
     @_logger ||= DeploymentLogger.new(self)
   end
 
+  def current_logs
+    finished? ? logs : read_from_tmp_logs
+  end
+
+  def tmp_logs_key
+    {deployment_id: self.id, logs: true}
+  end
+
+  def read_from_tmp_logs
+    Rails.cache.read(tmp_logs_key)
+  end
+
+  def update_tmp_logs(content)
+    Rails.cache.write(tmp_logs_key, content)
+  end
+
   def notify_client(event, message)
     return if Pusher.key.blank?
 

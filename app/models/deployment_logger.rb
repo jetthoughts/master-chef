@@ -11,10 +11,7 @@ class DeploymentLogger
   def append_log(text)
     @logs += "#{text}"
     deployment.notify_client 'append_log', text
-
-    if @logs && (@logs.size - deployment.logs.size > BUFFER_SIZE)
-      deployment.update logs: @logs
-    end
+    deployment.update_tmp_logs @logs if @logs
   end
 
   def complete_log
