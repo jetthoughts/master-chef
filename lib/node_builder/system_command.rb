@@ -20,7 +20,7 @@ module SystemCommand
     Open3.popen2e(environment, exec_cmd) do |i, oe, t|
       oe.each { |line| simple_log line }
 
-      log "%s %s" % [prompt_style('Finished with result:'), command_style(t.value.inspect)]
+      log "%s %s" % [prompt_style('Finished with result:'), command_style(t.value.to_i)]
       raise FailedCommandException, t.value, caller unless t.value.success?
     end
   end

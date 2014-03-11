@@ -4,7 +4,7 @@
   </td>
 
   <td class="col-md-2 col-sm-3 col-xs-4">
-    <%= link_to 'Build', [@project, node, :deployments], class: 'btn btn-primary', method: :post %>
+    <%= link_to 'Build', [@project, node, :deployments], class: 'btn btn-primary btn-sm', method: :post %>
 
     <%= link_to [@project, node], method: :delete, title: 'Destroy', data: { confirm: 'Are you sure?' } do %>
       <span class="icon-remove"></span>
