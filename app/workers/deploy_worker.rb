@@ -6,7 +6,6 @@ class DeployWorker < Struct.new(:id)
 
   def perform
     Rails.logger.info "--> Started deploy: Deployment##{id}"
-    deployment = Deployment.find(id)
     deployment.processing!
     deployment.start
     deployment.success!
@@ -20,4 +19,12 @@ class DeployWorker < Struct.new(:id)
     deployment.finish!
   end
 
+  def error(job, exception)
+    deployment.success!(false)
+    deployment.finish! unless deployment.finish?
+  end
+
+  def deployment
+    @_deployment ||= Deployment.find(id)
+  end
 end
