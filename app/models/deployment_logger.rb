@@ -10,7 +10,7 @@ class DeploymentLogger
   def append_log(text)
     self.logs += "#{text}"
     deployment.notify_client 'append_log', text
-    deployment.save(false)
+    deployment.save
   end
 
   def complete_log
