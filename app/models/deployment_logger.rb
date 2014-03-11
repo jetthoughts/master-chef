@@ -12,7 +12,7 @@ class DeploymentLogger
     @logs += "#{text}"
     deployment.notify_client 'append_log', text
 
-    if @logs.size - deployment.logs.size > BUFFER_SIZE
+    if @logs && (@logs.size - deployment.logs.size > BUFFER_SIZE)
       deployment.update logs: @logs
     end
   end
