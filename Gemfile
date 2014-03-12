@@ -26,7 +26,7 @@ gem 'net-ssh'
 gem 'net-scp'
 gem 'unicorn-rails'
 gem 'airbrake'
-gem 'j-cap-recipes'
+gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
 
 group :production, :staging do
   gem 'dalli'

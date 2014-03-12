@@ -27,6 +27,7 @@ require 'capistrano/rails/migrations'
 require 'capistrano/console'
 
 require 'j-cap-recipes/check'
+require 'j-cap-recipes/deploy'
 require 'j-cap-recipes/database'
 require 'j-cap-recipes/delayed_job'
 require 'j-cap-recipes/log'
