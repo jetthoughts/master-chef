@@ -14,7 +14,7 @@
 
   <%= menu_item(project_deployments_path(@project)) do %>
     Deployments
-    <% if current_user.available_deployments.processing.count > 0 %>
+    <% if @project.deployments.processing.count > 0 %>
       <span class="badge"><%= current_user.available_deployments.processing.count %></span>
     <% end %>
   <% end %>
