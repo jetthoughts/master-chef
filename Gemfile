@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.0.beta2'
+gem 'rails', '4.1.0.rc1'
 gem 'arel'
 
 gem 'pg'
@@ -28,17 +28,15 @@ gem 'unicorn-rails'
 gem 'airbrake'
 gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
 
+gem 'sprockets-rails'
+gem 'sass-rails', require: 'sass'
+gem 'coffee-rails'
+gem 'uglifier', '>= 1.0.3'
+
 group :production, :staging do
   gem 'dalli'
   gem 'daemons'
   gem 'newrelic_rpm'
-end
-
-group :assets do
-  gem 'sprockets-rails'
-  gem 'sass-rails', require: 'sass'
-  gem 'coffee-rails'
-  gem 'uglifier', '>= 1.0.3'
 end
 
 group :development do
