@@ -33,7 +33,7 @@ GIT
 
 GIT
   remote: git://github.com/jetthoughts/j-cap-recipes.git
-  revision: ddb8a1fc7565ec371e18e9491e705e9ea1444654
+  revision: c63ca2e8d47da93675b93eff009dc708905d8493
   specs:
     j-cap-recipes (0.0.17)
 
