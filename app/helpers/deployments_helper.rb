@@ -12,7 +12,7 @@ module DeploymentsHelper
 
   def deployment_status_icon(deployment)
     result = {
-        'processing' => 'spinner',
+        'processing' => 'spinner icon-spin',
         'initial' => 'play'
     }[deployment.state]
 
