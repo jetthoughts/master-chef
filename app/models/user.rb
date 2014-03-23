@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
 
   has_many :deployments, inverse_of: :user
 
-
   def name
     [first_name, last_name].join ' '
   end
