@@ -33,6 +33,12 @@ gem 'sass-rails', require: 'sass'
 gem 'coffee-rails'
 gem 'uglifier', '>= 1.0.3'
 
+# https://github.com/intridea/omniauth-github
+gem 'omniauth-github'
+
+# https://github.com/peter-murach/github
+gem 'github_api'
+
 group :production, :staging do
   gem 'dalli'
   gem 'daemons'

@@ -1,6 +1,8 @@
 <!--for footer-->
-<%= image_tag('/favicon.png', size: '16x16') %>
+<small class="pull-right">
+  <i class="icon-spin">
+    <%= image_tag('/favicon.png', size: '16x16') %>
+  </i>
 
-<span class="pull-right">
-  build: <%= current_version %>
-</span>
+  <%= current_version %>
+</small>

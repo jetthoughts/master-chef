@@ -35,12 +35,12 @@ module SshKeyHelpers
     log "Grant ssh access"
 
     ssh_options = {}
-    ssh_options[:password] = self.password unless self.password.nil?
-    ssh_options[:port] = self.port unless self.port.nil?
+    ssh_options[:password] = self.password unless self.password.blank?
+    ssh_options[:port] = self.port unless self.port.blank?
 
     Net::SSH.start(self.hostname, self.user, ssh_options) do |session|
 
-      if !password.nil?
+      if password.present?
         session.exec!("mkdir -p .ssh")
         session.exec!("chmod 0700 .ssh")
         session.exec!("touch .ssh/authorized_keys")

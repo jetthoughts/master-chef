@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+#one:
+#  user_id:
+#  account_id:
+#  role: MyString
+
+john_in_jets:
+  user: :john
+  account: :jetthoughts
+  role: owner

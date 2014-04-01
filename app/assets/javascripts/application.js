@@ -23,3 +23,5 @@
 
 //= require ./project
 //= require ./deployment
+
+//= require ./remote_form
