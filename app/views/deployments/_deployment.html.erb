@@ -1,6 +1,6 @@
 <tr>
   <td>
-    <i class="icon-<%=  deployment_status_icon(deployment) %>"></i>
+    <i class="fa fa-<%=  deployment_status_icon(deployment) %>"></i>
     <%= link_to deployment.id, deployment %>
   </td>
   <td><%= link_to deployment.node, [:edit, deployment.project, deployment.node] %></td>

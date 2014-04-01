@@ -32,7 +32,7 @@ class @RemoteForm
     @submitButton.removeAttr("disabled")
 
   spinnerIcon: ->
-    '<span class="remote-form-spinner"><i class="icon-spin icon-refresh"></i>&nbsp;</span>'
+    '<span class="remote-form-spinner"><i class="fa fa-spinner fa-spin"></i>&nbsp;</span>'
 
 $ ->
   $('form[data-remote="true"]').each (i, element) ->

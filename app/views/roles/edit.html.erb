@@ -12,8 +12,10 @@
 
       <button type="submit" class="btn btn-success">Update</button>
 
-      <%= link_to 'Remove', [@project, @role], method: :delete, data: {confirm: 'Are you sure?'},
-                  title: 'Destroy', class: 'btn btn-danger btn-sm pull-right' %>
+      <%= link_to [@project, @role], method: :delete, data: {confirm: 'Are you sure?'},
+                  title: 'Destroy', class: 'btn btn-danger btn-sm pull-right' do %>
+        <i class="fa fa-trash-o"></i> Delete
+      <% end %>
 
   <% end %>
   </div>

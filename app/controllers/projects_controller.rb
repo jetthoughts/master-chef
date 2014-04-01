@@ -29,6 +29,8 @@ class ProjectsController < UserBaseController
   end
 
   def update
+    @project.update_attributes resource_params
+
     respond_with @project
   end
 
