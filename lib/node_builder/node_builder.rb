@@ -41,11 +41,11 @@ class NodeBuilder
   end
 
   def port
-    options['port']
+    options['port'].blank? ? 22 : options['port'].to_i
   end
 
   def password
-    options['password']
+    options['password'].blank? ? nil : options['password']
   end
 
   def go_to_project_dir
@@ -62,7 +62,7 @@ class NodeBuilder
   end
 
   def grant_ssh_access
-    return if self.user == 'root' && self.password.nil?
+    return if self.user == 'root' && self.password.blank?
     reset_known_host
     net_ssh_grant_access
   end
