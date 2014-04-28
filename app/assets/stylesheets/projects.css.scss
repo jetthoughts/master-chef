@@ -12,7 +12,7 @@ textarea.code {
 }
 
 .ace-editor, .ace-highlight {
-  height: 3000px;
+  min-height: 300px;
   font-family: source-code-pro, Monaco, Menlo, 'Ubuntu Mono', Consolas, monospace;
   font-size: 12px;
   position: absolute;
