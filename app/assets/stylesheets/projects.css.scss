@@ -12,9 +12,17 @@ textarea.code {
 }
 
 .ace-editor, .ace-highlight {
-  min-height: 300px;
+  height: 3000px;
+  font-family: source-code-pro, Monaco, Menlo, 'Ubuntu Mono', Consolas, monospace;
+  font-size: 12px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 12px;
 }
-.ace_editor p, .ace_editor div { font-size: 10pt}
+.ace_editor p, .ace_editor div { font-size: 12px}
 
 .projects_panel {
   .row.active {

@@ -2,8 +2,8 @@ jQuery ->
   AceInitializer =
 
     init: ->
-      AceInitializer.initEditors()
-      AceInitializer.initHighlights()
+      @initEditors()
+      @initHighlights()
 
     setTheme: (selector, editor) ->
       theme = $(selector).data('theme') || 'monokai'
@@ -30,10 +30,16 @@ jQuery ->
         editorTarget = AceInitializer.createEditorTarget(editorSource)
 
         editor = ace.edit(editorTarget[0])
+        editor.setOptions
+          maxLines: Infinity
+
         AceInitializer.setTheme(editorSource, editor)
         AceInitializer.setLanguage(editorSource, editor)
 
         editor.setValue(editorSource.val())
+        editor.session.setFoldStyle('markbeginend')
+        editor.setDisplayIndentGuides(true)
+        editor.setPrintMarginColumn(119)
 
         editorSource.closest('form').on 'submit', ->
           editorSource.val(editor.getValue())
