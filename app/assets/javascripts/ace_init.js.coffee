@@ -32,17 +32,30 @@ jQuery ->
         editor = ace.edit(editorTarget[0])
         editor.setOptions
           maxLines: Infinity
+          minLines: 10
 
         AceInitializer.setTheme(editorSource, editor)
         AceInitializer.setLanguage(editorSource, editor)
 
-        editor.setValue(editorSource.val())
+        editor.setValue(editorSource.val(), -1)
         editor.session.setFoldStyle('markbeginend')
         editor.setDisplayIndentGuides(true)
         editor.setPrintMarginColumn(119)
 
+        AceInitializer.updateHeightEditor editor, editorTarget
+
+        editor.on 'change', ->
+          AceInitializer.updateHeightEditor editor, editorTarget
+
+        editor.getSession().on 'changeFold', ->
+          AceInitializer.updateHeightEditor editor, editorTarget
+
         editorSource.closest('form').on 'submit', ->
           editorSource.val(editor.getValue())
+
+    updateHeightEditor: (editor, wrapper)->
+      wrapper.height(editor.getSession().getScreenLength() * editor.renderer.lineHeight)
+      editor.resize()
 
     initHighlights: ->
       highlightSelector = $('.ace-highlight')
