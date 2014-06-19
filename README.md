@@ -11,6 +11,9 @@ rake setup
 bundle exec rails server
 ```
 
+Run background jobs: `bundle exec rake jobs:work`
+
+
 Start server and login with following credentials
 
 ```yaml
