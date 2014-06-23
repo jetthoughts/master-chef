@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140323203317) do
   end
 
   add_index "account_members", ["account_id"], name: "index_account_members_on_account_id", using: :btree
+  add_index "account_members", ["user_id", "account_id"], name: "index_account_members_on_user_id_and_account_id", unique: true, using: :btree
   add_index "account_members", ["user_id"], name: "index_account_members_on_user_id", using: :btree
 
   create_table "accounts", force: true do |t|
