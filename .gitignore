@@ -27,3 +27,5 @@ coverage
 /projects/
 /config/settings/*.yml
 config/newrelic.yml
+config/skylight.yml
+

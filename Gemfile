@@ -43,6 +43,7 @@ group :production, :staging do
   gem 'dalli'
   gem 'daemons'
   gem 'newrelic_rpm'
+  gem 'skylight'
 end
 
 group :development do
