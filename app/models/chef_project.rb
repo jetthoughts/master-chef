@@ -26,7 +26,7 @@ class ChefProject
   end
 
   def project_path
-    base_folder.join(@project.user_id.to_s, '%d_%s' % [@project.id, @project.title.parameterize])
+    base_folder.join(@project.user_id.to_s, @project.slug)
   end
 
   def build_node(node, logger)

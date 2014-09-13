@@ -1,6 +1,6 @@
 class ProjectsController < UserBaseController
 
-  respond_to :html, :js, :json
+  respond_to :html, :js, :json, :zip
 
   before_filter :authenticate_user!
   before_filter :load_resource, only: [:show, :update, :destroy, :edit]
@@ -11,8 +11,16 @@ class ProjectsController < UserBaseController
   end
 
   def show
-    return redirect_to([@project, :nodes], notice: 'Add at least one server') if @project.nodes.empty?
-    redirect_to([@project, :deployments])
+    respond_to do |format|
+      format.html do
+        return redirect_to([@project, :nodes], notice: 'Add at least one server') if @project.nodes.empty?
+        redirect_to([@project, :deployments])
+      end
+
+      format.zip do
+        send_data 'zipcontent', filename: "#{@project.slug}.zip"
+      end
+    end
   end
 
   def edit

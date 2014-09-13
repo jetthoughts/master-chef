@@ -14,10 +14,9 @@ class Project < ActiveRecord::Base
     chef_project.update_cookbooks!
   end
 
-  def prepare_project
-    chef_project.prepare
+  def slug
+    '%d_%s' % [id, title.parameterize]
   end
-  deprecate :prepare_project
 
   private
 

@@ -40,8 +40,25 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'should redirect to deployments' do
+    @project.nodes.create!(name: 'Amazon', hostname: 'example.com')
     get :show, id: @project
     assert_redirected_to project_deployments_path(@project)
+  end
+
+  test 'should redirect to nodes if there are no nodes created' do
+    @project.nodes.delete_all
+    get :show, id: @project
+    assert_redirected_to project_nodes_path(@project)
+  end
+
+  test 'return success for zip format' do
+    get :show, id: @project, format: :zip
+    assert_response :success
+  end
+
+  test 'send file for zip format' do
+    get :show, id: @project, format: :zip
+    assert_equal 'application/zip', response.header['Content-Type']
   end
 
   test 'should not allow show foreign projects' do
