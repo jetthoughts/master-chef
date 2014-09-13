@@ -5,7 +5,7 @@ class ChefProjectTest < ActiveSupport::TestCase
   fixtures :projects, :nodes, :roles
 
   def test_initialize
-    ChefProject.new projects(:accounter)
+    subject
   end
 
   def test_base_folder_path_pointed_to_root_projects_folder_by_default

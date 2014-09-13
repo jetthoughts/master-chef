@@ -18,7 +18,7 @@ class ProjectsController < UserBaseController
       end
 
       format.zip do
-        send_data 'zipcontent', filename: "#{@project.slug}.zip"
+        send_file ChefProject.new(@project).archive
       end
     end
   end

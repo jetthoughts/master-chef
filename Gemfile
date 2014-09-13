@@ -24,7 +24,7 @@ gem 'state_machine'
 gem 'pusher'
 gem 'net-ssh'
 gem 'net-scp'
-gem 'unicorn-rails'
+gem 'unicorn-rails', platform: :ruby
 gem 'airbrake'
 gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
 
@@ -38,6 +38,9 @@ gem 'omniauth-github'
 
 # https://github.com/peter-murach/github
 gem 'github_api'
+
+# https://github.com/rubyzip/rubyzip
+gem 'rubyzip', '>= 1.0.0', require: 'zip'
 
 group :production, :staging do
   gem 'dalli'

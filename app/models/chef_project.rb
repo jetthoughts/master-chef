@@ -37,6 +37,20 @@ class ChefProject
 
   end
 
+  def archive
+    prepare
+    path = project_path.to_s
+    path.sub!(%r[/$],'')
+    archive_name = base_folder.join(@project.user_id.to_s, "#{project.slug}.zip").to_s
+    FileUtils.rm archive_name, :force=>true
+
+    Zip::File.open(archive_name, 'w') do |zipfile|
+      Dir["#{path}/**/*"].each do |file|
+        zipfile.add(file.sub(path + '/', ''), file)
+      end
+    end
+    archive_name
+  end
   private
 
   def chef_project_generator
