@@ -5,6 +5,6 @@ class ProjectTest < ActiveSupport::TestCase
     project = Project.new
     assert project.cookbooks
     assert_includes project.cookbooks, 'cookbook'
-    assert_includes project.cookbooks, 'opscode'
+    assert_includes project.cookbooks, 'supermarket.getchef.com'
   end
 end
