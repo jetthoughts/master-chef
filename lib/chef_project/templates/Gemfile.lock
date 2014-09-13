@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/miry/dep-selector-libgecode.git
+  revision: 40b6f9cda079517f0ea6846b80d282e6bd703a4a
+  branch: patch-1
+  specs:
+    dep-selector-libgecode (1.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,7 +63,6 @@ GEM
       mixlib-log (~> 1.3)
       rack
     coderay (1.1.0)
-    dep-selector-libgecode (1.0.2)
     dep_selector (1.0.3)
       dep-selector-libgecode (~> 1.0)
       ffi (~> 1.9)
@@ -160,6 +166,7 @@ PLATFORMS
 DEPENDENCIES
   berkshelf
   chef
+  dep-selector-libgecode!
   knife-solo
   knife-solo_data_bag
   rake
