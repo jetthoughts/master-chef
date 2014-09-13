@@ -2,7 +2,25 @@
   <%= f.text_field :title, class: 'form-control', placeholder: 'Project Title' %>
 </div>
 
-<div class="form-group">
-  <%= f.label :cookbooks %>
-  <%= f.hidden_field :cookbooks, class: 'form-control ace-editor', data: {language: 'ruby'} %>
+<div class="panel-group" id="project-settings">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#project-settings" href="#cookbooks-settings">
+          Cookbooks
+        </a>
+      </h4>
+    </div>
+
+    <div id="cookbooks-settings" class="panel-collapse collapse">
+      <div class="panel-body">
+
+        <div class="form-group">
+          <%= f.hidden_field :cookbooks, class: 'form-control ace-editor', data: {language: 'ruby'} %>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </div>
+
