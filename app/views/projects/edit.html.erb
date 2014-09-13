@@ -10,7 +10,12 @@
     <%= form_for [@project] do |f| %>
       <%= render 'form', f: f %>
 
-      <%= f.submit 'Save', class: 'btn btn-success' %>
+      <%= f.submit 'Save', class: 'btn btn-sm btn-success' %>
+
+      <%= link_to '', class: 'btn btn-danger btn-sm' do %>
+        <i class="fa fa-cloud-download"></i> Download
+      <% end %>
+
       <%= link_to 'Remove', @project, method: :delete, data: {confirm: 'Are you sure?'},
                   title: 'Destroy', class: 'btn btn-danger btn-sm pull-right' %>
     <% end %>
