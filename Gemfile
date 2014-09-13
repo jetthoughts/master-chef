@@ -3,7 +3,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.0.rc2'
 gem 'arel'
 
-gem 'pg'
+gem 'pg', platform: :ruby
+gem 'activerecord-jdbcpostgresql-adapter', platform: :jruby
 
 gem 'jquery-rails'
 

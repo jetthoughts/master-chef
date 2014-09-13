@@ -284,6 +284,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-jdbcpostgresql-adapter
   airbrake
   arel
   cancan
