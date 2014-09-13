@@ -12,3 +12,9 @@ before_script:
   - psql -c 'create database master_chef_test' -U postgres
 env:
   - DB=postgresql
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+    - rvm: jruby-19mode
+    - rvm: jruby-head
