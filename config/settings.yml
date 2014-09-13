@@ -32,7 +32,7 @@ common:
 
   project:
     default_cookbooks: |
-                       site :opscode
+                       source "https://supermarket.getchef.com"
 
                        cookbook 'ntp'
                        cookbook 'timezone'
@@ -49,6 +49,7 @@ common:
                        cookbook 'postfix'
                        cookbook 'postgresql'
                        cookbook 'locale'
+                       cookbook 'locale-gen'
                        cookbook 'rbenv'
                        cookbook 'memcached'
                        cookbook 'runit'
@@ -63,6 +64,7 @@ common:
                        cookbook 'rsyslog'
                        cookbook 'newrelic'
                        cookbook 'user'
+                       cookbook 'custom_packages', git: 'https://github.com/miry/custom_packages_cookbook.git'
 
 test:
   base_projects_path: "<%= Rails.root.join('tmp', 'projects') %>"
