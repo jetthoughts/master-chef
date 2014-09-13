@@ -13,7 +13,7 @@ set :format, :pretty
 set :log_level, :debug
 set :pty, true
 
-set :linked_files, %w{config/database.yml  config/newrelic.yml config/skylight.yml}
+set :linked_files, %w{config/database.yml  config/newrelic.yml}
 set :linked_dirs, %w{log tmp vendor/bundle public/assets projects config/settings}
 
 set :default_env, { path: '/data/rbenv/shims:/data/rbenv/bin:/data/rbenv/plugins/ruby_build/bin:/usr/bin:$PATH' }
