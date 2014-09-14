@@ -6,5 +6,4 @@ group :chef do
   gem 'knife-solo_data_bag'
   gem 'rake'
   gem 'berkshelf'
-  gem 'dep-selector-libgecode', github: 'miry/dep-selector-libgecode', branch: 'patch-1'
 end
