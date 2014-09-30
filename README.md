@@ -24,3 +24,8 @@ password: welcome
 ## Code Status
 
 [![Build Status](https://travis-ci.org/jetthoughts/master-chef.png?branch=master)](https://travis-ci.org/jetthoughts/master-chef)
+
+### Thanks
+
+Sponsored by [JetThoughts].
+[JetThoughts]: http://www.jetthoughts.com/
