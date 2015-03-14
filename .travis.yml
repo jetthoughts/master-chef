@@ -1,11 +1,8 @@
 language: ruby
 bundler_args: --without development production staging --deployment
 rvm:
-  - 2.1.2
-  - 2.0.0
+  - 2.2.1
   - ruby-head
-  - jruby-19mode
-  - jruby-head
 before_script:
   - cp config/database.yml.ci config/database.yml
   - mysql -e 'create database master_chef_test'
