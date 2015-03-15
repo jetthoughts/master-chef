@@ -4,7 +4,7 @@ class Mailer < ActionMailer::Base
 
   default from: Settings.default_from_email
 
-  default_url_options[:host] = Settings.host_for_email_with_www
+  default_url_options[:host] = Settings.host
 
   def dummy_mailer(send_to)
     mail(to: send_to, subject: 'Test Email') do |format|
