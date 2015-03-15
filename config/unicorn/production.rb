@@ -1,6 +1,7 @@
 # Set your full path to application.
 preload_app true
 timeout 60
+workers 2
 
 # Should be 'production' by default, otherwise use other env
 rails_env = ENV['RAILS_ENV'] || 'production'
