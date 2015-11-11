@@ -2,7 +2,7 @@ class CookbooksController < UserBaseController
 
   respond_to :json
 
-  before_filter :load_project
+  before_action :load_project
 
   def update
     @project.delay.update_cookbooks!

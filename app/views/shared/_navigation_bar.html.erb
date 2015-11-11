@@ -22,10 +22,6 @@
           </a>
 
           <ul class="dropdown-menu">
-            <% if super_admin_signed_in? %>
-              <li><%= nav_link('Delayed Jobs', delayed_job_path, target: '_blank') %></li>
-            <% end %>
-
             <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
           </ul>
         </li>

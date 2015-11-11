@@ -57,7 +57,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test 'send file for zip format' do
-    get :show, id: @project, format: :zip
+    process :show, method: :get, params: { id: @project.id }, format: :zip
     assert_equal 'application/zip', response.header['Content-Type']
   end
 

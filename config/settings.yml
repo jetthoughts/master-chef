@@ -1,91 +1,66 @@
-common:
-  title: Master Chef
-  host: lvh.me:3000
-  default_from_email: "'MasterChef' <no-reply@masterchef.io>"
-  base_projects_path: "<%= Rails.root.join('projects') %>"
-  deployment:
-    user: <%= ENV['USER'] %>
-    channel_template: 'deployment_%d'
-  deployment_user: <%= ENV['USER'] %>
-  mailer:
-    delivery_method: test
-    smtp_settings:
-      user_name: <%= ENV['MAILER_USERNAME'] %>
-      password:  <%= ENV['MAILER_PASSWORD'] %>
-      address:   <%= ENV['MAILER_HOST'] %>
-      port:      <%= ENV['MAILER_PORT'] %>
-      authentication: plain
+title: Master Chef
+host: lvh.me:3000
+default_from_email: "'MasterChef' <no-reply@masterchef.io>"
+base_projects_path: "<%= Rails.root.join('projects') %>"
+deployment:
+  user: <%= ENV['USER'] %>
+  channel_template: 'deployment_%d'
+deployment_user: <%= ENV['USER'] %>
+mailer:
+  delivery_method: test
+  smtp_settings:
+    user_name: <%= ENV['MAILER_USERNAME'] %>
+    password:  <%= ENV['MAILER_PASSWORD'] %>
+    address:   <%= ENV['MAILER_HOST'] %>
+    port:      <%= ENV['MAILER_PORT'] %>
+    authentication: plain
 
-  devise:
-    secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
+devise:
+  secret_key: <%= ENV['DEVISE_SECRET_KEY'] %>
 
-  google_analitycs:
-    tracking_id: <%= ENV['GA_TRACK_ID'] %>
+google_analitycs:
+  tracking_id: <%= ENV['GA_TRACK_ID'] %>
 
-  airbrake_key: <%= ENV['AIRBRAKE_KEY'] %>
+airbrake_key: <%= ENV['AIRBRAKE_KEY'] %>
 
-  pusher:
-    key: <%= ENV['PUSHER_KEY'] %>
-    app_id: <%= ENV['PUSHER_APP_ID'] %>
-    secret: <%= ENV['PUSHER_SECRET'] %>
-    url: <%= ENV['PUSHER_URL'] || '' %>
+pusher:
+  key: <%= ENV['PUSHER_KEY'] %>
+  app_id: <%= ENV['PUSHER_APP_ID'] %>
+  secret: <%= ENV['PUSHER_SECRET'] %>
+  url: <%= ENV['PUSHER_URL'] || '' %>
 
-  project:
-    default_cookbooks: |
-                       source "https://supermarket.getchef.com"
+project:
+  default_cookbooks: |
+                     source "https://supermarket.getchef.com"
 
-                       cookbook 'ntp'
-                       cookbook 'timezone'
-                       cookbook 'apt'
-                       cookbook 'imagemagick'
-                       cookbook 'build-essential'
-                       cookbook 'chef_handler'
-                       cookbook 'git'
-                       cookbook 'monit'
-                       cookbook 'nginx'
-                       cookbook 'nodejs', git: 'https://github.com/miry/nodejs-cookbook.git'
-                       cookbook 'ohai'
-                       cookbook 'openssl'
-                       cookbook 'postfix'
-                       cookbook 'postgresql'
-                       cookbook 'locale'
-                       cookbook 'locale-gen'
-                       cookbook 'rbenv'
-                       cookbook 'memcached'
-                       cookbook 'runit'
-                       cookbook 'sudo'
-                       cookbook 'rails-stack', git: 'https://github.com/jetthoughts/rails_stack_cookbook.git'
-                       cookbook 'unicorn', git: 'https://github.com/jetthoughts/unicorn_cookbook.git'
-                       cookbook 'delayed_job', git: 'https://github.com/jetthoughts/delayed_job_cookbook.git'
-                       cookbook 'logrotate'
-                       cookbook 's3cmd'
-                       cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git'
-                       cookbook 'chef-solo-search'
-                       cookbook 'rsyslog'
-                       cookbook 'newrelic'
-                       cookbook 'user'
-                       cookbook 'custom_packages', git: 'https://github.com/miry/custom_packages_cookbook.git'
-
-test:
-  base_projects_path: "<%= Rails.root.join('tmp', 'projects') %>"
-  mailer:
-    delivery_method: :test
-
-development:
-  mailer:
-    delivery_method: :test
-
-staging:
-  mailer:
-    delivery_method: :smtp
-
-  host: master-chef-master.herokuapp.com
-
-production:
-  mailer:
-    delivery_method: :smtp
-    smtp_settings:
-      enable_starttls_auto: true
-      domain: masterchef.io
-
-  host: masterchef.io
+                     cookbook 'ntp'
+                     cookbook 'timezone'
+                     cookbook 'apt'
+                     cookbook 'imagemagick'
+                     cookbook 'build-essential'
+                     cookbook 'chef_handler'
+                     cookbook 'git'
+                     cookbook 'monit'
+                     cookbook 'nginx'
+                     cookbook 'nodejs', git: 'https://github.com/miry/nodejs-cookbook.git'
+                     cookbook 'ohai'
+                     cookbook 'openssl'
+                     cookbook 'postfix'
+                     cookbook 'postgresql'
+                     cookbook 'locale'
+                     cookbook 'locale-gen'
+                     cookbook 'rbenv'
+                     cookbook 'memcached'
+                     cookbook 'runit'
+                     cookbook 'sudo'
+                     cookbook 'rails-stack', git: 'https://github.com/jetthoughts/rails_stack_cookbook.git'
+                     cookbook 'unicorn', git: 'https://github.com/jetthoughts/unicorn_cookbook.git'
+                     cookbook 'delayed_job', git: 'https://github.com/jetthoughts/delayed_job_cookbook.git'
+                     cookbook 'logrotate'
+                     cookbook 's3cmd'
+                     cookbook 'ssl', git: 'https://github.com/miry/ssl-cookbook.git'
+                     cookbook 'chef-solo-search'
+                     cookbook 'rsyslog'
+                     cookbook 'newrelic'
+                     cookbook 'user'
+                     cookbook 'custom_packages', git: 'https://github.com/miry/custom_packages_cookbook.git'

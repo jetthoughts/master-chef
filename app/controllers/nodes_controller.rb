@@ -2,7 +2,7 @@ class NodesController < UserBaseController
 
   before_action :load_node, only: %i{ show edit update destroy }
   before_action :load_project
-  before_filter :load_projects
+  before_action :load_projects
 
   respond_to :html, :json
 
@@ -19,8 +19,16 @@ class NodesController < UserBaseController
     authorize! :create, Node
 
     @node = @project.nodes.build node_attributes
-    flash[:notice] = 'Node successfully created!' if @node.save
-    respond_with @node, location: [@project, :nodes]
+    if @node.save
+      flash[:notice] = 'Node successfully created!'
+      respond_to do |format|
+        format.html { redirect_to [@project, :nodes] }
+      end
+    else
+      respond_to do |format|
+        format.html { render action: :new }
+      end
+    end
   end
 
   def edit
@@ -30,8 +38,16 @@ class NodesController < UserBaseController
   def update
     authorize! :update, @node
     @node.attributes = node_attributes
-    flash[:notice] = 'Node successfully updated' if @node.save
-    respond_with @node, location: [@node.project, :nodes]
+    if @node.save
+      flash[:notice] = 'Node successfully updated'
+      respond_to do |format|
+        format.html { redirect_to [@project, :nodes] }
+      end
+    else
+      respond_to do |format|
+        format.html { render action: :edit }
+      end
+    end
   end
 
   def destroy

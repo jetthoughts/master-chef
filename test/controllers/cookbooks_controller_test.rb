@@ -9,8 +9,8 @@ class CookbooksControllerTest < ActionController::TestCase
   end
 
   def test_response_after_update_cookbooks_lock
-    patch :update, project_id: project.id, format: :json
-    assert_equal ' ', response.body
+    process :update, params: {project_id: project.id}, format: :json
+    assert response.body.blank?
   end
 
   private

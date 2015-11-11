@@ -1,21 +1,22 @@
 source 'https://rubygems.org'
 
-gem 'rails', '>= 4.2.0'
-gem 'arel'
+gem 'rails', github: 'rails/rails'
+gem 'rack',  github: 'rack/rack'
+gem 'arel',  github: 'rails/arel'
+gem 'sprockets', github: 'rails/sprockets'
+gem 'sprockets-rails', github: 'rails/sprockets-rails'
+gem 'coffee-rails', github: 'rails/coffee-rails'
+gem 'sass-rails', require: 'sass', github: 'rails/sass-rails'
 
 gem 'pg', platform: :ruby
-gem 'activerecord-jdbcpostgresql-adapter', platform: :jruby
 
 gem 'jquery-rails'
 
-gem 'devise', '>= 3.0.2'
+gem 'devise', github: 'twalpole/devise', branch: 'rails5'
 gem 'devise-async'
 gem 'cancan'
 
 gem 'delayed_job_active_record', '>= 4.0.0.beta1'
-gem 'delayed_job_web', '>= 1.2.0'
-
-gem 'handy', github: 'miry/handy'
 
 gem 'twitter-bootstrap-rails', github: 'seyhunak/twitter-bootstrap-rails', branch: 'bootstrap3'
 
@@ -25,13 +26,8 @@ gem 'state_machine'
 gem 'pusher'
 gem 'net-ssh'
 gem 'net-scp'
-gem 'unicorn-rails', platform: :ruby
-gem 'airbrake'
-gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
 
-gem 'sprockets-rails'
-gem 'sass-rails', require: 'sass'
-gem 'coffee-rails'
+
 gem 'uglifier', '>= 1.0.3'
 
 # https://github.com/intridea/omniauth-github
@@ -58,12 +54,17 @@ group :test do
   gem 'mocha', require: false
   gem 'simplecov', require: false
   gem 'timecop', require: false
+  gem 'rails-controller-testing', github: 'rails/rails-controller-testing'
 end
 
-group :deploy do
-  gem 'capistrano', github: 'capistrano/capistrano'
-  gem 'capistrano-rbenv', github: 'capistrano/rbenv'
-  gem 'capistrano-rails', github: 'capistrano/rails'
-  gem 'capistrano-bundler', github: 'capistrano/bundler'
-  gem 'sshkit', github: 'leehambley/sshkit'
-end
+# group :deploy do
+#   # gem 'unicorn-rails', platform: :ruby
+#   # gem 'j-cap-recipes', github: 'jetthoughts/j-cap-recipes'
+#   # gem 'capistrano', github: 'capistrano/capistrano'
+#   # gem 'capistrano-rbenv', github: 'capistrano/rbenv'
+#   # gem 'capistrano-rails', github: 'capistrano/rails'
+#   # gem 'capistrano-bundler', github: 'capistrano/bundler'
+#   # gem 'sshkit', github: 'leehambley/sshkit'
+# end
+
+gem 'config'

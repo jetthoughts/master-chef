@@ -13,7 +13,7 @@ class RolesControllerTest < ActionController::TestCase
   end
 
   test 'should get index' do
-    get :index, project_id: @project.id
+    process :index, method: :get, params: { project_id: @project.id }
     assert_response :success
     assert_not_nil assigns(:roles)
   end

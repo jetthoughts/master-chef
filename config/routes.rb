@@ -21,9 +21,5 @@ MasterChef::Application.routes.draw do
 
   resources :deployments, only: [:index, :show]
 
-  authenticate :user, ->(u) { u.superadmin? } do
-    match '/delayed_job' => DelayedJobWeb, anchor: false, via: [:get, :post, :put]
-  end
-
   root 'pages#home'
 end

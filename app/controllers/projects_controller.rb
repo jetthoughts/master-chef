@@ -2,8 +2,8 @@ class ProjectsController < UserBaseController
 
   respond_to :html, :js, :json, :zip
 
-  before_filter :authenticate_user!
-  before_filter :load_resource, only: [:show, :update, :destroy, :edit]
+  before_action :authenticate_user!
+  before_action :load_resource, only: [:show, :update, :destroy, :edit]
   authorize_resource
 
   def index
